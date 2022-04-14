@@ -124,7 +124,7 @@ class DemandefrontController extends Controller
 
         /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
         // if()
-        Mail::to($userencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
+        //Mail::to($userencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
         // $this->whatsappNotification($userencour->telephone);
 
         //**** LISTES DES DEMANDES */
