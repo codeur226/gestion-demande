@@ -47,6 +47,7 @@ class DirectionController extends Controller
         $direction = Direction::create([
             'libelle_court' => $request->libelle_court,
             'libelle_long' => $request->libelle_long,
+            'domaine' => $request->domaine,
         ]);
 
         return redirect()->route('directions.index')->with('message', 'La direction a bien été ajoutée');
@@ -93,7 +94,9 @@ class DirectionController extends Controller
     {
         $direction->update(
             [
-                'direction' => $request->direction,
+                'libelle_long' => $request->libelle_long,
+                'libelle_court' => $request->libelle_court,
+                'domaine' => $request->domaine,
             ]
             );
 

@@ -261,8 +261,8 @@ class DemandeController extends Controller
                 'date_fin' => $request->datedefin,
             ]
             );
-        $user = Demande::where('demandes', '=', $id)->first();
-        Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
+        //$user = Demande::where('demandes', '=', $id)->first();
+        //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
         return Redirect::route('stageencours');
     }
@@ -285,7 +285,7 @@ class DemandeController extends Controller
                 'etape' => 10,
             ]
             );
-        $user = Demande::where('demandes', '=', $id)->first();
+        //$user = Demande::where('demandes', '=', $id)->first();
         //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
         return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été validée ! ');

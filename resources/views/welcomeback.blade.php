@@ -242,7 +242,7 @@ onclick="event.preventDefault();
                         <td>{{$demande->code}}</td>
                         <td>{{$demande->nom}}</td>
                         <td>{{$demande->prenom}}</td>
-                        <td>{{getValeur($demande->domaine)}}</td>
+                        <td>{{getDirection($demande->direction_id)}}</td>
                         <td>{{$demande->date_debut}}</td>
                         <td>{{$demande->date_fin}}</td>
                         <td>{{getValeur($demande->etat)}}</td>

@@ -34,7 +34,7 @@
                                    
                                    <tr>
                                       
-                                       <td>{{getValeur($demande->domaine)}}</td>
+                                       <td>{{getDirection($demande->direction_id)}}</td>
                                        <td>{{getValeur($demande->type)}}</td>
                                        <td>{{$demande->date_debut}}</td>
                                        <td>{{$demande->date_fin}}</td>                                       

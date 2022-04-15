@@ -6,6 +6,8 @@
   <input type="text" id="libelle_court" value="{{ old('libelle_court') ?? $direction->libelle_court}}" name="libelle_court" class="form-control" placeholder="Enter un libellé court..">
   <label for="direction">Libellé long</label>
   <input type="text" id="libelle_long" value="{{ old('libelle_long') ?? $direction->libelle_long}}" name="libelle_long" class="form-control" placeholder="Enter un libellé long..">
+  <label for="direction">Domaine</label>
+  <input type="text" id="domaine" value="{{ old('domaine') ?? $direction->domaine}}" name="domaine" class="form-control" placeholder="Enter un domaine..">
   <!--<span class="help-block">saisir la direction</span>-->
   @error('direction')
   <small class="text-danger">{{$message}}</small>

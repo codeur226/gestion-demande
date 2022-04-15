@@ -4,6 +4,7 @@
 use App\Models\Demande;
 use App\Models\User;
 use App\Models\Valeur;
+use App\Models\Direction;
 
 /* ********************************************************************
      * DEMBELE
@@ -35,6 +36,24 @@ if (!function_exists('getDirection')) {
         $record = Direction::where('id', $id)->first();
         if ($record != null) {
             return $record['libelle_court'];
+        } else {
+            return '';
+        }
+    }
+}
+
+/* ********************************************************************
+     * DEMBELE
+     * recuperer le domaine de la direction en fonction de son id
+     *
+***********************************************************************/
+
+if (!function_exists('getDomaine')) {
+    function getDomaine($id)
+    {
+        $record = Direction::where('id', $id)->first();
+        if ($record != null) {
+            return $record['domaine'];
         } else {
             return '';
         }

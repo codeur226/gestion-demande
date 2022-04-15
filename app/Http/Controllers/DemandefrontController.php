@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AjoutDemande;
 use App\Models\Demande;
+use App\Models\Direction;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Valeur;
@@ -36,9 +37,7 @@ class DemandefrontController extends Controller
      */
     public function create()
     {
-        $domaines = Valeur::join('parametres', 'parametres.id', '=', 'valeurs.parametre_id')
-            ->where('parametres.parametre', '=', 'domaine')
-            ->get(['valeurs.id', 'valeurs.valeur']);
+        $directions = Direction::All();
         $typestages = Valeur::join('parametres', 'parametres.id', '=', 'valeurs.parametre_id')
             ->where('parametres.parametre', '=', 'type stage')
             ->get(['valeurs.id', 'valeurs.valeur']);
@@ -46,7 +45,7 @@ class DemandefrontController extends Controller
         return view(
             'front-office.stage.create',
             [
-                'domaines' => $domaines,
+                'directions' => $directions,
                 'typestages' => $typestages,
             ]
         );
@@ -65,6 +64,7 @@ class DemandefrontController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         //Enregistrement de l'utilisateur
         $code = 'DS-'.dechex((int) time());
         $userencour = User::create([
@@ -76,6 +76,11 @@ class DemandefrontController extends Controller
             'first_connexion' => 0,
             // 'supprimer' => 0,
         ]);
+        */
+
+
+        //Enregistrement de l'utilisateur
+        $code = 'DS-'.dechex((int) time());
 
         //Enregistrer la demande
         $demanderencour = Demande::create([
@@ -88,7 +93,7 @@ class DemandefrontController extends Controller
             'email' => $request->email,
             
             'type' => $request->typestage,
-            'domaine' => $request->domaine,
+            'direction_id' => $request->direction,
             'date_debut' => $request->datedebut,
             'date_fin' => $request->datefin,
             'type_demande' => 6,
@@ -96,7 +101,10 @@ class DemandefrontController extends Controller
             'code' => strtoupper($code),
             'supprimer' => 0,
         ]);
+
+        
         /**enregistrer les informations dans la table pivot Demande_user**/
+        /*
         $user_demandeencour = Demande_user::create([
             //'usercreated'=>Auth::user()->id,
 
@@ -104,6 +112,7 @@ class DemandefrontController extends Controller
             'user_id' => $userencour->id,
             'role' => 14, // 14 correspond a role stagiaire parametre/valeur
         ]);
+        */
 
         /* ENREGISTREMENT DES PIECE JOINTES**/
 
@@ -131,16 +140,11 @@ class DemandefrontController extends Controller
 
         //**** LISTES DES DEMANDES */
 
-        $demandes = Demande::join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-            ->join('users', 'users.id', '=', 'demande_users.user_id')
-            ->join('valeurs', 'valeurs.id', '=', 'demandes.domaine')
-            ->join('parametres', 'parametres.id', '=', 'valeurs.parametre_id')
-            ->where('parametres.parametre', '=', 'domaine')
-            ->where('demandes.supprimer', '=', 0)
+        $demandes = Demande::where('demandes.supprimer', '=', 0)
             ->orderbyDesc('demandes.id')
             ->get([
-                'users.nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
-                'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code', 'valeurs.valeur',
+                'demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
+                'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat',
                 'demandes.note_globale',
             ]);
 
@@ -237,12 +241,9 @@ class DemandefrontController extends Controller
     public function consulter(Request $request)
     {
         //Affiche les information d'une demande
-        $demande = Demande::join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-            ->join('users', 'users.id', '=', 'demande_users.user_id')
-            ->where('demandes.supprimer', '=', 0)
-            ->where('users.email', '=', $request->email)
+        $demande = Demande::where('demandes.supprimer', '=', 0)
+            ->where('demandes.email', '=', $request->email)
             ->where('demandes.code', '=', $request->code)
-            ->where('demandes.supprimer', '=', 0)
             ->first();
 
         return view(

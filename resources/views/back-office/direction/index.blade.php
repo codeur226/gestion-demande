@@ -47,6 +47,7 @@
                                         <th class="text-center">ID</th>
                                         <th>Sigle</th>
                                         <th>Nom complet</th>
+                                        <th>Domaine</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -61,6 +62,7 @@
                                        
                                         <td>{{$domain->libelle_court}}</td>
                                         <td>{{$domain->libelle_long}}</td>
+                                        <td>{{$domain->domaine}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a href="{{ route('directions.show', $domain) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>

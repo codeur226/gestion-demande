@@ -241,17 +241,17 @@
                     </div>
                          
                     <div class="row">
-                                <div class="col"> <label  for="domaine">Domaine (<span style="color:red;">*</span>)</label>
-                                    <select class="form-control form-control2" name="domaine" id="domaine">
-                                        @foreach($domaines as $domaine)
+                                <div class="col"> <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
+                                    <select class="form-control form-control2" name="direction" id="direction">
+                                        @foreach($directions as $direction)
                                         
-                                        <option value="{{$domaine->id}}">{{$domaine->valeur}}</option>
+                                        <option value="{{$direction->id}}">{{$direction->domaine}}</option>
                                             
                                         @endforeach 
                                     
                                     </select>
                                     {{-- <span class="help-block">Saisir le profil</span> --}}
-                                    @error('domaine')
+                                    @error('direction')
                                     <small class="text-danger">{{$message}}</small>
                                     @enderror
                                 

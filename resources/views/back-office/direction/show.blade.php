@@ -22,6 +22,7 @@
                                       
                                        <th>Sigle</th>
                                        <th>Nom complet</th>
+                                       <th>Domaine</th>
                                        
                                    </tr>
                                </thead>
@@ -31,6 +32,7 @@
                                       
                                        <td>{{$direction->libelle_court}}</td>
                                        <td>{{$direction->libelle_long}}</td>
+                                       <td>{{$direction->domaine}}</td>
                                        
                                    </tr>
                                    
