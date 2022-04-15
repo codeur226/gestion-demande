@@ -145,13 +145,28 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                    <label  for="example-telephone">Téléphone (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="telephone" name="telephone" class="form-control form-control2" required></div>
+                                    <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
+
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                    {{-- <label  for="whatsapp">Contact whatsapp (optionnel) </label> --}}
+                                                
+                                                <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+
+                                                
+                                            </div>
                                         </div>
+
+                                        {{-- <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" id="telephone" name="telephone" class="form-control form-control2" required>
+                                            </div>
+                                        </div> --}}
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                     </div>
+
+                                    
                         </div>
 
                         <div class="col">
@@ -165,7 +180,7 @@
                                     </div>
                         </div>
                     </div>
-
+{{-- 
                     <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -181,7 +196,7 @@
                                 <div class="col">
                                 
                                 </div>
-                        </div>
+                        </div> --}}
 
                     <div class="row"> </div>
 
@@ -284,6 +299,14 @@
                                         </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                        <div >
+                                            <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" ></div>
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
                                     </div>
                         </div>
 
@@ -297,25 +320,20 @@
                                             </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                   
+                                   
                                     </div>
 
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                          <div class="w-100"></div>
                             <div class="col">
-                            <div >
-                                    <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" ></div>
-                                        </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
+                           
                         </div>
     
-                     </div>
+                     </div> --}}
             </div>
                     
                     <!-- END Second Step -->

@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\DemandefrontController;
+use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\PieceController;
 use App\Http\Controllers\RenouvellementController;
 use App\Http\Controllers\RoleController;

@@ -50,7 +50,7 @@
                          <br>
                          <span style="font-weight: bold ">  Type de stage : </span>{{getValeur($demande->type)}}
                          <br>
-                         <span style="font-weight: bold "> Domaine : </span>{{getValeur($demande->domaine)}}
+                         <span style="font-weight: bold "> Domaine : </span>{{getDomaine($demande->direction_id)}}
                          <br>
                          <span style="font-weight: bold "> Date de début : </span>{{$demande->date_debut}}
                          <br>

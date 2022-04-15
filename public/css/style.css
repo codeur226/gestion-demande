@@ -127,3 +127,11 @@ width: 23%;
     background-position: center;
     background-size: 100% !important;
   }
+
+  .form-control3 {
+    margin-left: 15px !important;
+  }
+  
+  label {
+    margin-left: 3% !important;
+  }
