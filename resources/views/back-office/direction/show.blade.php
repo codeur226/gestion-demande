@@ -6,13 +6,13 @@
     
         <!-- Page content -->
         <div id="page-content">
-            <h1 class="text-center">Detail du Parametre</h1>
+            <h1 class="text-center">Detail de la direction</h1>
 
                      <!-- Datatables Content -->
 
                      <div class="block full">
                        <div class="block-title">
-                           {{--<h2>Tous les parametres</h2>--}}
+                           {{--<h2>Toutes les directions</h2>--}}
                        </div>
 
                        <div class="table-responsive">
@@ -20,7 +20,8 @@
                                <thead>
                                    <tr>
                                       
-                                       <th>Paramètre</th>
+                                       <th>Sigle</th>
+                                       <th>Nom complet</th>
                                        
                                    </tr>
                                </thead>
@@ -28,13 +29,14 @@
                                    
                                    <tr>
                                       
-                                       <td>{{$parametre->parametre}}</td>
+                                       <td>{{$direction->libelle_court}}</td>
+                                       <td>{{$direction->libelle_long}}</td>
                                        
                                    </tr>
                                    
                                </tbody>
                            </table>
-                           <a href="{{ route('parametres.index') }}" class="btn btn-primary btn-sm mr-2" >retour</a>
+                           <a href="{{ route('directions.index') }}" class="btn btn-primary btn-sm mr-2" >retour</a>
                        </div>
                    </div>
                    <!-- END Datatables Content -->

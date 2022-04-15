@@ -40,4 +40,10 @@ class Demande extends Model
         //relation de plusieurs: une demande contient +sieurs evaluations
         return $this->belongsToMany(Evaluation::class);
     }
+
+    public function directions()
+    {
+        //relation de plusieurs: une demande appartient a une direction
+        return $this->belongsTo(Direction::class);
+    }
 }

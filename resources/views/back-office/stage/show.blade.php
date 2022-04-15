@@ -6,9 +6,6 @@
     
         <!-- Page content -->
         <div id="page-content">
-            {{-- @include('back-office/partials.header') --}}
-           
-     
             <h2 class="text-center">Details du stage N° {{$demande->code}}   {{$demande->nom}} {{$demande->prenom}}</h2>
 
                      <!-- Datatables Content -->
@@ -29,7 +26,7 @@
 
                              <tr>
                                  <th>Domaine :</th>
-                                 <td>{{getValeur($demande->domaine)}}</td>
+                                 <td>{{getDirection($demande->direction_id)}}</td>
                              </tr>
                              <tr>
                                  <th>Etape :</th>

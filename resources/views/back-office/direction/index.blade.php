@@ -1,4 +1,4 @@
-<x-master-layout  title=" | Demandes">
+<x-master-layout  title=" | Direction">
 
         <!-- Main Container -->
         <div id="main-container">
@@ -34,10 +34,10 @@
            
 
                       <!-- Datatables Content -->
-                      {{-- <a class="btn btn-success btn-sm" href="{{route('demandes.create')}}"><i class="fas fa-plus"></i>Nouveau</a> --}}
+                      <a class="btn btn-success btn-sm" href="{{route('directions.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a>
                       <div class="block full">
                         <div class="block-title">
-                            <h2>Liste des demandes</h2>
+                            {{--<h2>Toutes les directions</h2>--}}
                         </div>
 
                         <div class="table-responsive">
@@ -45,14 +45,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">ID</th>
-                                        <th>Code</th>
-                                        <th>Nom</th>
-                                        <th>Prénom (s)</th>
-                                        <th>E-mail</th>
-                                        <th>Domaine</th>
-                                        <th>Date debut</th>
-                                        <th>Date fin</th>
-                                        <th>Etat</th>
+                                        <th>Sigle</th>
+                                        <th>Nom complet</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -61,32 +55,26 @@
                                     <tr>
                                         <?php $number=0; ?>
                                    
-                                    @foreach ($demandes as $demande)
+                                    @foreach ($directions as $domain)
                                     <?php $number++; ?>
                                         <td class="text-center"> {{$number}}</td>
-                                        <td>{{$demande->code}}</td>
-                                        <td>{{$demande->nom}}</td>
-                                        <td>{{$demande->prenom}}</td>
-                                        <td>{{$demande->email}}</td>
-                                        <td>{{getDirection($demande->direction_id)}}</td>
-                                        <td>{{$demande->date_debut}}</td>
-                                        <td>{{$demande->date_fin}}</td>
-                                        <td>{{getValeur($demande->etat)}}</td>
-                                         <td class="text-center">
+                                       
+                                        <td>{{$domain->libelle_court}}</td>
+                                        <td>{{$domain->libelle_long}}</td>
+                                        <td class="text-center">
                                             <div class="btn-group">
-                                               
-                                                <a title="Voir les détails" href="{{ route('demandes.show', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
-                                                {{-- <a href="{{ route('demandes.edit', $demande) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a> --}}
-                                                <a title="Supprimer la demande" href="{{ route("demandes.destroy", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
+                                                <a href="{{ route('directions.show', $domain) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
+                                                <a href="{{ route('directions.edit', $domain) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ route("directions.destroy", $domain->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                     event.preventDefault(); 
-                                                    if(confirm('Etes-vous sur de vouloir supprimer cette demande ?')) 
-                                                    document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
-                                                <form id="{{ $demande->id }}" method="post" action="{{ route("demandes.destroy", $demande->id) }}">
+                                                    if(confirm('Etes-vous sur de vouloir supprimer cette direction ?')) 
+                                                    document.getElementById('{{ $domain->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
+                                                <form id="{{ $domain->id }}" method="post" action="{{ route("directions.destroy", $domain->id) }}">
                                                     @csrf
                                                     @method("delete")
                                                 </form>
 
-                                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $param->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}  
+                                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $domain->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}  
                                         </div>
                                         </td>
                                     </tr>
@@ -101,5 +89,11 @@
                     
             
             </div>
-        </div>  
+        </div>
+
+        
+
+         
+      
+
 </x-master-layout>

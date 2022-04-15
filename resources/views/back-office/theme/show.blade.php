@@ -6,7 +6,6 @@
    
        <!-- Page content -->
        <div id="page-content">
-           @include('back-office/partials.header')
            <h1 class="text-center">Detail d'un théme</h1>
 
                     <!-- Datatables Content -->

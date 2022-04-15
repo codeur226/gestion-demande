@@ -6,9 +6,6 @@
     
         <!-- Page content -->
         <div id="page-content">
-            {{-- @include('back-office/partials.header') --}}
-           
-     
             <h1 class="text-center">Details de la demande N° {{$demande->code}}  de {{$demande->nom}} {{$demande->prenom}}</h1>
 
                      <!-- Datatables Content -->

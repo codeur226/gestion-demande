@@ -25,6 +25,24 @@ if (!function_exists('getValeur')) {
 
 /* ********************************************************************
      * DEMBELE
+     * recuperer le libelle de la direction en fonction de son id
+     *
+***********************************************************************/
+
+if (!function_exists('getDirection')) {
+    function getDirection($id)
+    {
+        $record = Direction::where('id', $id)->first();
+        if ($record != null) {
+            return $record['libelle_court'];
+        } else {
+            return '';
+        }
+    }
+}
+
+/* ********************************************************************
+     * DEMBELE
      * recuperer le nombre de demande en attente
      *
 ***********************************************************************/

@@ -166,6 +166,23 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                        <label  for="example-telephone">Contact whatsapp (optionnel) </label>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2"></div>
+                                            </div>
+                                            <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                        </div>
+                                </div>
+
+                                <div class="col">
+                                
+                                </div>
+                        </div>
+
                     <div class="row"> </div>
 
                     </div>

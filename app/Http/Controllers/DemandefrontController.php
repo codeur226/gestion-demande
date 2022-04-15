@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\AjoutDemande;
 use App\Models\Demande;
-use App\Models\Demande_user;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Valeur;
@@ -71,10 +70,7 @@ class DemandefrontController extends Controller
         $userencour = User::create([
             //'usercreated'=>Auth::user()->id,
 
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'telephone' => $request->telephone,
-            'email' => $request->email,
+            
             'password' => Hash::make('UserDefault'),
             'type_user' => 1, // user système et nom système
             'first_connexion' => 0,
@@ -85,6 +81,12 @@ class DemandefrontController extends Controller
         $demanderencour = Demande::create([
             //'usercreated'=>Auth::user()->id,
 
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'telephone' => $request->telephone,
+            'whatsapp' => $request->whatsapp,
+            'email' => $request->email,
+            
             'type' => $request->typestage,
             'domaine' => $request->domaine,
             'date_debut' => $request->datedebut,

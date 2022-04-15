@@ -5,6 +5,7 @@ use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\DemandefrontController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\PieceController;
 use App\Http\Controllers\RenouvellementController;
 use App\Http\Controllers\RoleController;
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     })->middleware(['auth'])->name('dashboard');
 
     Route::resource('parametres', ParametreController::class);
+    Route::resource('directions', DirectionController::class);
     Route::resource('valeurs', ValeurController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

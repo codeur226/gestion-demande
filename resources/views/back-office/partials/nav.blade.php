@@ -50,6 +50,10 @@
                         <li>
                             <a href="{{ route('themes.index')}}">Thèmes des stages</a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('directions.index')}}">Directions</a>
+                        </li>
                        
                     </ul>
                 </li>

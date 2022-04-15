@@ -55,4 +55,10 @@ class User extends Authenticatable
         //relation de plusieurs: un user contient +sieurs demandes
         return $this->belongsToMany(Demande::class);
     }
+
+    public function directions()
+    {
+        //relation de plusieurs: un user appartient a une direction
+        return $this->belongsTo(Direction::class);
+    }
 }

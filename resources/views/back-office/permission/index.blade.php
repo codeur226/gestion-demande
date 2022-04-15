@@ -6,8 +6,6 @@
          
              <!-- Page content -->
              <div id="page-content">
-               
-    
                           <!-- Datatables Content -->
                           <a class="btn btn-success btn-sm" href="{{route('permissions.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a>
                           <div class="block full">

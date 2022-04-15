@@ -28,13 +28,11 @@ class DemandeController extends Controller
     public function index()
     {
         //**** LISTES DES DEMANDES EN ATTENTES */
-        $demandes = Demande::join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-        ->join('users', 'users.id', '=', 'demande_users.user_id')
-        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
+        $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
         ->where('demandes.supprimer', '=', 0)
         ->where('demandes.etat', '=', 8)
         ->orderbyDesc('demandes.id')
-        ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
           'demandes.note_globale', ]);
 
@@ -117,13 +115,11 @@ class DemandeController extends Controller
     public function destroy($id)
     {
         Demande::destroy($id);
-        $demandes = Demande::join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-        ->join('users', 'users.id', '=', 'demande_users.user_id')
-        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
+        $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
         ->where('demandes.supprimer', '=', 0)
         ->where('demandes.etat', '=', 8)
         ->orderbyDesc('demandes.id')
-        ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
           'demandes.note_globale', ]);
 
@@ -172,13 +168,11 @@ class DemandeController extends Controller
     public function dashboard()
     {
         //**** LISTES DES DEMANDES EN ATTENTES */
-        $demandes = Demande::join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-          ->join('users', 'users.id', '=', 'demande_users.user_id')
-          ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
+        $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
           ->where('demandes.supprimer', '=', 0)
           ->where('demandes.etat', '=', 8)
           ->orderbyDesc('demandes.id')
-          ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+          ->get(['demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
             'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
             'demandes.note_globale', ]);
         //**** NOMBRE DES DEMANDES EN ATTENTES */
@@ -267,11 +261,7 @@ class DemandeController extends Controller
                 'date_fin' => $request->datedefin,
             ]
             );
-        $user = User::
-            join('demande_users', 'users.id', '=', 'demande_users.user_id')
-            ->where('demande_users.role', '=', 14) //14 role stagiaire
-            ->where('demande_users.demande_id', '=', $request->iddemande)
-            ->first();
+        $user = Demande::where('demandes', '=', $id)->first();
         Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
         return Redirect::route('stageencours');
@@ -295,11 +285,7 @@ class DemandeController extends Controller
                 'etape' => 10,
             ]
             );
-        $user = User::
-            join('demande_users', 'users.id', '=', 'demande_users.user_id')
-            ->where('demande_users.role', '=', 14) //14 role stagiaire
-            ->where('demande_users.demande_id', '=', $id)
-            ->first();
+        $user = Demande::where('demandes', '=', $id)->first();
         //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
         return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été validée ! ');
@@ -314,14 +300,12 @@ class DemandeController extends Controller
     {
         //**** LISTES DES DEMANDES EN COURS */
         $demandes = DB::table('demandes')
-       ->join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-       ->join('users', 'users.id', '=', 'demande_users.user_id')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
        ->where('demandes.etat', '=', 9)
        ->orderbyDesc('demandes.id')
-       ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+       ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
 
@@ -339,15 +323,13 @@ class DemandeController extends Controller
     {
         //**** LISTES DES DEMANDES EN COURS */
         $demandes = DB::table('demandes')
-       ->join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-       ->join('users', 'users.id', '=', 'demande_users.user_id')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
        ->where('demandes.etape', '=', 10)
        ->where('demandes.date_debut', '>', now())
        ->orderbyDesc('demandes.id')
-       ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+       ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
 
@@ -368,14 +350,12 @@ class DemandeController extends Controller
     {
         //**** LISTES DES DEMANDES EN COURS */
         $demandes = DB::table('demandes')
-       ->join('demande_users', 'demande_users.demande_id', '=', 'demandes.id')
-       ->join('users', 'users.id', '=', 'demande_users.user_id')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
        ->where('demandes.etape', '=', 12)
        ->orderbyDesc('demandes.id')
-       ->get(['users.nom as nom', 'users.prenom', 'users.telephone', 'users.email', 'demandes.id', 'demandes.domaine',
+       ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
 
@@ -390,17 +370,17 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function voirStage(int $id)
     {
-        $maitres = User::
+        /*$maitres = User::
           join('demande_users', 'users.id', '=', 'demande_users.user_id')
           ->where('demande_users.role', '=', 13)
           ->where('demande_users.demande_id', '=', $id)
-          ->first();
+          ->first();*/
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $id)->first();
 
         return view('back-office.stage.show',
     [
         'demande' => $demande,
-        'maitres' => $maitres,
+       // 'maitres' => $maitres,
     ]);
     }
 
@@ -423,7 +403,7 @@ class DemandeController extends Controller
 
     /** ********************************************************************
      * DEMBELE
-     * Formulaire pour affecter un stagiaire à un maître se stage.
+     * Formulaire pour affecter un stagiaire à un maître de stage.
      *
      ***********************************************************************/
     public function formaffecter($id)
