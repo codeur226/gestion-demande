@@ -156,6 +156,7 @@ class RegisteredUserController extends Controller
      */
     public function destroy($id)
     {
+        //dd($id);
         User::destroy($id);
         $users = User::where('users.type_user', '=', 15)->get();
         return view('back-office.user.index', [
