@@ -109,11 +109,14 @@ class RegisteredUserController extends Controller
         $directions = Direction::All();
         return view('back-office.user.edit',
         [
-            'users' => $user,
+            'user' => $user,
             'directions' => $directions,
         ]);
     }
 
+
+
+    
     /**
      * Update the specified resource in storage.
      *
@@ -121,17 +124,27 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,$user)
     {
-        $user->update(
-            [
-                'user' => $request->user,
-            ]
-            );
+        //dd($request);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'telephone' => 'required|string|max:13',
+        ]);
+        
+            $user->nom = '$request->name';
+            $user->prenom = $request->prenom;
+            $user->telephone= $request->telephone;
+            $user->direction_id = $request->direction;
+            $user->save();
 
-            return view('back-office.user.index', [
-                'user' => $user,
-            ])->with('message', "L'utilisateur a bien été modifié");
+        
+
+        $users = User::where('users.type_user', '=', 15)->get();
+        return view('back-office.user.index', [
+            'users' => $users,
+        ]);
     }
 
     /**

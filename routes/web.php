@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
+    //Route::post('/userupdate/{users}', [RegisteredUserController::class, 'update'])->name('userupdate');
     Route::resource('parametres', ParametreController::class);
     Route::resource('directions', DirectionController::class);
     Route::resource('valeurs', ValeurController::class);

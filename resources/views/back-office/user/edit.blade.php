@@ -9,34 +9,29 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
             
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register.update',$user) }}">
                         @csrf
+                        @method('PUT')
             
                         <!-- Name -->
                         <div>
                             <x-label for="Nom" :value="__('Nom')" />
             
-                            <x-input value="{{old('name') ?? $users->nom}}" type="text" name="name" id="name" class="block mt-1 w-full"  required autofocus/>
+                            <x-input value="{{old('name') ?? $user->nom}}" type="text" name="name" id="name" class="block mt-1 w-full"  required autofocus/>
                             </div>
                            <!-- Prenom -->
                            <div>
                             <x-label for="prenom" :value="__('Prénom (s)')" />
             
-                            <x-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus />
+                            <x-input value="{{old('prenom') ?? $user->prenom}}" id="prenom" class="block mt-1 w-full" type="text" name="prenom" required autofocus />
                         </div>
                           <!-- Telephone -->
                           <div>
                             <x-label for="telephone" :value="__('Numéro de téléphone')" />
             
-                            <x-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')" required autofocus />
+                            <x-input value="{{old('telephone') ?? $user->telephone}}" id="telephone" class="block mt-1 w-full" type="text" name="telephone" required autofocus />
                         </div>
             
-                        <!-- Email Address -->
-                        <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
-            
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                        </div>
 
                         <!-- Direction -->
                         <div class="mt-4">
@@ -53,30 +48,13 @@
                                     @enderror
                                 
                                 </div>
-            
-                        <!-- Password -->
-                        <div class="mt-4">
-                            <x-label for="password" :value="__('Mot de passe')" />
-            
-                            <x-input id="password" class="block mt-1 w-full"
-                                            type="password"
-                                            name="password"
-                                            required autocomplete="new-password" />
-                        </div>
-            
-                        <!-- Confirm Password -->
-                        <div class="mt-4">
-                            <x-label for="password_confirmation" :value="__('Confirmez votez mot de passe')" />
-            
-                            <x-input id="password_confirmation" class="block mt-1 w-full"
-                                            type="password"
-                                            name="password_confirmation" required />
-                        </div>
+        
+                      
             
                         <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                           <!-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                                 {{ __('Avez vous déjà un compte?') }}
-                            </a>
+                            </a>-->
             
                             <x-button class="ml-4">
                                 {{ __('Enregistrer') }}
