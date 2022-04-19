@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Demande extends Model
 {
     use HasFactory;
     protected $dateformat = 'Y-m-d H:i:sO';
     public $guarded = [];
+    use Notifiable;
 
     public function theme()
     {

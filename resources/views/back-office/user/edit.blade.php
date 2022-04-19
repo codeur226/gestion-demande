@@ -1,4 +1,4 @@
-            <x-guest-layout>
+<x-guest-layout>
                 <x-auth-card>
                     <x-slot name="logo">
                         <a href="/">
@@ -16,7 +16,7 @@
                         <div>
                             <x-label for="Nom" :value="__('Nom')" />
             
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-input value="{{old('name') ?? $users->nom}}" type="text" name="name" id="name" class="block mt-1 w-full"  required autofocus/>
                             </div>
                            <!-- Prenom -->
                            <div>

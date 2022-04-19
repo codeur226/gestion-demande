@@ -103,6 +103,6 @@ class ParametreController extends Controller
     public function destroy($id)
     {
         Parametre::destroy($id);
-        return redirect()->route('parametres.index')->with("statutParametre","Le paramètre a bien ete supprimée");;
+        return redirect()->route('parametres.index')->with("statutParametre","Le paramètre a bien ete supprimée");
     }
 }

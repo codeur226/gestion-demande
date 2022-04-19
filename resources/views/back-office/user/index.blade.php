@@ -69,18 +69,18 @@
                                          <td class="text-center">
                                             <div class="btn-group">
                                                
-                                                <a href="" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
-                                                <a href="" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ route('register.show', $user) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
+                                                <a href="{{ route('register.edit', $user) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a>
                                                 {{-- <a href="" class="btn btn-danger btn-sm mr-2"  onClick="
                                                     event.preventDefault(); 
-                                                    if(confirm('Etes-vous sur de vouloir supprimer cette demande ?')) 
-                                                    document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
-                                                <form id="{{ $demande->id }}" method="post" action="{{ route("demandes.destroy", $demande->id) }}">
+                                                    if(confirm('Etes-vous sur de vouloir supprimer cet utilisateur ?')) 
+                                                    document.getElementById('{{ $user->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
+                                                <form id="{{ $user->id }}" method="post" action="{{ route('demandes.destroy', $user->id) }}">
                                                     @csrf
                                                     @method("delete")
                                                 </form> --}}
 
-                                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $param->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}  
+                                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $user->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}  
                                         </div>
                                         </td>
                                     </tr>

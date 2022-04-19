@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
+use App\Notifications\OrderProcessed;
+use App\Http\Controllers\retourNotification;
 
 class DemandefrontController extends Controller
 {
@@ -135,12 +137,16 @@ class DemandefrontController extends Controller
 
         /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
         // if()
-        //Mail::to($userencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
-        // $this->whatsappNotification($userencour->telephone);
-
-        //**** LISTES DES DEMANDES */
-
-        $demandes = Demande::where('demandes.supprimer', '=', 0)
+        try{
+            Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
+        }
+        catch(\Exception $e)
+        {
+            /* 
+            S'il ya erreur dans la notification par mail
+            Toujours confirmer la notification d'enregistrement de la demande sur la vue
+            */
+            $demandes = Demande::where('demandes.supprimer', '=', 0)
             ->orderbyDesc('demandes.id')
             ->get([
                 'demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
@@ -152,8 +158,32 @@ class DemandefrontController extends Controller
             'demandes' => $demandes,
             'demande'=>$demanderencour,
         ])->with('message', 'Le code de votre demande est : '." ".$demanderencour->code ." ".'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
-    }
+    
+        }
+        // $this->whatsappNotification($userencour->telephone);
 
+        /* NOTIFICATION PAR WHATSAPP A DRH */
+       // $demanderencour->notify(new OrderProcessed($demanderencour));
+
+        /* 
+            processus normal
+            Notification pour confirmer l'enregistrement de la demande
+            */
+        $demandes = Demande::where('demandes.supprimer', '=', 0)
+        ->orderbyDesc('demandes.id')
+        ->get([
+            'demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
+            'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat',
+            'demandes.note_globale',
+        ]);
+
+    return redirect()->route('formconsulter', [
+        'demandes' => $demandes,
+        'demande'=>$demanderencour,
+    ])->with('message', 'Le code de votre demande est : '." ".$demanderencour->code ." ".'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+
+    }
+    
     // private function whatsappNotification(string $recipient)
     // {
     //     $sid = getenv('TWILIO_AUTH_SID');

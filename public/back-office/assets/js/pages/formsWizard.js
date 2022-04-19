@@ -232,10 +232,10 @@ function resume(){
     $('#prenom_tab').text(document.getElementById("prenom").value);
     $('#tel_tab').text(document.getElementById("telephone").value);
     $('#mail_tab').text(document.getElementById("email").value);
-   $('#domaine_tab').text(document.getElementById("domaine").id);
+   //$('#domaine_tab').text(document.getElementById("direction").id);
 //    recuperer le libellé selectionner
 $('#type_tab').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
-$('#domaine_tab').text(document.getElementById('domaine').options[document.getElementById('domaine').selectedIndex].text);
+$('#domaine_tab').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
 
 
     $('#debut_tab').text(document.getElementById("datedebut").value);

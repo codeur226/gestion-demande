@@ -63,11 +63,11 @@
                                             <div class="btn-group">
                                                 <a href="{{ route('parametres.show', $param) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
                                                 <a href="{{ route('parametres.edit', $param) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a>
-                                                <a href="{{ route("parametres.destroy", $param->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
+                                                <a href="{{ route('parametres.destroy', $param->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                     event.preventDefault(); 
                                                     if(confirm('Etes-vous sur de vouloir supprimer ce parametre ?')) 
                                                     document.getElementById('{{ $param->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
-                                                <form id="{{ $param->id }}" method="post" action="{{ route("parametres.destroy", $param->id) }}">
+                                                <form id="{{ $param->id }}" method="post" action="{{ route('parametres.destroy', $param->id) }}">
                                                     @csrf
                                                     @method("delete")
                                                 </form>
