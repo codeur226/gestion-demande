@@ -6,7 +6,7 @@
     
         <!-- Page content -->
         <div id="page-content">
-            <h1 class="text-center">Details de la demande N° {{$demande->code}}  de {{$demande->nom}} {{$demande->prenom}}</h1>
+            <h3 class="text-center">Details de la demande N° {{$demande->code}}  de {{$demande->nom}} {{$demande->prenom}}</h3>
 
                      <!-- Datatables Content -->
 

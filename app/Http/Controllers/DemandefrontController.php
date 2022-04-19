@@ -8,12 +8,11 @@ use App\Models\Direction;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Valeur;
+use App\Notifications\OrderProcessed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
-use App\Notifications\OrderProcessed;
-use App\Http\Controllers\retourNotification;
 
 class DemandefrontController extends Controller
 {
@@ -72,20 +71,28 @@ class DemandefrontController extends Controller
         $userencour = User::create([
             //'usercreated'=>Auth::user()->id,
 
-            
+
             'password' => Hash::make('UserDefault'),
             'type_user' => 1, // user système et nom système
             'first_connexion' => 0,
             // 'supprimer' => 0,
         ]);
         */
+        // test d'existance du mail user
+        $demande = Demande::where('email', $request->email)->exists();
 
+        if ($demande) {
+            // si le mail existe, renvoyer la page de connexion
+            return redirect()->route('demandesfront.create', [
+            ])->with('message', 'Une demande a déjà été enregistré avec cette adresse email !');
+        } else {
+            // sinon si le mail n'existe pas, on enregistrela demande.
 
-        //Enregistrement de l'utilisateur
-        $code = 'DS-'.dechex((int) time());
+            // Génération du code de la demande
+            $code = 'DS-'.dechex((int) time());
 
-        //Enregistrer la demande
-        $demanderencour = Demande::create([
+            //Enregistrer la demande
+            $demanderencour = Demande::create([
             //'usercreated'=>Auth::user()->id,
 
             'nom' => $request->nom,
@@ -93,7 +100,6 @@ class DemandefrontController extends Controller
             'telephone' => $request->telephone,
             'whatsapp' => $request->whatsapp,
             'email' => $request->email,
-            
             'type' => $request->typestage,
             'direction_id' => $request->direction,
             'date_debut' => $request->datedebut,
@@ -104,27 +110,26 @@ class DemandefrontController extends Controller
             'supprimer' => 0,
         ]);
 
-        
-        /**enregistrer les informations dans la table pivot Demande_user**/
-        /*
-        $user_demandeencour = Demande_user::create([
-            //'usercreated'=>Auth::user()->id,
+            /**enregistrer les informations dans la table pivot Demande_user**/
+            /*
+            $user_demandeencour = Demande_user::create([
+                //'usercreated'=>Auth::user()->id,
 
-            'demande_id' => $demanderencour->id,
-            'user_id' => $userencour->id,
-            'role' => 14, // 14 correspond a role stagiaire parametre/valeur
-        ]);
-        */
+                'demande_id' => $demanderencour->id,
+                'user_id' => $userencour->id,
+                'role' => 14, // 14 correspond a role stagiaire parametre/valeur
+            ]);
+            */
 
-        /* ENREGISTREMENT DES PIECE JOINTES**/
+            /* ENREGISTREMENT DES PIECE JOINTES**/
 
-        $pieces = [$request->file('cv'), $request->file('diplome'), $request->file('lettrerecommandation')];
-        foreach ($pieces as $piece) {
-            if ($piece) {
-                $name = strtoupper($code).'_'.$piece->getClientOriginalName();
-                $filePath = $piece->storeAs('uploads', $name, 'public');
+            $pieces = [$request->file('cv'), $request->file('diplome'), $request->file('lettrerecommandation')];
+            foreach ($pieces as $piece) {
+                if ($piece) {
+                    $name = strtoupper($code).'_'.$piece->getClientOriginalName();
+                    $filePath = $piece->storeAs('uploads', $name, 'public');
 
-                Piece::create(
+                    Piece::create(
                     [
                         'demande_id' => $demanderencour->id,
                         'libelle' => $name,
@@ -132,21 +137,19 @@ class DemandefrontController extends Controller
                         'description' => 'RAS',
                         'supprimer' => 0,
                     ]);
+                }
             }
-        }
 
-        /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
-        // if()
-        try{
-            Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
-        }
-        catch(\Exception $e)
-        {
-            /* 
-            S'il ya erreur dans la notification par mail
-            Toujours confirmer la notification d'enregistrement de la demande sur la vue
-            */
-            $demandes = Demande::where('demandes.supprimer', '=', 0)
+            /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
+            // if()
+            try {
+                Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
+            } catch (\Exception $e) {
+                /*
+                S'il ya erreur dans la notification par mail
+                Toujours confirmer la notification d'enregistrement de la demande sur la vue
+                */
+                $demandes = Demande::where('demandes.supprimer', '=', 0)
             ->orderbyDesc('demandes.id')
             ->get([
                 'demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
@@ -154,22 +157,21 @@ class DemandefrontController extends Controller
                 'demandes.note_globale',
             ]);
 
-        return redirect()->route('formconsulter', [
+                return redirect()->route('formconsulter', [
             'demandes' => $demandes,
-            'demande'=>$demanderencour,
-        ])->with('message', 'Le code de votre demande est : '." ".$demanderencour->code ." ".'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
-    
-        }
-        // $this->whatsappNotification($userencour->telephone);
+            'demande' => $demanderencour,
+        ])->with('message', 'Le code de votre demande est : '.' '.$demanderencour->code.' '.'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+            }
+            // $this->whatsappNotification($userencour->telephone);
 
-        /* NOTIFICATION PAR WHATSAPP A DRH */
-       // $demanderencour->notify(new OrderProcessed($demanderencour));
+            /* NOTIFICATION PAR WHATSAPP A DRH */
+            // $demanderencour->notify(new OrderProcessed($demanderencour));
 
-        /* 
-            processus normal
-            Notification pour confirmer l'enregistrement de la demande
-            */
-        $demandes = Demande::where('demandes.supprimer', '=', 0)
+            /*
+                processus normal
+                Notification pour confirmer l'enregistrement de la demande
+                */
+            $demandes = Demande::where('demandes.supprimer', '=', 0)
         ->orderbyDesc('demandes.id')
         ->get([
             'demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
@@ -177,13 +179,13 @@ class DemandefrontController extends Controller
             'demandes.note_globale',
         ]);
 
-    return redirect()->route('formconsulter', [
+            return redirect()->route('formconsulter', [
         'demandes' => $demandes,
-        'demande'=>$demanderencour,
-    ])->with('message', 'Le code de votre demande est : '." ".$demanderencour->code ." ".'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
-
+        'demande' => $demanderencour,
+    ])->with('message', 'Le code de votre demande est : '.' '.$demanderencour->code.' '.'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+        }
     }
-    
+
     // private function whatsappNotification(string $recipient)
     // {
     //     $sid = getenv('TWILIO_AUTH_SID');
@@ -252,10 +254,11 @@ class DemandefrontController extends Controller
     public function formconsulter(Request $request)
     {
         //Affiche les information d'une demande
-        $demande=new Demande;
+        $demande = new Demande();
+
         return view(
             'front-office.consultation.consulter',
-            ['demande'=>$demande],
+            ['demande' => $demande],
         );
     }
 
