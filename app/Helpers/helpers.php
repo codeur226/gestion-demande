@@ -3,6 +3,7 @@
 
 use App\Models\Demande;
 use App\Models\User;
+use App\Models\Theme;
 use App\Models\Valeur;
 use App\Models\Direction;
 
@@ -36,6 +37,24 @@ if (!function_exists('getDirection')) {
         $record = Direction::where('id', $id)->first();
         if ($record != null) {
             return $record['libelle_court'];
+        } else {
+            return '';
+        }
+    }
+}
+
+/* ********************************************************************
+     * DEMBELE
+     * recuperer le libelle du thème en fonction de son id
+     *
+***********************************************************************/
+
+if (!function_exists('getTheme')) {
+    function getTheme($id)
+    {
+        $record = Theme::where('id', $id)->first();
+        if ($record != null) {
+            return $record['libelle'];
         } else {
             return '';
         }

@@ -3,7 +3,7 @@
 
 <div class="form-group">
   <label for="libelle">Libellé</label>
-  <input type="text" id="libelle" value="{{$themes->libelle}}" name="libelle" class="form-control" >
+  <input type="text" id="libelle" value="{{$themes->libelle}}" name="libelle" class="form-control" placeholder="Entrer un libelle.." required>
   
   @error('session')
   <small class="text-danger">{{$message}}</small>
@@ -12,7 +12,7 @@
 
 <div class="form-group">
   <label for="description">description</label>
-  <input type="text" id="description" value="{{ old('description') ?? $themes->description}}" name="description" class="form-control" placeholder="Enter une description..">
+  <input type="text" id="description" value="{{ old('description') ?? $themes->description}}" name="description" class="form-control" placeholder="Entrer une description..">
   
   
 </div>

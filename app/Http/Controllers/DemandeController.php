@@ -7,10 +7,12 @@ use App\Models\Demande;
 use App\Models\Demande_user;
 use App\Models\Piece;
 use App\Models\User;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+
 
 class DemandeController extends Controller
 {
@@ -467,6 +469,29 @@ class DemandeController extends Controller
             ]
             );
 
-        return Redirect::route('stageencours');
+        return Redirect::route('voirStage', $demande->id);
+    }
+
+    public function formtheme($id)
+    {
+        $demande = Demande::find($id);
+        $themes = Theme::All();
+
+        return view('back-office.stage.theme', [
+            'demande' => $demande,
+            'themes' => $themes,
+    ]);
+    }
+
+    public function theme(Request $request)
+    {
+        $demande = Demande::find($request->iddemande);
+        $demande->update(
+            [
+                'theme_id' => $request->theme_id,
+            ]
+            );
+
+        return Redirect::route('voirStage', $demande->id);
     }
 }

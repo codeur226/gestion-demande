@@ -61,16 +61,21 @@
                                 <th>commentaires sur le stage :</th>
                                 <td>{{$demande->commentaires}}</td>
                             </tr>
+                            <tr>
+                                <th>Thème de stage :</th>
+                                <td>{{getTheme($demande->theme_id)}}</td>
+                            </tr>
                             </tbody>
                         </table>
    
                            <br>
-                       <div style="width: 500px;margin:auto">
+                       <div style="width: 1000px;margin:auto">
                       {{-- @if (getValeur($demande->etape)!='Terminé')
                       <a href="{{ route('formaffecter', $demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-share-square"></i>Affecter</a>
                      @endif --}}
-                     <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i>retour</a> 
-                     <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i>Noter le stagiaire</a> 
+                     <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a> 
+                     <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a> 
+                     <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a> 
                         </div>
                         </div>
                    </div>

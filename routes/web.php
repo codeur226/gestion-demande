@@ -10,6 +10,7 @@ use App\Http\Controllers\RenouvellementController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ValeurController;
+use App\Http\Controllers\DirectionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +69,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stagefini/{id}', [DemandeController::class, 'stagefini'])->name('stagefini');
     Route::get('formnoter/{id}', [DemandeController::class, 'formnoter'])->name('formnoter');
     Route::post('noter', [DemandeController::class, 'noter'])->name('noter');
+    Route::get('formtheme/{id}', [DemandeController::class, 'formtheme'])->name('formtheme');
+    Route::post('theme', [DemandeController::class, 'theme'])->name('theme');
     Route::delete('supprimerpiece/{id}', [DemandeController::class, 'supprimerpiece'])->name('supprimerpiece');
     Route::get('enregistrerRenouvellement/{id}', [RenouvellementController::class, 'enregistrerRenouvellement'])->name('renouveller');
 });
