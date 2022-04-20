@@ -3,7 +3,6 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\DemandefrontController;
-use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PieceController;
@@ -46,7 +45,6 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
-    //Route::post('/userupdate/{users}', [RegisteredUserController::class, 'update'])->name('userupdate');
     Route::resource('parametres', ParametreController::class);
     Route::resource('directions', DirectionController::class);
     Route::resource('valeurs', ValeurController::class);

@@ -11,7 +11,6 @@ class Demande extends Model
     use HasFactory;
     protected $dateformat = 'Y-m-d H:i:sO';
     public $guarded = [];
-    use Notifiable;
 
     public function theme()
     {

@@ -126,18 +126,20 @@ class RegisteredUserController extends Controller
      */
     public function update(Request $request,$user)
     {
-        //dd($request);
+        //dd($user);
         $request->validate([
             'name' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'telephone' => 'required|string|max:13',
         ]);
-        
-            $user->nom = '$request->name';
-            $user->prenom = $request->prenom;
-            $user->telephone= $request->telephone;
-            $user->direction_id = $request->direction;
-            $user->save();
+        $user = User::find($user);
+        $user->update([
+            'nom' => $request->name,
+            'prenom' => $request->prenom,
+            'telephone'=> $request->telephone,
+            //'email' => $request->email,
+            'direction_id' => $request->direction,
+        ]);
 
         
 

@@ -9,7 +9,7 @@
             {{-- @include('back-office/partials.header') --}}
            
      
-            <h2 class="text-center">Affecter le stagiaire N° <span style="color: red;">{{ $demande->code }} </span>à un maitre de stage </h2> 
+            <h3 class="text-center">Affecter le stagiaire <span style="color: green; font-text:bold;">{{ $demande->nom }} {{ $demande->prenom }} </span>à un maitre de stage </h3> 
             {{-- <i class="fa fa-stack-exchange" aria-hidden="true"></i> --}}
 
                      <!-- Datatables Content -->
@@ -44,8 +44,7 @@
                         
                         <div class="form-group form-actions">
                           <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-user"></i> Valider</button>
-                          <button type="reset" class="btn btn-lg btn-warning"><i class="fa fa-repeat"></i> Initialiser</button>
-                          <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i>retour</a> 
+                          <a href="{{ route('stageencours') }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i>retour</a> 
                        
                         </div>
                         

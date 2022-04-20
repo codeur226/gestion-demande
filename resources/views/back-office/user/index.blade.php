@@ -51,6 +51,7 @@
                                         <th>Prénom (s)</th>
                                         <th>E-mail</th>
                                         <th>Télephone</th>
+                                        <th>Chef Dep./Directeur</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                         <td>{{$user->prenom}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->telephone}}</td>
+                                        <td></td>
                                          <td class="text-center">
                                             <div class="btn-group">
                                                
