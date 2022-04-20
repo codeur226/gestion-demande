@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Direction;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
-  /**
+    /**
      * Display the registration view.
      *
      * @return \Illuminate\View\View
@@ -22,6 +22,7 @@ class RegisteredUserController extends Controller
     public function index()
     {
         $users = User::where('users.type_user', '=', 15)->get();
+
         return view('back-office.user.index', [
             'users' => $users,
         ]);
@@ -38,7 +39,8 @@ class RegisteredUserController extends Controller
     {
         $user = User::All();
         $directions = Direction::All();
-        return view('auth.register',[
+
+        return view('auth.register', [
             'directions' => $directions,
             'users' => $user,
         ]);
@@ -60,12 +62,12 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-//dd($request);
+        //dd($request);
         $user = User::create([
             'nom' => $request->name,
             'prenom' => $request->prenom,
-            'telephone'=> $request->telephone,
-            'type_user'=>  15, // Correspond a user système parametre/valeur
+            'telephone' => $request->telephone,
+            'type_user' => 15, // Correspond a user système parametre/valeur
             'email' => $request->email,
             'direction_id' => $request->direction,
             'password' => Hash::make($request->password),
@@ -107,6 +109,7 @@ class RegisteredUserController extends Controller
         $user = User::find($id);
         //dd($user);
         $directions = Direction::All();
+
         return view('back-office.user.edit',
         [
             'user' => $user,
@@ -114,17 +117,12 @@ class RegisteredUserController extends Controller
         ]);
     }
 
-
-
-    
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$user)
+    public function update(Request $request, $user)
     {
         //dd($request);
         $request->validate([
@@ -132,16 +130,18 @@ class RegisteredUserController extends Controller
             'prenom' => 'required|string|max:255',
             'telephone' => 'required|string|max:13',
         ]);
-        
-            $user->nom = '$request->name';
-            $user->prenom = $request->prenom;
-            $user->telephone= $request->telephone;
-            $user->direction_id = $request->direction;
-            $user->save();
 
-        
+        $user->update(
+        [
+        'nom' => $request->name,
+        'prenom' => $request->prenom,
+        'telephone' => $request->telephone,
+        'direction_id' => $request->direction,
+        ]
+            );
 
         $users = User::where('users.type_user', '=', 15)->get();
+
         return view('back-office.user.index', [
             'users' => $users,
         ]);
@@ -158,8 +158,23 @@ class RegisteredUserController extends Controller
     {
         User::destroy($id);
         $users = User::where('users.type_user', '=', 15)->get();
+
         return view('back-office.user.index', [
             'users' => $users,
-        ])->with("statutUser","L'utilisateur a bien été supprimé");
+        ])->with('statutUser', "L'utilisateur a bien été supprimé");
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $id = $request->id;
+        $user = User::find($id);
+        if ($user->estResponsable == true) {
+            $user->estResponsable = false;
+            $user->save();
+        // Insertion_Journal('users', 'modification');
+        } else {
+            $user->estResponsable = true;
+            $user->save();
+        }
     }
 }
