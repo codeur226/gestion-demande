@@ -67,7 +67,13 @@
                                         <td>{{$user->prenom}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->telephone}}</td>
-                                        <td></td>
+                                        <td class="col-md-1">
+                                            <label class="switch switch-primary "><input type="checkbox" onclick="idstatus({{ $user->id }})"
+                                                       @if($user->estResponsable == true)
+                                                          checked 
+                                                      @endif
+                                                      value="true"><span></span></label>
+                                              </td>
                                          <td class="text-center">
                                             <div class="btn-group">
                                                
@@ -98,4 +104,21 @@
             
             </div>
         </div>  
+
+        <script>
+
+function idstatus (id){
+            var id= id;
+            url= "{{ route('user.updateStatus') }}";         
+            $.ajax({
+                url: url,
+                type:'GET',
+                data: {id: id} ,
+                error:function(){alert('error');},
+                success:function(){
+                }
+
+           });
+        }
+        </script>
 </x-master-layout>

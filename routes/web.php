@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('demandes', DemandeController::class);
     Route::resource('register', RegisteredUserController::class);
     Route::get('listeUser', [RegisteredUserController::class, 'index'])->name('listeUser');
+    Route::get('users/responsable', [RegisteredUserController::class, 'updateStatus'])->name('user.updateStatus');
     Route::get('demandesreport/{id}', [DemandeController::class, 'formreporter'])->name('formreporter');
     Route::get('formaffecter/{id}', [DemandeController::class, 'formaffecter'])->name('formaffecter');
     Route::post('affecter', [DemandeController::class, 'affecter'])->name('affecter');
