@@ -68,7 +68,6 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->telephone}}</td>
                                         <td class="col-md-1">
-                        
                                             <label class="switch switch-primary "><input type="checkbox" onclick="idstatus({{ $user->id }})"
                                                        @if($user->estResponsable == true)
                                                           checked 
