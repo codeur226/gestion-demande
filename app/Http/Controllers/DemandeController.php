@@ -408,7 +408,11 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function formaffecter($id)
     {
-        $users = User::All();
+        $users = DB::table('users')
+        ->join('demandes', 'users.direction_id', '=', 'demandes.direction_id')
+        ->where('demandes.id', '=', $id)
+        ->get(['users.id as id', 'users.nom as nom', 'users.prenom as prenom']);
+        //dd($users);
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $id)->first();
 
         return view('back-office.demande.affecter',
@@ -425,15 +429,15 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function affecter(Request $request)
     {
-        $user_demandes = Demande_user::create([
-            //'usercreated'=>Auth::user()->id,
+        //dd($request);
+        $demande = Demande::find($request->iddemande);
+        $demande->update([
 
-            'demande_id' => $request->iddemande,
-            'user_id' => $request->maitre,
-            'role' => 13, // 13 correspond a role maitre de stage dans paramettre valeur
+            'maitre_stage' => $request->maitre,
+
         ]);
 
-        return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été validée ! ');
+        return redirect()->route('stageencours')->with('statutDemande', 'La demande a bien été affectée à un maitre de stage ! ');
     }
 
     /** ********************************************************************
