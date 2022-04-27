@@ -156,8 +156,8 @@ onclick="event.preventDefault();
                         </div>
                         
                         <h3 class="widget-content text-right animation-pullDown">
-                            Nouvelles <strong>Demandes</strong><br>
-                            <small>de stage en attente</small> 
+                            Total des <strong>Demandes</strong><br>
+                            <small>de stage</small> 
                         </h3>
                     
                     </div>
@@ -174,8 +174,8 @@ onclick="event.preventDefault();
                             {{-- class="gi gi-usd" --}}
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            Demandes de stages <strong>Validés</strong><br>
-                            <small>demandes de stage</small>
+                            Total des <strong>Stages</strong><br>
+                            <small>validés</small>
                         </h3>
                     </div>
                 </a>
@@ -206,8 +206,8 @@ onclick="event.preventDefault();
                             {{-- class="gi gi-picture" --}}
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                           Total<strong> <br> des stages</strong>
-                            <small>Terminés</small>
+                           Total des<strong> <br> Stages</strong>
+                            <small>terminés</small>
                         </h3>
                     </div>
                 </a>

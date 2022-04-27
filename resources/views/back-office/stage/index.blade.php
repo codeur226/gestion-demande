@@ -83,7 +83,7 @@
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
                                                <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>  {{-- <i class="fa fa-eye fa-lg"></i> --}}
-                                                <a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" ><i class="fa fa-retweet"></i> </a>
+                                               <!-- <a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" ><i class="fa fa-retweet"></i> </a>-->
                                                 <a title="Affecter un maitre de stage" href="{{ route('formaffecter', $demande->id) }}" class="btn btn-success btn-sm mr-2" ><i class="fa fa-plus"></i> </a>  
                                                 {{-- <a href="{{ route('stagefini', $demande->id) }}" class="btn btn-danger btn-sm mr-2" >Mettre fin</a>  <i class="fa fa-trash"></i> --}}
                                             {{-- Bouton mettre fin au stage avec message de confirmation --}}

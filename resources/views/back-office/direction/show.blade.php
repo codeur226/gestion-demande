@@ -38,7 +38,7 @@
                                    
                                </tbody>
                            </table>
-                           <a href="{{ route('directions.index') }}" class="btn btn-primary btn-sm mr-2" >retour</a>
+                           <a href="{{ route('directions.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                        </div>
                    </div>
                    <!-- END Datatables Content -->

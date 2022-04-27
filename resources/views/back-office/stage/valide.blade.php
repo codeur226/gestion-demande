@@ -37,7 +37,7 @@
                       {{-- <a class="btn btn-success btn-sm" href="{{route('demandes.create')}}"><i class="fas fa-plus"></i>Nouveau</a> --}}
                       <div class="block full">
                         <div class="block-title">
-                            <h2>Liste des stages validéq non encore commencés</h2>
+                            <h2>Liste des stages en attente</h2>
                         </div>
 
                         <div class="table-responsive">
@@ -82,24 +82,32 @@
                                         <td>{{getValeur($demande->etape)}}</td>
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
-                                               <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>  {{-- <i class="fa fa-eye fa-lg"></i> --}}
-                                                <a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" > renouveller</a>  {{--<i class="fa fa-repeat"></i> --}}
-                                                {{-- <a href="{{ route('stagefini', $demande->id) }}" class="btn btn-danger btn-sm mr-2" >Mettre fin</a>  <i class="fa fa-trash"></i> --}}
-                                            {{-- Bouton mettre fin au stage avec message de confirmation --}}
-                                                <a title="Mettre fin au stage" href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
-                                                    event.preventDefault(); 
-                                                    if(confirm('Etes-vous sur de vouloir mettre fin a ce stage ?')) 
-                                                    document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-stop-circle fa-lg"></i></a>
-                                                <form id="{{ $demande->id }}" method="post" action="{{ route("stagefini", $demande->id) }}">
-                                                    @csrf
-                                                    @method("GET")
-                                                </form>
-
-                                            
-                                            
-                                            
-                                            
-                                            
+                                                <table>
+                                                    <tr>
+                                                        <td><a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a></td>
+                                                        <td>
+                                                            <form id="{{ $demande->id }}" method="post" action="{{ route("stagefini", $demande->id) }}">
+                                                                @csrf
+                                                                @method("GET")
+                                                                <a title="Mettre fin au stage" href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
+                                                                    event.preventDefault(); 
+                                                                    if(confirm('Etes-vous sur de vouloir mettre fin a ce stage ?')) 
+                                                                    document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-stop-circle fa-lg"></i></a>
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form id="{{ $demande->code }}" method="post" action="{{ route("encours", $demande->id) }}">
+                                                                @csrf
+                                                                @method("GET")
+                                                                <a title="Démarrer le stage" href="{{ route("encours", $demande->id) }}" class="btn btn-success btn-sm mr-2"  onClick="
+                                                                    event.preventDefault(); 
+                                                                    if(confirm('Etes-vous sur de vouloir mettre ce stage en cours?')) 
+                                                                    document.getElementById('{{ $demande->code }}').submit();"><i class="fa fa-check fa-lg"></i></a>
+                                                                </form>
+                                                        </td>
+                                                        <td><a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" > renouveller</a></td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </td>
                                     </tr>

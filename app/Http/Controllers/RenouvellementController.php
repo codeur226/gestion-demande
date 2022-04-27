@@ -61,21 +61,32 @@ class RenouvellementController extends Controller
     public function store(Request $request)
     {
         //
+        $liste = Demande::find($request->demande_id);
 
-        Renouvellement::create(
-            [
-                'demande_id'=> $request->demande_id,
-                'date_debut' => $request->date_debut,
-                'date_fin' => $request->date_fin,
-            ]);
-        $demande = Demande::find($request->demande_id);
-            $demande->update(
+        //dd($liste);
+        if($request->date_debut>Demande::find($request->demande_id)->get('date_fin'))
+        {
+            Renouvellement::create(
                 [
-                    'etape' => 11, //11 corespond a renouveller dans la table valeur
-                ]
-                );
+                    'demande_id'=> $request->demande_id,
+                    'date_debut' => $request->date_debut,
+                    'date_fin' => $request->date_fin,
+                ]);
+                
+            $liste->update(
+                [
+                    'statut' => 24, //24 correspond a renouvellé dans la table valeur
+                ]);
 
             return Redirect::route('stageencours');
+        }
+        else
+        {
+           // return view('back-office.renouvellement.create', compact('liste'));
+            // si le mail existe, renvoyer la page de connexion
+            return redirect()->route('renouveller', $liste->id)->with('message', 'Veuillez entrer une date supérieure à la date de fin du 1er stage !');
+           
+        }
 
     }
 

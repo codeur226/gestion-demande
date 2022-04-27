@@ -88,7 +88,9 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
+        Permission::destroy($id);
+        return redirect()->route('permissions.index')->with("statutPermission","La permission a bien été supprimée");
     }
 }

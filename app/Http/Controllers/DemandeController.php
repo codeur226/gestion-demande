@@ -32,7 +32,7 @@ class DemandeController extends Controller
         //**** LISTES DES DEMANDES EN ATTENTES */
         $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
         ->where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 8)
+        ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente
         ->orderbyDesc('demandes.id')
         ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
@@ -119,7 +119,7 @@ class DemandeController extends Controller
         Demande::destroy($id);
         $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
         ->where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 8)
+        ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente (parametre/valeur)
         ->orderbyDesc('demandes.id')
         ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
@@ -172,44 +172,54 @@ class DemandeController extends Controller
         //**** LISTES DES DEMANDES EN ATTENTES */
         $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
           ->where('demandes.supprimer', '=', 0)
-          ->where('demandes.etat', '=', 8)
+          ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente
+          ->where('demandes.type_demande', '=', 6) //6 correspond a stage
           ->orderbyDesc('demandes.id')
           ->get(['demandes.nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
             'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
             'demandes.note_globale', ]);
+
         //**** NOMBRE DES DEMANDES EN ATTENTES */
         $stageattente = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 8)
-        ->where('demandes.type_demande', '=', 6)
+        ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente(parametre/valeur)
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
         ->get()->count();
+
+        //**** NOMBRE DES DEMANDES VALIDES */
         $stagevalide = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 9) // etat veut dire validé (parametre valeur)
+        ->where('demandes.etat', '=', 9) // etat 9 veut dire validé (parametre valeur)
+        ->where('demandes.etape', '=', 25) //etape 25 veut dire en attente de commencer
+        //->where('demandes.date_debut', '>', now()) //validé non encore commencé
         ->where('demandes.type_demande', '=', 6) //6 correspond a stage
-        ->where('demandes.etape', '!=', 12) //etape 12 veut dire validé
-        ->where('demandes.date_debut', '>', now()) //validé non encore commencé
         ->get()->count();
 
-
+        //**** NOMBRE DES DEMANDES EN COURS */
         $stageencours = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 9) // etat veut dire validé (parametre valeur)
+        ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+        ->where('demandes.etape', '=', 11) //etape 11 veut dire en cours
         ->where('demandes.type_demande', '=', 6) //6 correspond a stage
-        ->where('demandes.etape', '!=', 12) //etape 12 veut dire validé
-        ->where('demandes.date_debut', '<=', now()) //validé et est en cours
-
+        //->where('demandes.date_debut', '<=', now()) //validé et est en cours
         ->get()->count();
 
+        //dd($stageencours);
+
+        //**** NOMBRE DES DEMANDES TERMINEES */        
         $stagetermines = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 9) // etat veut dire validé (parametre valeur)
+        ->where('demandes.etat', '=', 9) //etat 9 veut dire validé
         ->where('demandes.type_demande', '=', 6) //6 correspond a stage
-        ->where('demandes.etape', '=', 12) //etape 12 veut dire validé
+        ->where('demandes.etape', '=', 10) //etape 10 veut dire terminé
         ->get()->count();
+        
 
+        //**** NOMBRE DES EMPLOIS EN ATTENTES */
         $emploiattente = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 8)
+        ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente(parametre/valeur)
         ->where('demandes.type_demande', '=', 7)
         ->get()->count();
+
+        //**** NOMBRE DES EMPLOIS VALIDES */
         $emploivalide = Demande::where('demandes.supprimer', '=', 0)
-        ->where('demandes.etat', '=', 9)
+        ->where('demandes.etat', '=', 9) //etat 9 veut dire validé (parametre valeur)
         ->where('demandes.type_demande', '=', 7)
         ->get()->count();
 
@@ -266,7 +276,7 @@ class DemandeController extends Controller
         //$user = Demande::where('demandes', '=', $id)->first();
         //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
-        return Redirect::route('stageencours');
+        return Redirect::route('demandes.index');
     }
 
     /** ********************************************************************
@@ -283,8 +293,9 @@ class DemandeController extends Controller
         $demande = Demande::find($id);
         $demande->update(
             [
-                'etat' => 9,
-                'etape' => 10,
+                'etat' => 9, //etat 9 veut dire validé
+                'etape' => 25, //etape 25 veut dire en attente de commencer
+                'statut' => 12, //statut 12 veut dire nouveau
             ]
             );
         //$user = Demande::where('demandes', '=', $id)->first();
@@ -300,12 +311,15 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function stageencours()
     {
-        //**** LISTES DES DEMANDES EN COURS */
+        //**** LISTES DES STAGES EN COURS */
         $demandes = DB::table('demandes')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
-       ->where('demandes.etat', '=', 9)
+       ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+       ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->where('demandes.etape', '=', 11) //etape 11 veut dire en cours
+       ->distinct('demandes.id')
        ->orderbyDesc('demandes.id')
        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
@@ -323,13 +337,14 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function stagevalides()
     {
-        //**** LISTES DES DEMANDES EN COURS */
+        //**** LISTES DES STAGES VALIDES */
         $demandes = DB::table('demandes')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
-       ->where('demandes.etape', '=', 10)
-       ->where('demandes.date_debut', '>', now())
+       ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->where('demandes.etape', '=', 25) //etape 25 veut dire en attente de commencer
        ->orderbyDesc('demandes.id')
        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
@@ -350,12 +365,13 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function stagetermines()
     {
-        //**** LISTES DES DEMANDES EN COURS */
+        //**** LISTES DES STAGES TERMINER */
         $demandes = DB::table('demandes')
        ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
        ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
        ->where('demandes.supprimer', '=', 0)
-       ->where('demandes.etape', '=', 12)
+       ->where('demandes.etat', '=', 9) //etat 9 veut dire validé
+       ->where('demandes.etape', '=', 10) //etape 10 veut dire terminé
        ->orderbyDesc('demandes.id')
        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
@@ -396,7 +412,7 @@ class DemandeController extends Controller
         $demande = Demande::find($id);
         $demande->update(
             [
-                'etape' => 12, // etape 12 correspond a terminé
+                'etape' => 10 // etape 10 correspond a terminé
             ]
             );
 
@@ -435,7 +451,7 @@ class DemandeController extends Controller
         $demande = Demande::find($request->iddemande);
         $demande->update([
 
-            'maitre_stage' => $request->maitre,
+            'maitre_stage' => $request->maitre
 
         ]);
 
@@ -494,4 +510,57 @@ class DemandeController extends Controller
 
         return Redirect::route('voirStage', $demande->id);
     }
+
+    // Téléchargement des pièces jointes
+
+    public function download($id)
+    {
+        $piece_libelle = Piece::where('id', $id)->get('libelle');
+        return Storage::download($piece_libelle);
+    }
+
+    /** ********************************************************************
+     *
+     *Mettre un stage en cours.
+     *
+     ***********************************************************************/
+    public function encours($id)
+    {
+        $demande = Demande::find($id);
+        $demande->update(
+            [
+                'etape' => 11, // etape 11 correspond a en cours
+            ]
+            );
+
+        return Redirect::route('stagevalides');
+    }
+
+
+public function func(Request $request, $id)
+{
+    switch ($request->input('action')) {
+        case 'terminer':
+            $demande = Demande::find($id);
+            $demande->update(
+                [
+                    'etape' => 10 // etape 10 correspond a terminé
+                ]
+                );
+
+            return Redirect::route('stagevalides');
+            break;
+
+        case 'encours':
+            $demande = Demande::find($id);
+            $demande->update(
+                [
+                    'etape' => 11, // etape 11 correspond a en cours
+                ]
+                );
+
+            return Redirect::route('stagevalides');
+            break;
+    }
+}
 }

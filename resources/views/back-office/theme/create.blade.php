@@ -1,4 +1,4 @@
-<x-master-layout  title=" | valeur">
+<x-master-layout  title=" | Thème">
    
     <!-- Main Container -->
     <div id="main-container">
@@ -14,7 +14,7 @@
                 <div class="block-options pull-right">
                     <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
                 </div>
-                        <h2>Ajout d'un nouveau Thème</h2>
+                        <h2>Ajouter un thème</h2>
                 </div>
             <!-- END Horizontal Form Title -->
 

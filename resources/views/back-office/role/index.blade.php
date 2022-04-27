@@ -36,7 +36,7 @@
                       <!-- Datatables Content -->
                       {{-- <a class="btn btn-success btn-sm" href="{{route('parametres.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a> --}}
 
-                      <a class="btn btn-success btn-sm" href="{{route('roles.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a>
+                      <a class="btn btn-success btn-sm" href="{{route('roles.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un role</a>
                       <div class="block full">
                         <div class="block-title">
                             {{--<h2>Tous les roles</h2>--}}

@@ -14,6 +14,6 @@
   @enderror
 </div>
 <div class="form-group form-actions">
-  <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-user"></i> Valider</button>
-  <button type="reset" class="btn btn-lg btn-warning"><i class="fa fa-repeat"></i> Initialiser</button>
+  <a href="{{ route('directions.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+  <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check-square"></i> Valider</button>
 </div>

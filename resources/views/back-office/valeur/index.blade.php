@@ -9,7 +9,7 @@
                
     
                           <!-- Datatables Content -->
-                          <a class="btn btn-success btn-sm" href="{{route('valeurs.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a>
+                          <a class="btn btn-success btn-sm" href="{{route('valeurs.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une valeur</a>
                           <div class="block full">
                             <div class="block-title">
                                 {{--<h2>Tous les parametres</h2>--}}
@@ -32,7 +32,7 @@
                                        
                                         @foreach ($valeurs as $val)
                                         <?php $number++; ?>
-                                            <td class="text-center"> {{$number}}</td>
+                                            <td class="text-center"> {{$val->id}}</td>
                                             <td>{{$val->valeur}}</td>
                                             <td>{{$val->parametre ? $val->parametre->parametre :"pas de valeur"}}</td>
                                             <td class="text-center">

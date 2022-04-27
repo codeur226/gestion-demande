@@ -34,7 +34,7 @@
            
 
                       <!-- Datatables Content -->
-                      <a class="btn btn-success btn-sm" href="{{route('register.create')}}"><i class="fa fa-plus" aria-hidden="true"></i>Nouveau</a>
+                      <a class="btn btn-success btn-sm" href="{{route('register.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un utilisateur</a>
                      
                       {{-- <a class="btn btn-success btn-sm" href="{{route('register.create')}}"><i class="fas fa-plus"></i>Nouveau</a> --}}
                       <div class="block full">

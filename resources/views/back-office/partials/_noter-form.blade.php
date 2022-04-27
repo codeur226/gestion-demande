@@ -3,7 +3,7 @@
 <div class="form-group" >
   <input type="hidden" id="iddemande" name="iddemande" value="{{ $demande->id }}">
   <label for="note">Note du stagiaire /20</label>
-  <input type="number" id="note" name="note" class="form-control" placeholder="Enter une note" min="0" max="20">
+  <input type="number" id="note" name="note" class="form-control" placeholder="Enter une note" min="0" max="20" required>
   
   @error('datedefin')
   <small class="text-danger">{{$message}}</small>
@@ -20,5 +20,5 @@
 <div class="form-group form-actions">
   <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-user"></i> Valider</button>
   <button type="reset" class="btn btn-lg btn-warning"><i class="fa fa-repeat"></i> Initialiser</button>
-  <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" > <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Retour</a>
+  <a href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-lg mr-2" > <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Retour</a>
 </div>

@@ -15,7 +15,7 @@ class ValeurController extends Controller
      */
     public function index()
     {
-        $valeurs = Valeur::orderbyDesc('id')->get();
+        $valeurs = Valeur::orderbyDesc('parametre_id')->get();
 
         return view('back-office.valeur.index', [
             'valeurs' => $valeurs,

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
+use Illuminate\Support\Str;
 
 class DemandefrontController extends Controller
 {
@@ -65,20 +66,7 @@ class DemandefrontController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        //Enregistrement de l'utilisateur
-        $code = 'DS-'.dechex((int) time());
-        $userencour = User::create([
-            //'usercreated'=>Auth::user()->id,
-
-
-            'password' => Hash::make('UserDefault'),
-            'type_user' => 1, // user système et nom système
-            'first_connexion' => 0,
-            // 'supprimer' => 0,
-        ]);
-        */
-        // test d'existance du mail user
+        // Test d'existence du mail user
         $demande = Demande::where('email', $request->email)->exists();
 
         if ($demande) {
@@ -86,15 +74,13 @@ class DemandefrontController extends Controller
             return redirect()->route('demandesfront.create', [
             ])->with('message', 'Une demande a déjà été enregistré avec cette adresse email !');
         } else {
-            // sinon si le mail n'existe pas, on enregistrela demande.
+            // sinon si le mail n'existe pas, on enregistre la demande
 
             // Génération du code de la demande
             $code = 'DS-'.dechex((int) time());
 
             //Enregistrer la demande
             $demanderencour = Demande::create([
-            //'usercreated'=>Auth::user()->id,
-
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'telephone' => $request->telephone,
@@ -110,25 +96,14 @@ class DemandefrontController extends Controller
             'supprimer' => 0,
         ]);
 
-            /**enregistrer les informations dans la table pivot Demande_user**/
-            /*
-            $user_demandeencour = Demande_user::create([
-                //'usercreated'=>Auth::user()->id,
-
-                'demande_id' => $demanderencour->id,
-                'user_id' => $userencour->id,
-                'role' => 14, // 14 correspond a role stagiaire parametre/valeur
-            ]);
-            */
-
             /* ENREGISTREMENT DES PIECE JOINTES**/
-
+            $type_file = ['cv', 'diplome', 'lettre'];
+            $i = 0;
             $pieces = [$request->file('cv'), $request->file('diplome'), $request->file('lettrerecommandation')];
             foreach ($pieces as $piece) {
                 if ($piece) {
-                    $name = strtoupper($code).'_'.$piece->getClientOriginalName();
+                    $name = strtoupper($code).'-'.strtoupper($type_file[$i]).'.'.$piece->getClientOriginalExtension();
                     $filePath = $piece->storeAs('uploads', $name, 'public');
-
                     Piece::create(
                     [
                         'demande_id' => $demanderencour->id,
@@ -137,16 +112,19 @@ class DemandefrontController extends Controller
                         'description' => 'RAS',
                         'supprimer' => 0,
                     ]);
+                    $i++;
                 }
             }
 
-            /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
-            // if()
             try {
+                /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
                 Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
+                
+                /* NOTIFICATION PAR WHATSAPP A DRH */
+                $demanderencour->notify(new OrderProcessed($demanderencour));
             } catch (\Exception $e) {
                 /*
-                S'il ya erreur dans la notification par mail
+                S'il ya erreur dans la notification par mail/whatsapp
                 Toujours confirmer la notification d'enregistrement de la demande sur la vue
                 */
                 $demandes = Demande::where('demandes.supprimer', '=', 0)
@@ -164,8 +142,7 @@ class DemandefrontController extends Controller
             }
             // $this->whatsappNotification($userencour->telephone);
 
-            /* NOTIFICATION PAR WHATSAPP A DRH */
-            // $demanderencour->notify(new OrderProcessed($demanderencour));
+            
 
             /*
                 processus normal

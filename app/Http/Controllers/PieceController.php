@@ -89,6 +89,7 @@ class PieceController extends Controller
                         'demande_id'=>$request->demande_id,
                         'libelle'=>$request->libelle,
                         'url'=>$url,
+                        //'url'=>$request->file('file')->store('files','public'),
                         'description'=>$request->description,
                     ]);
                     $liste = Demande::All();

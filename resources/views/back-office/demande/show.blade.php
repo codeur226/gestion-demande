@@ -68,7 +68,7 @@
                        <div style="width: 500px;margin:auto">
                       
                            {{-- <a href="{{ route('validerstage', $demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Valider</a> --}}
-                           <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i>retour</a> 
+                           <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a> 
 
                            <a href="{{ route('formreporter', $demande->id) }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-repeat"></i>Reporter</a>
                         

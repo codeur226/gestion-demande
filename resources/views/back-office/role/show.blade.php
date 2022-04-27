@@ -62,6 +62,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <a href="{{ route('roles.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                         </div>
                     </div>
                     <!-- END Datatables Content -->

@@ -9,7 +9,7 @@
            
 
                       <!-- Datatables Content -->
-                      <a class="btn btn-success btn-sm" href="{{route('themes.create')}}"><i class="fa fa-plus"></i> Nouveau</a>
+                      <a class="btn btn-success btn-sm" href="{{route('themes.create')}}"><i class="fa fa-plus"></i> Ajouter un thème</a>
                       <div class="block full">
                         <div class="block-title">
                             {{--<h2>Tous les thèmes</h2>--}}

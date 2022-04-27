@@ -1,4 +1,5 @@
-<x-master-layout  title=" | valeur">
+
+<x-master-layout  title=" | Parametre">
    
     <!-- Main Container -->
     <div id="main-container">
@@ -6,37 +7,32 @@
  
      <!-- Page content -->
      <div id="page-content">
-       
 
-{{--body--}}
-         <div class="container">
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    
-                        <h1>Ajouter une valeur</h1>
-                        <hr/>
-                   
+        <!-- Horizontal Form Block -->
+        <div class="block">
+            <!-- Horizontal Form Title -->
+            <div class="block-title">
+                <div class="block-options pull-right">
+                    <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
                 </div>
+                <h2>Ajouter une valeur</h2>
             </div>
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    
-                    {{--enctype="multipart/form-data" to send data by form--}}
-                    
-        
-                 <form method="post" action="{{route('valeurs.store')}}" enctype="multipart/form-data">
-                    @method('POST')
-                   @include('back-office/partials._valeur-form')
-                 </form>
-                </div>
-            </div>
-        
+            <!-- END Horizontal Form Title -->
+
+            <!-- Horizontal Form Content -->
+           
+            <form method="post" action="{{route('valeurs.store')}}">
+          
+                @method('PUT')
+                @include('back-office.partials._valeur-form')
+      
+            </form>
+            <!-- END Horizontal Form Content -->
         </div>
- 
-
-
+        <!-- END Horizontal Form Block -->
         </div>
     </div>
 
 
+   
 </x-master-layout>

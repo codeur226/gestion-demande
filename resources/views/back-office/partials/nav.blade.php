@@ -28,7 +28,7 @@
             <!-- Sidebar Navigation -->
             <ul class="sidebar-nav">
                 <li>
-                    <a href="{{ route('admin')}}" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tableau de bord</span></a>
+                    <a href="{{ route('admin')}}" class=""><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tableau de bord</span></a>
                 </li>
                 
                 <li>
@@ -73,6 +73,9 @@
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-briefcase sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Gestion des stages</span></a>
                     <ul>
+                        <li>
+                            <a href="{{ route('stagevalides')}}">Stages validés</a>
+                        </li>
                         <li>
                             <a href="{{ route('stageencours')}}">Stages en cours</a>
                         </li>

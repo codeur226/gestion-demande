@@ -74,6 +74,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('theme', [DemandeController::class, 'theme'])->name('theme');
     Route::delete('supprimerpiece/{id}', [DemandeController::class, 'supprimerpiece'])->name('supprimerpiece');
     Route::get('enregistrerRenouvellement/{id}', [RenouvellementController::class, 'enregistrerRenouvellement'])->name('renouveller');
+    Route::get('download/{id}', [DemandeController::class, 'download'])->name('download');
+    Route::get('encours/{id}', [DemandeController::class, 'encours'])->name('encours');
+    Route::get('func/{id}', [DemandeController::class, 'func'])->name('func');
 });
 
 require __DIR__.'/auth.php';

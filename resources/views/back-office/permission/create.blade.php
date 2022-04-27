@@ -22,11 +22,11 @@
    
                <!-- Horizontal Form Content -->
               
-               <form id="form-validation" method="POST"  action="{{route('permissions.store')}}" class="form-horizontal form-bordered">
-                @csrf
-                @method('POST')
-               @include('back-office/partials._permission-form')
-        </form>
+                <form id="form-validation" method="POST"  action="{{route('permissions.store')}}" class="form-horizontal form-bordered">
+                    @csrf
+                    @method('POST')
+                    @include('back-office/partials._create_permission-form')
+                </form>
                <!-- END Horizontal Form Content -->
            </div>
            <!-- END Horizontal Form Block -->
