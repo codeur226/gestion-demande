@@ -32,7 +32,7 @@
                                        
                                         @foreach ($valeurs as $val)
                                         <?php $number++; ?>
-                                            <td class="text-center"> {{$val->id}}</td>
+                                            <td class="text-center"> {{$number}}</td>
                                             <td>{{$val->valeur}}</td>
                                             <td>{{$val->parametre ? $val->parametre->parametre :"pas de valeur"}}</td>
                                             <td class="text-center">

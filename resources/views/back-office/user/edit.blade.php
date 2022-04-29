@@ -33,10 +33,11 @@
                         </div>
             
 
+                        
                         <!-- Direction -->
                         <div class="mt-4">
                             <x-label for="direction" :value="__('Direction')" />
-                                    <select class="form-control form-control2" name="direction" id="direction">
+                                    <select style="width:300px" class="form-control form-control2" name="direction" id="direction" required>
                                         @foreach($directions as $direction)
                                             <option value="{{$direction->id}}">{{$direction->libelle_long}}</option>
                                         @endforeach 
@@ -51,14 +52,19 @@
         
                       
             
-                        <div class="flex items-center justify-end mt-4">
-                           <!-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Avez vous déjà un compte?') }}
-                            </a>-->
-            
-                            <x-button class="ml-4">
+                        <div class="flex items-center justify-start mt-4">
+                            {{-- <x-button style="width:150px; text-align: center;
+                            display:table-cell;
+                            vertical-align:middle;">
+                                {{ __('Retour') }}
+                            </x-button> --}}
+                            <a href="{{ route('listeUser') }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            <x-button style="width:150px; text-align: center;
+                            display:table-cell;
+                            vertical-align:middle;" class="ml-4">
                                 {{ __('Enregistrer') }}
                             </x-button>
+                            
                         </div>
                     </form>
                 </x-auth-card>

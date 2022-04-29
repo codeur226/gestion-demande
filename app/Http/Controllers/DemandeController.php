@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 
 class DemandeController extends Controller
@@ -38,8 +39,14 @@ class DemandeController extends Controller
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
           'demandes.note_globale', ]);
 
+          $stageattente = Demande::where('demandes.supprimer', '=', 0)
+          ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente(parametre/valeur)
+          ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+          ->get()->count();
+
         return view('back-office.demande.index', [
            'demandes' => $demandes,
+           'stageattente' => $stageattente,
        ]);
     }
 
@@ -325,8 +332,16 @@ class DemandeController extends Controller
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
 
+         $stageencours = Demande::where('demandes.supprimer', '=', 0)
+        ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+        ->where('demandes.etape', '=', 11) //etape 11 veut dire en cours
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        //->where('demandes.date_debut', '<=', now()) //validé et est en cours
+        ->get()->count();
+
         return view('back-office.stage.index', [
           'demandes' => $demandes,
+          'stageencours' => $stageencours,
       ]);
     }
 
@@ -349,9 +364,17 @@ class DemandeController extends Controller
        ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
+         
+         $stagevalide = Demande::where('demandes.supprimer', '=', 0)
+        ->where('demandes.etat', '=', 9) // etat 9 veut dire validé (parametre valeur)
+        ->where('demandes.etape', '=', 25) //etape 25 veut dire en attente de commencer
+        //->where('demandes.date_debut', '>', now()) //validé non encore commencé
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->get()->count();
 
         return view('back-office.stage.valide', [
           'demandes' => $demandes,
+          'stagevalide' => $stagevalide,
       ]);
     }
     
@@ -377,8 +400,15 @@ class DemandeController extends Controller
          'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
          'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
 
+         $stagetermines = Demande::where('demandes.supprimer', '=', 0)
+        ->where('demandes.etat', '=', 9) //etat 9 veut dire validé
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->where('demandes.etape', '=', 10) //etape 10 veut dire terminé
+        ->get()->count();
+
         return view('back-office.stage.termine', [
           'demandes' => $demandes,
+          'stagetermines' => $stagetermines,
       ]);
     }
     /** ********************************************************************
@@ -515,8 +545,11 @@ class DemandeController extends Controller
 
     public function download($id)
     {
-        $piece_libelle = Piece::where('id', $id)->get('libelle');
-        return Storage::download($piece_libelle);
+        $piece_libelle = Piece::where('id', $id)->value('libelle');
+
+        $path = storage_path()."/".$piece_libelle;
+        $contents= Storage::disk('public')->get($path);
+        dd($contents);
     }
 
     /** ********************************************************************

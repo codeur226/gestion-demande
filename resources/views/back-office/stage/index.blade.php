@@ -37,7 +37,7 @@
                       {{-- <a class="btn btn-success btn-sm" href="{{route('demandes.create')}}"><i class="fas fa-plus"></i>Nouveau</a> --}}
                       <div class="block full">
                         <div class="block-title">
-                            <h2>Liste des stages en cours </h2>
+                            <h2>Liste des stages en cours ({{ $stageencours }})</h2>
                         </div>
 
                         <div class="table-responsive">

@@ -21,10 +21,15 @@ class RegisteredUserController extends Controller
      */
     public function index()
     {
-        $users = User::where('users.type_user', '=', 15)->get();
+        $users = User::where('users.type_user', '=', 15)
+        ->orderBy('users.nom')
+        ->get();
+
+        $userCount = User::where('users.type_user', '=', 15)->count();
 
         return view('back-office.user.index', [
             'users' => $users,
+            'userCount' => $userCount,
         ]);
 
         // return view('auth.register');
@@ -124,7 +129,10 @@ class RegisteredUserController extends Controller
      */
     public function update(Request $request, $user)
     {
-        //dd($user);
+        //dd($request);
+
+        $userCount = User::where('users.type_user', '=', 15)->count();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
@@ -148,10 +156,13 @@ class RegisteredUserController extends Controller
         ]
             );
 
-        $users = User::where('users.type_user', '=', 15)->get();
+            $users = User::where('users.type_user', '=', 15)
+            ->orderBy('users.nom')
+            ->get();
 
         return view('back-office.user.index', [
             'users' => $users,
+            'userCount' => $userCount,
         ]);
     }
 
@@ -183,6 +194,13 @@ class RegisteredUserController extends Controller
         // Insertion_Journal('users', 'modification');
         } else {
             $user->estResponsable = true;
+            User::where('id', '!=', $id)
+                ->where('direction_id', '=', $request->direction)
+                ->update(
+                [
+                    'estResponsable' => false,
+                ]
+                );
             $user->save();
         }
     }

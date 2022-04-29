@@ -39,7 +39,7 @@
                       {{-- <a class="btn btn-success btn-sm" href="{{route('register.create')}}"><i class="fas fa-plus"></i>Nouveau</a> --}}
                       <div class="block full">
                         <div class="block-title">
-                            <h2>Liste des utilisateurs</h2>
+                            <h2>Liste des utilisateurs ({{ $userCount }})</h2>
                         </div>
 
                         <div class="table-responsive">
@@ -51,6 +51,7 @@
                                         <th>Prénom (s)</th>
                                         <th>E-mail</th>
                                         <th>Télephone</th>
+                                        <th>Direction</th>
                                         <th>Chef Dep./Directeur</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
@@ -67,12 +68,13 @@
                                         <td>{{$user->prenom}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->telephone}}</td>
+                                        <td>{{getDirection($user->direction_id)}}</td>
                                         <td class="col-md-1">
-                                            <label class="switch switch-primary "><input type="checkbox" onclick="idstatus({{ $user->id }})"
-                                                       @if($user->estResponsable == true)
-                                                          checked 
-                                                      @endif
-                                                      value="true"><span></span></label>
+                                            <label class="switch switch-primary "><input type="checkbox" onclick="idstatus({{ $user->id }}, {{ $user->direction_id }} )"
+                                                        @if($user->estResponsable == true)
+                                                            checked
+                                                        @endif
+                                                            value="true"><span></span></label>
                                               </td>
                                          <td class="text-center">
                                             <div class="btn-group">
@@ -107,15 +109,19 @@
 
         <script>
 
-function idstatus (id){
+// Function JS permettant de changer le statut estResponsable
+function idstatus (id, direction){
             var id= id;
+            var direction= direction;
             url= "{{ route('user.updateStatus') }}";         
             $.ajax({
                 url: url,
                 type:'GET',
-                data: {id: id} ,
+                data: {id: id, direction: direction},
                 error:function(){alert('error');},
                 success:function(){
+                    alert('Etes-vous sur de vouloir changer le responsable?'),
+                    location.reload();
                 }
 
            });

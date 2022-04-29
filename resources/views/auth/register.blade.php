@@ -11,37 +11,38 @@
             
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        @method('GET')
             
                         <!-- Name -->
-                        <div>
+                        <div class="mt-1">
                             <x-label for="Nom" :value="__('Nom')" />
             
                             <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                             </div>
                            <!-- Prenom -->
-                           <div>
+                           <div class="mt-1">
                             <x-label for="prenom" :value="__('Prénom (s)')" />
             
                             <x-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus />
                         </div>
                           <!-- Telephone -->
-                          <div>
+                          <div class="mt-1">
                             <x-label for="telephone" :value="__('Numéro de téléphone')" />
             
                             <x-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')" required autofocus />
                         </div>
             
                         <!-- Email Address -->
-                        <div class="mt-4">
+                        <div class="mt-1">
                             <x-label for="email" :value="__('Email')" />
             
                             <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                         </div>
 
                         <!-- Direction -->
-                        <div class="mt-4">
+                        <div class="mt-1">
                             <x-label for="direction" :value="__('Direction')" />
-                                    <select class="form-control form-control2" name="direction" id="direction">
+                                    <select style="width:300px" class="form-control form-control2" name="direction" id="direction">
                                         @foreach($directions as $direction)
                                             <option value="{{$direction->id}}">{{$direction->libelle_long}}</option>
                                         @endforeach 
@@ -55,7 +56,7 @@
                                 </div>
             
                         <!-- Password -->
-                        <div class="mt-4">
+                        <div class="mt-1">
                             <x-label for="password" :value="__('Mot de passe')" />
             
                             <x-input id="password" class="block mt-1 w-full"
@@ -65,8 +66,8 @@
                         </div>
             
                         <!-- Confirm Password -->
-                        <div class="mt-4">
-                            <x-label for="password_confirmation" :value="__('Confirmez votez mot de passe')" />
+                        <div class="mt-1">
+                            <x-label for="password_confirmation" :value="__('Confirmez votre mot de passe')" />
             
                             <x-input id="password_confirmation" class="block mt-1 w-full"
                                             type="password"
@@ -74,13 +75,23 @@
                         </div>
             
                         <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Avez vous déjà un compte?') }}
-                            </a>
-            
-                            <x-button class="ml-4">
+                            {{-- <x-buttonaction={{"route('listeUser')}}" style="width:150px; text-align: center;
+                            display:table-cell;
+                            vertical-align:middle;">
+                                {{ __('Retour') }}
+                            </x-button>--}}
+                            <a href="{{ route('listeUser') }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+
+                            <x-button style="width:150px; text-align: center;
+                            display:table-cell;
+                            vertical-align:middle;" class="ml-4">
                                 {{ __('Enregistrer') }}
                             </x-button>
+                            
+
+                            {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                {{ __('Avez vous déjà un compte?') }}
+                            </a> --}}
                         </div>
                     </form>
                 </x-auth-card>

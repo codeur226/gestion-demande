@@ -76,7 +76,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('enregistrerRenouvellement/{id}', [RenouvellementController::class, 'enregistrerRenouvellement'])->name('renouveller');
     Route::get('download/{id}', [DemandeController::class, 'download'])->name('download');
     Route::get('encours/{id}', [DemandeController::class, 'encours'])->name('encours');
-    Route::get('func/{id}', [DemandeController::class, 'func'])->name('func');
 });
 
 require __DIR__.'/auth.php';
