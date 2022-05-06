@@ -37,6 +37,7 @@
 
     <!-- Modernizr (browser feature detection library) -->
     <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
+
 </head>
 <body class="color_white">
     

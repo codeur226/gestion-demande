@@ -135,3 +135,94 @@ width: 23%;
   label {
     margin-left: 3% !important;
   }
+
+  /* Responsivité du site */
+
+  nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    text-align: right;
+  }
+  
+  nav div{
+    margin: 0%;
+    padding: 0%;
+  }
+
+  div ul li a{
+    padding-left: 0%; 
+    padding-right:0%;
+  }
+
+  div a{
+    padding-left: 0%; 
+    padding-right:0%;
+  }
+
+  .logo{
+    width: 50px;
+    cursor: pointer;
+    margin: 30px 0;
+  }
+
+  a{
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+
+  #menu-icon{
+    display: none;
+  }
+
+  @media only screen and (max-width:800px){
+    #menu-icon{
+      display: block;
+  }
+
+  .navbar-header{
+    margin-left: 45%;
+    margin-top: 1%;
+  }
+
+
+  #menu-div{
+    
+    flex: 1;
+    list-style: none;
+    display: inline-block;
+    top: 75px;
+  }
+
+  #menu-ul, #menu-id2{
+    text-align: right;
+    right: 0;
+    z-index: 2;
+  }
+
+  #deroulanta{
+    margin-right: 30px;
+
+  }
+  
+  #menu-ul{
+    margin-top: 35px;
+    margin-left: 30px;
+    width: 84%;
+  }
+
+  #menu-id2{
+    margin-top: 0px;
+    margin-right: 30px;
+    background-color: #159dd9;
+  }
+
+  #element-list1, #element-list2, #element-list3, #element-list4{
+    color:rgb(0, 0, 0);
+    text-align:right;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  }

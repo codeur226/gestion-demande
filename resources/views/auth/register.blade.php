@@ -11,8 +11,6 @@
             
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        @method('GET')
-            
                         <!-- Name -->
                         <div class="mt-1">
                             <x-label for="Nom" :value="__('Nom')" />
@@ -74,24 +72,19 @@
                                             name="password_confirmation" required />
                         </div>
             
-                        <div class="flex items-center justify-end mt-4">
-                            {{-- <x-buttonaction={{"route('listeUser')}}" style="width:150px; text-align: center;
+                        <div class="flex items-center justify-start mt-4">
+                            {{-- <x-button style="width:150px; text-align: center;
                             display:table-cell;
                             vertical-align:middle;">
                                 {{ __('Retour') }}
-                            </x-button>--}}
+                            </x-button> --}}
                             <a href="{{ route('listeUser') }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
-
                             <x-button style="width:150px; text-align: center;
                             display:table-cell;
                             vertical-align:middle;" class="ml-4">
                                 {{ __('Enregistrer') }}
                             </x-button>
                             
-
-                            {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Avez vous déjà un compte?') }}
-                            </a> --}}
                         </div>
                     </form>
                 </x-auth-card>

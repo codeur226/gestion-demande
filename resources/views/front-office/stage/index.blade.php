@@ -39,6 +39,7 @@
 
     <!-- Modernizr (browser feature detection library) -->
     <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
+
 </head>
 <body class="color_white">
     
@@ -48,8 +49,8 @@
 
 
 {{--start body--}}
+@include('front-office/partials.nav')
 <div class="ms-site-container"  style="background-color:#fff;">
-    @include('front-office/partials.nav')
     <section class="mb-4">
         <div class="container">
             <div class="row">

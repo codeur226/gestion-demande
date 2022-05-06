@@ -1,41 +1,46 @@
 <nav class="navbar navbar-expand-md  navbar-static ms-navbar ms-navbar-white navbar-mode">
       <div class="container container-full">
-        <div class="navbar-header">
+        <div id="div-nav" class="navbar-header">
           <a class="navbar-brand" href="{{route('acceuil')}}">
-           <img src="../../front-office/assets/img/ANPTIC.jpg" alt="logo ANPTIC" width="90" height="90">
-
-             <!-- <span class="ms-logo ms-logo-sm">M</span>
-            <span class="ms-title">Material <strong>Style</strong></span> -->
+           <img class="logo" src="../../front-office/assets/img/ANPTIC.jpg">
           </a>
         </div>
+
+        
+        
+        <!--MENU-->
         <div class="collapse navbar-collapse" id="ms-navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown active">
-              <a href="/" class="nav-link dropdown-toggle animated fadeIn animation-delay-7"  data-name="acceuil">Accueil</a>
-              {{-- <a href="#" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="acceuil">Acceuil</a> --}}
-              
-            </li>
-            <li class="nav-item dropdown">
-              <a href="{{ route('demandesfront.create') }}" >Demande de stage</a>
-              
-            </li>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown {{ request()->is('/') ? 'active' : null }}">
+            <a class="nav-link" href="{{ url('/') }}" role="tab">Accueil</a>
+          </li>
+          <li class="nav-item dropdown {{ request()->is('demandesfront/create') ? 'active' : null }}">
+            <a class="nav-link" href="{{ url('demandesfront/create') }}" role="tab">Demande de stage</a>
+          </li>
+          <li class="nav-item dropdown {{ request()->is('formconsulter') ? 'active' : null }}">
+            <a class="nav-link" href="{{ url('formconsulter') }}" role="tab">Consulter sa demande</a>
+          </li>
+        </ul>
+      </div>
+      <div id="menu-div">
+        <ul id="menu-ul">
+          <li id="menu-icon" class="nav-item dropdown {{ request()->is('#') ? 'active' : null }}">
+            <a class="nav-link" href="{{ url('#') }}" role="tab" id="deroulanta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-menu"></i></a>
+            <div id="menu-id2" class="dropdown-menu dropdown-menu-md-right">
+              <a id="element-list1" class="dropdown-item" href="{{ url('/') }}">ACCUEIL</a>
+              <a id="element-list2" class="dropdown-item" href="{{ url('demandesfront/create') }}">DEMANDE DE STAGE</a>
+              <a id="element-list3" class="dropdown-item" href="#">DEMANDE D'EMPLOI</a>
+              <a id="element-list4" class="dropdown-item" href="{{ url('formconsulter') }}">CONSULTER SA DEMANDE</a>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-            {{-- <li class="nav-item dropdown">
-              <a href="#" >Demande d'emploi</a> --}}
-              {{-- <a href="#" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="inscription">Paiement</a> --}}
-              
-            {{-- </li> --}}
-
-
-            <li class="nav-item dropdown dropdown-megamenu-container">
-              <a href="{{ route('formconsulter') }}" >Consultation</a>
-            </li>
-            {{-- <li class="nav-item dropdown">
-              <a href="{{ route('contact') }}"  class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="contact">Contact</a>
-            </li> --}}
-            
-          </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade {{ request()->is('/') ? 'active' : null }}" id="{{ url('/') }}" role="tabpanel">...</div>
+          <div class="tab-pane fade {{ request()->is('demandesfront/create') ? 'active' : null }}" id="{{ url('demandesfront/create') }}" role="tabpanel">...</div>
+          <div class="tab-pane fade {{ request()->is('formconsulter') ? 'active' : null }}" id="{{ url('formconsulter') }}" role="tabpanel">...</div>
         </div>
-        <a href="javascript:void(0)" class="ms-toggle-left btn-navbar-menu"><i class="zmdi zmdi-menu"></i></a>
+
       </div> <!-- container -->
     </nav>

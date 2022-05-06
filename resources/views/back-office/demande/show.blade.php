@@ -40,7 +40,7 @@
                                        <td>{{$demande->date_fin}}</td>                                       
                                        <td>{{getValeur($demande->etape)}}</td>
                                        <td>{{getValeur($demande->etat)}}</td>
-                                       <td class="text-center" width="25%">   @foreach ($pieces as $piece)
+                                       <td width="25%">   @foreach ($pieces as $piece)
                                         <ul><li > 
                                             {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}
                                            

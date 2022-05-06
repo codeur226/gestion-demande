@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
+
   </head>
  
   <body>
@@ -28,7 +29,7 @@
       </div>
     </div>
    <!-- ms-site-container after header -->
-   <div class="ms-site-container" style="background-color:#fff;" >
+   <div class="ms-site-container" style="background-color:#ffff;" >
     @include('front-office/partials.nav')
 
     

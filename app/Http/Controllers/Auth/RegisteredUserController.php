@@ -181,6 +181,7 @@ class RegisteredUserController extends Controller
 
         return view('back-office.user.index', [
             'users' => $users,
+            'userCount' => $userCount,
         ])->with('statutUser', "L'utilisateur a bien été supprimé");
     }
 

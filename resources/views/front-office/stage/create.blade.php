@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Demand de stage</title>
+    <title>Demande de stage</title>
 
     <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
     <meta name="author" content="pixelcave">
@@ -37,27 +37,18 @@
     <link rel="stylesheet" href="../../back-office/assets/css/themes.css">
     <!-- END Stylesheets -->
 
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-
-
     <!-- Modernizr (browser feature detection library) -->
     <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
-    
-    
 
-  
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    
     
 </head>
 <body class="color_white">
-    
-
-
-
-
-
+@include('front-office/partials.nav')
 {{--start body--}}
 <div class="ms-site-container"  style="background-color:#fff;">
-    @include('front-office/partials.nav')
+    
     <section class="mb-4">
         <div class="container">
             <div class="row">

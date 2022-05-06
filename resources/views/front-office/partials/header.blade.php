@@ -18,7 +18,7 @@
             <div class="col-md-12">
               <div class="carousel-caption">
               <h1 style="color: black;">
-                  <p class="monserrat" style="text-align:center;font-size: 2.0rem;font-weight:bold;"> Bienvenue sur la platefrome de demande de stages et d'emplois</p>
+                  <p class="monserrat" style="text-align:center;font-size: 2.0rem;font-weight:bold;"> Bienvenue sur la plateforme de demande de stages et d'emplois</p>
                   {{-- <p class="monserrat" style="font-size: 2.0rem;"></p> --}}
          
                   <p class="monserrat" style="text-align:center;font-size: 1.5rem;">Faites vos demandes de stages entièrement en ligne</p>
@@ -33,6 +33,7 @@
            
           </div>
         </div>
-  
-    </div> </div>
+      </div> 
+    </div>
+  </div>
 </header>
