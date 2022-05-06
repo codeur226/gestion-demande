@@ -1,5 +1,5 @@
 <x-application-layout title=" | Acceuil">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   {{-- @include('front-office/partials.header') --}}
   
     {{--  edit welcomes --}} 

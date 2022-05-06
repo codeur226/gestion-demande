@@ -1,11 +1,11 @@
 <x-application-layout title=" | Consultation">
   
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="shortcut icon" href="../../front-office/assets/img/favicon.png?v=3">
+    <link rel="shortcut icon" href="{{ asset('front-office/assets/img/favicon.png?v=3') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../../front-office/assets/css/preload.min.css">
-    <link rel="stylesheet" href="../../front-office/assets/css/plugins.min.css">
-    <link rel="stylesheet" href="../../front-office/assets/css/style.light-blue-500.min.css">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/preload.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/plugins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/style.light-blue-500.min.css') }}">
     
     {{--  edit welcomes --}} 
   

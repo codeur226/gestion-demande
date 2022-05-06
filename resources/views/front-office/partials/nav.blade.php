@@ -24,12 +24,15 @@
       </div>
       <div id="menu-div">
         <ul id="menu-ul">
-          <li id="menu-icon" class="nav-item dropdown {{ request()->is('#') ? 'active' : null }}">
-            <a class="nav-link" href="{{ url('#') }}" role="tab" id="deroulanta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-menu"></i></a>
+          <li id="menu-icon" class="nav-item dropdown">
+            <a class="nav-link" href="#" role="tab" id="deroulanta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-menu" onclick="togglemenu()"></i></a>
             <div id="menu-id2" class="dropdown-menu dropdown-menu-md-right">
               <a id="element-list1" class="dropdown-item" href="{{ url('/') }}">ACCUEIL</a>
+              <div class="dropdown-divider"></div>
               <a id="element-list2" class="dropdown-item" href="{{ url('demandesfront/create') }}">DEMANDE DE STAGE</a>
+              <div class="dropdown-divider"></div>
               <a id="element-list3" class="dropdown-item" href="#">DEMANDE D'EMPLOI</a>
+              <div class="dropdown-divider"></div>
               <a id="element-list4" class="dropdown-item" href="{{ url('formconsulter') }}">CONSULTER SA DEMANDE</a>
             </div>
           </li>

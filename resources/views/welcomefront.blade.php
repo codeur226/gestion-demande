@@ -1,5 +1,5 @@
 <x-application-layout title=" | Accueil">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   @include('front-office/partials.header')
   
     {{--  edit welcomes --}} 
@@ -8,7 +8,7 @@
 <div class="container">
     <section class="mb-4 hauteurbas">
       <div class="col-md-12">
-        <!-- -->   <img src="../../front-office/assets/img/stage.png" alt="..." class="img-fluid mt-6 center-block text-center animated zoomInDown animation-delay-5">
+        <!-- -->   <img src="{{ asset('front-office/assets/img/stage.png') }}" alt="..." class="img-fluid mt-6 center-block text-center animated zoomInDown animation-delay-5">
       </div>
     </section>
   </div> <!-- container -->

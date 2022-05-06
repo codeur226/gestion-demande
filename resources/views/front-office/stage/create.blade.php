@@ -10,11 +10,11 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
-    <link rel="shortcut icon" href="../../front-office/assets/img/favicon.png?v=3">
+    <link rel="shortcut icon" href="{{ asset('front-office/assets/img/favicon.png?v=3') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../../front-office/assets/css/preload.min.css">
-    <link rel="stylesheet" href="../../front-office/assets/css/plugins.min.css">
-    <link rel="stylesheet" href="../../front-office/assets/css/style.light-blue-500.min.css">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/preload.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/plugins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-office/assets/css/style.light-blue-500.min.css') }}">
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 
     
@@ -29,16 +29,16 @@
 
 
     <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-    <link rel="stylesheet" href="../../back-office/assets/css/main.css">
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/main.css') }}">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="../../back-office/assets/css/themes.css">
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/themes.css') }}">
     <!-- END Stylesheets -->
 
     <!-- Modernizr (browser feature detection library) -->
-    <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
+    <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
@@ -108,7 +108,7 @@
                         <div class="row">
 
                         <div class="w-100"></div>
-                        <div class="col">
+                        <div class="col" id="col_nom">
                             <div class="form-group">
                                     <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
@@ -455,20 +455,19 @@
   @include('front-office/partials.footer')
   
    <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
-   <script src="../../back-office/assets/js/vendor/jquery.min.js"></script>
-   <script src="../../back-office/assets/js/vendor/bootstrap.min.js"></script>
-   <script src="../../back-office/assets/js/plugins.js"></script>
-   <script src="../../back-office/assets/js/app.js"></script>
+   <script src="{{ asset('back-office/assets/js/vendor/jquery.min.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/vendor/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/plugins.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/app.js') }}"></script>
 
    <!-- Load and execute javascript code used only in this page -->
-   <script src="../../back-office/assets/js/pages/formsWizard.js"></script>
+   <script src="{{ asset('back-office/assets/js/pages/formsWizard.js') }}"></script>
    <script>$(function(){ FormsWizard.init(); });</script>
 
    <script>
         var earrings = document.getElementById('idsession');
         earrings.style.visibility = 'hidden';
    </script>
-   
 </body>
 
 </html>
