@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <!-- END Step Info -->
-                        <div class="row">
+                        <div class="row" id="row_nom_prenom">
 
                         <div class="w-100"></div>
                         <div class="col" id="col_nom">
@@ -133,7 +133,79 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- DEBUT Responsive DIV -->
+                    <div class="row" id="row_nom">
+
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                    <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" id="nom" name="nom" class="form-control form-control2" >
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="row_prenom">
+
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                    <label  for="nom">Prénom(s) (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" id="prenom" name="prenom" class="form-control form-control2" >
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="row_telephone">
+
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
+
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                            
+                                            <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+
+                                            
+                                        </div>
+                                    </div>
+
+                                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="row_email">
+
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                    <label  for="email">E-mail (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" id="email" name="email" class="form-control form-control2" >
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- FIN Responsive DIV-->
+
+                    <div class="row" id="row_tel_email">
                         <div class="col">
                             <div class="form-group">
                                     <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>

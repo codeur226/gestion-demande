@@ -138,6 +138,7 @@ width: 23%;
 
   /* Responsivité du site */
 
+  /* NAV*/
   nav{
     width: 100%;
     display: flex;
@@ -177,15 +178,21 @@ width: 23%;
     display: none;
   }
 
+  /*Page Create*/
+
+  #row_nom, #row_prenom, #row_email, #row_telephone{
+      display: none;
+  }
+
   @media only screen and (max-width:800px){
 
-    /*Header*/
+    /*NAV*/
 
     #menu-icon{
       display: block;
       cursor: pointer;
       width: fit-content;
-      background-color: #ffffff;
+      background-color: #ffffff00;
   }
   
 
@@ -196,7 +203,7 @@ width: 23%;
 
 
   #menu-div{
-    margin-left: 80px;
+    margin-left: 0px;
     margin-right: 20px;
     flex: 1;
     list-style: none;
@@ -241,6 +248,12 @@ width: 23%;
 
   /*Page Create*/
 
+  #row_nom_prenom, #row_tel_email{
+      display: none;
+  }
 
+  #row_nom, #row_prenom, #row_email, #row_telephone{
+    display: block;
+}
 
   }
