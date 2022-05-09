@@ -11,7 +11,7 @@
         <!-- Progress Bar Wizard Content -->
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
-                
+
             </div>
             <div class="col-sm-6 col-sm-offset-1">
                 <!-- Wizard Progress Bar, functionality initialized in js/pages/formsWizard.js -->
@@ -124,21 +124,22 @@
         </div>
         <!-- END Progress Bar Wizard Content -->
     </div>
-    <!-- END Progress Bar Wizard Block -->          
-    <script src="{{ asset('../../back-office/assets/js/pages/formsWizard.js ') }}"></script>
-    <link rel="stylesheet" href="../../back-office/assets/css/bootstrap.min.css">
+
+    <!-- END Progress Bar Wizard Block -->
+    <script src="{{ asset('back-office/assets/js/pages/formsWizard.js ') }}"></script>
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/bootstrap.min.css') }}">
 
     <!-- Related styles of various icon packs and plugins -->
-    <link rel="stylesheet" href="../../back-office/assets/css/plugins.css">
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/plugins.css') }}">
 
     <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-    <link rel="stylesheet" href="../../back-office/assets/css/main.css">
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/main.css') }}">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="../../back-office/assets/css/themes.css">
+    <link rel="stylesheet" href="{{ asset('back-office/assets/css/themes.css') }}">
     <!-- END Stylesheets -->
 
     <!-- Modernizr (browser feature detection library) -->
-    <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
+    <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>

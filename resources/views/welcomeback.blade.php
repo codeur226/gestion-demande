@@ -76,11 +76,12 @@
             <!-- User Dropdown -->
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="back-office/assets/img/placeholders/avatars/avatar2.jpg" alt="avatar"> <i class="fa fa-angle-down"></i>
+
+                    <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar"> <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                     <li class="dropdown-header text-center">Compte</li>
-                    
+
                     <li class="divider"></li>
                     {{-- <li>
                         <a href="page_ready_user_profile.html">
@@ -96,8 +97,8 @@
                     <li class="divider"></li>
                     <li>
                         <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a> --}}
-                        
-                        
+
+
 
 
 
@@ -116,7 +117,7 @@
             this.closest('form').submit();"><i class="fa fa-ban fa-fw pull-right"></i> Déconnecter <br> </a>
 
 
-{{-- 
+{{--
 <a href="{{ route('logout') }}"
 onclick="event.preventDefault();
         this.closest('form').submit();" data-toggle="tooltip" data-placement="bottom" title="Deconnecter"><i class="gi gi-exit"></i></a> --}}
@@ -128,9 +129,9 @@ onclick="event.preventDefault();
 
 
 
-                        
+
                     </li>
-                    
+
                 </ul>
             </li>
             <!-- END User Dropdown -->
@@ -152,16 +153,16 @@ onclick="event.preventDefault();
                         <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
                             <i >{{ $stageattente }}</i>
                             {{-- class="fa fa-file-text" --}}
-                            
+
                         </div>
-                        
+
                         <h3 class="widget-content text-right animation-pullDown">
                             Total des <strong>Demandes</strong><br>
-                            <small>de stage</small> 
+                            <small>de stage</small>
                         </h3>
-                    
+
                     </div>
-                
+
                 </a>
                 <!-- END Widget -->
             </div>
@@ -186,7 +187,7 @@ onclick="event.preventDefault();
                 <a href="{{ route('stageencours')}}" class="widget widget-hover-effect1">
                     <div class="widget-simple">
                         <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
-                            <i >{{ $stageencours }}</i> 
+                            <i >{{ $stageencours }}</i>
                             {{-- class="gi gi-envelope" --}}
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
@@ -213,8 +214,8 @@ onclick="event.preventDefault();
                 </a>
                 <!-- END Widget -->
             </div>
-            
-            
+
+
         </div>
         <div class="table-responsive">
             <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
@@ -232,10 +233,10 @@ onclick="event.preventDefault();
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     <tr>
                         <?php $number=0; ?>
-                   
+
                     @foreach ($demandes as $demande)
                     <?php $number++; ?>
                         <td class="text-center"> {{$number}}</td>
@@ -248,19 +249,19 @@ onclick="event.preventDefault();
                         <td>{{getValeur($demande->etat)}}</td>
                          <td class="text-center">
                             <div class="btn-group">
-                               
+
                                 <a title="Voir les détails" href="{{ route('demandes.show', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
                                 {{-- <a href="{{ route('demandes.edit', $demande) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a> --}}
                                 <a title="Supprimer la demande" href="{{ route("demandes.destroy", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
-                                    event.preventDefault(); 
-                                    if(confirm('Etes-vous sur de vouloir supprimer cette demande ?')) 
+                                    event.preventDefault();
+                                    if(confirm('Etes-vous sur de vouloir supprimer cette demande ?'))
                                     document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
                                 <form id="{{ $demande->id }}" method="post" action="{{ route("demandes.destroy", $demande->id) }}">
                                     @csrf
                                     @method("delete")
                                 </form>
 
-                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $param->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}  
+                                {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $param->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}
                         </div>
                         </td>
                     </tr>
@@ -275,5 +276,5 @@ onclick="event.preventDefault();
 </div>
 <!-- END Main Container -->
 
-   
+
 </x-master-layout>

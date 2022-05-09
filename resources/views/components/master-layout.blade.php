@@ -10,38 +10,37 @@
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
-
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="../../back-office/assets/img/favicon.png">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="../../back-office/assets/img/icon180.png" sizes="180x180">
+        <link rel="shortcut icon" href="{{ asset('back-office/assets/img/favicon.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon57.png') }}" sizes="57x57">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon72.png') }}" sizes="72x72">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon76.png') }}" sizes="76x76">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon114.png') }}" sizes="114x114">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon120.png') }}" sizes="120x120">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon144.png') }}" sizes="144x144">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon152.png') }}" sizes="152x152">
+        <link rel="apple-touch-icon" href="{{ asset('back-office/assets/img/icon180.png') }}" sizes="180x180">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="../../back-office/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('back-office/assets/css/bootstrap.min.css') }}">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="../../back-office/assets/css/plugins.css">
+        <link rel="stylesheet" href="{{ asset('back-office/assets/css/plugins.css') }}">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="../../back-office/assets/css/main.css">
+        <link rel="stylesheet" href="{{ asset('back-office/assets/css/main.css') }}">
 
         <!-- Include a specific file here from back-office/assets/css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="../../back-office/assets/css/themes.css">
+        <link rel="stylesheet" href="{{ asset('back-office/assets/css/themes.css') }}">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
-        <script src="../../back-office/assets/js/vendor/modernizr.min.js"></script>
+        <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>
     </head>
     <body>
 
@@ -54,7 +53,7 @@
         -->
         <div id="page-wrapper">
           <!-- Preloader -->
-          <!-- Preloader functionality (initialized in back-office/assets/js/app.js) - pageLoading() -->
+          <!-- Preloader functionality (initialized in back-office/assets/js/app.js') }}) - pageLoading() -->
           <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
           <div class="preloader themed-background">
               <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
@@ -97,7 +96,7 @@
               'enable-cookies'                                enables cookies for remembering active color theme when changed from the sidebar links
           -->
           <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
-           
+
             <!-- Alternative Sidebar -->
               <div id="sidebar-alt">
                   <!-- Wrapper for scrolling functionality -->
@@ -106,11 +105,11 @@
                       <div class="sidebar-content">
                                            <!-- chat -->
                           <!-- Activity (icon gestion/compte)-->
-                          
+
                           <!-- END Activity -->
 
                           <!-- Messages -->
-                          
+
                           <!-- END Messages -->
                       </div>
                       <!-- END Sidebar Content -->
@@ -118,7 +117,7 @@
                   <!-- END Wrapper for scrolling functionality -->
               </div>
               <!-- END Alternative Sidebar -->
-            
+
               @include('back-office/partials.nav')
 
 
@@ -130,34 +129,36 @@
       </div>
       <!-- END Page Wrapper -->
 
-     
-  
 
-   
-       <!-- Scroll to top link, initialized in back-office/assets/js/app.js - scrollToTop() -->
+
+
+
+       <!-- Scroll to top link, initialized in back-office/assets/js/app.js') }} - scrollToTop() -->
        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
        <!-- start popup manage setting user and ActivityUI  -->
    @include('back-office/partials.modal-user-settings')
         <!-- END  -->
-   <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
-   <script src="../../back-office/assets/js/vendor/jquery.min.js"></script>
-   <script src="../../back-office/assets/js/vendor/bootstrap.min.js"></script>
-   <script src="../../back-office/assets/js/plugins.js"></script>
-   <script src="../../back-office/assets/js/app.js"></script>
+
+
+   <!-- jQuery, Bootstrap.js') }}, jQuery plugins and Custom JS code -->
+   <script src="{{ asset('back-office/assets/js/vendor/jquery.min.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/vendor/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/plugins.js') }}"></script>
+   <script src="{{ asset('back-office/assets/js/app.js') }}"></script>
 
    <!-- Google Maps API Key (you will have to obtain a Google Maps API key to use Google Maps) -->
    <!-- For more info please have a look at https://developers.google.com/maps/documentation/javascript/get-api-key#key -->
-   
-   <script src="../../back-office/assets/js/helpers/gmaps.min.js"></script>
+
+   <script src="{{ asset('back-office/assets/js/helpers/gmaps.min.js') }}"></script>
 
 
-   <script src="../../back-office/assets/js/pages/tablesDatatables.js"></script>
+   <script src="{{ asset('back-office/assets/js/pages/tablesDatatables.js') }}"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
 
 
    <!-- Load and execute javascript code used only in this page -->
-   <script src="../../back-office/assets/js/pages/index.js"></script>
+   <script src="{{ asset('back-office/assets/js/pages/index.js') }}"></script>
    <script>$(function(){ Index.init(); });</script>
-   
+
     </body>
 </html>

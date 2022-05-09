@@ -2,12 +2,12 @@
       <div class="container container-full">
         <div id="div-nav" class="navbar-header">
           <a class="navbar-brand" href="{{route('acceuil')}}">
-           <img class="logo" src="../../front-office/assets/img/ANPTIC.jpg">
+           <img class="logo" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
           </a>
         </div>
 
-        
-        
+
+
         <!--MENU-->
         <div class="collapse navbar-collapse" id="ms-navbar">
         <ul class="navbar-nav">
