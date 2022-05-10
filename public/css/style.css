@@ -35,7 +35,7 @@ color: #f5f5f5;
 }
 
 .bglogin{/*background-color: green !important;*/
-background-image: url('./logins.jpg');
+background-image: url('/logins.jpg');
 background-repeat: no-repeat;
 background-position: center;
 background-size: 66%;
@@ -121,8 +121,8 @@ width: 23%;
   }
 
   .bgcreate {
-    background-color: rgb(43, 103, 234) !important;
-    background-image: url('./logins.jpg');
+    background-color: green !important;
+    background-image: url('/logins.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% !important;
