@@ -68,7 +68,7 @@
                                         <td>{{$demande->nom}}</td>
                                         <td>{{$demande->prenom}}</td>
                                         <td>{{$demande->email}}</td>
-                                        <td>{{$demande->direction->domaine}}</td>
+                                        <td>{{getDirection($demande->direction_id)}}</td>
                                         <td>{{$demande->date_debut}}</td>
                                         <td>{{$demande->date_fin}}</td>
                                         <td>{{getValeur($demande->etat)}}</td>
