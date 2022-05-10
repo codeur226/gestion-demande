@@ -14,7 +14,7 @@
             <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
                 <div class="sidebar-user-avatar">
                     <a href="page_ready_user_profile.html">
-                        <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg" alt="avatar') }}">
+                        <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar">
                     </a>
                 </div>
                 <div class="sidebar-user-name"> <i class="text-center"> <strong>{{ Auth::user()->prenom." ".Auth::user()->nom}}</strong> </i></div>
