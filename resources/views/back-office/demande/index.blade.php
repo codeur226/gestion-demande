@@ -68,7 +68,7 @@
                                         <td>{{$demande->nom}}</td>
                                         <td>{{$demande->prenom}}</td>
                                         <td>{{$demande->email}}</td>
-                                        <td>{{$demande->domaine}}</td>
+                                        <td>{{$demande->direction->domaine}}</td>
                                         <td>{{$demande->date_debut}}</td>
                                         <td>{{$demande->date_fin}}</td>
                                         <td>{{getValeur($demande->etat)}}</td>
