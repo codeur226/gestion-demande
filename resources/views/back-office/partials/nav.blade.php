@@ -14,23 +14,23 @@
             <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
                 <div class="sidebar-user-avatar">
                     <a href="page_ready_user_profile.html">
-                        <img src="../../back-office/assets/img/placeholders/avatars/avatar2.jpg" alt="avatar">
+                        <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg" alt="avatar') }}">
                     </a>
                 </div>
                 <div class="sidebar-user-name"> <i class="text-center"> <strong>{{ Auth::user()->prenom." ".Auth::user()->nom}}</strong> </i></div>
-                
-               
+
+
             </div>
             <!-- END User Info -->
 
-          
+
 
             <!-- Sidebar Navigation -->
             <ul class="sidebar-nav">
                 <li>
                     <a href="{{ route('admin')}}" class=""><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tableau de bord</span></a>
                 </li>
-                
+
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-cogwheel sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Paramétrage</span></a>
                     <ul>
@@ -46,7 +46,7 @@
                         <li>
                             <a href="{{ route('permissions.index') }}">Permissions</a>
                         </li>
-                        
+
                         <li>
                             <a href="{{ route('themes.index')}}">Thèmes des stages</a>
                         </li>
@@ -54,7 +54,7 @@
                         <li>
                             <a href="{{ route('directions.index')}}">Directions</a>
                         </li>
-                       
+
                     </ul>
                 </li>
 
@@ -95,7 +95,7 @@
                         </li>
                     </ul>
                 </li> --}}
-                
+
 
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Gestion utilisateurs</span></a>
@@ -105,13 +105,13 @@
                         </li>
                     </ul>
                 </li>
-            
-             
+
+
             </ul>
             <!-- END Sidebar Navigation -->
 
             <!-- Sidebar Notifications -->
-            
+
             <!-- END Sidebar Notifications -->
         </div>
         <!-- END Sidebar Content -->
