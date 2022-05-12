@@ -175,7 +175,7 @@ onclick="event.preventDefault();
                             {{-- class="gi gi-usd" --}}
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            Total des <strong>Stages</strong><br>
+                            Total des <br> <strong>Stages</strong><br>
                             <small>validés</small>
                         </h3>
                     </div>
@@ -191,7 +191,7 @@ onclick="event.preventDefault();
                             {{-- class="gi gi-envelope" --}}
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            Total des <strong>Stages</strong>
+                            Total des <br> <strong>Stages</strong>
                             <small>en cours</small>
                         </h3>
                     </div>
@@ -234,7 +234,8 @@ onclick="event.preventDefault();
                 </thead>
                 <tbody>
 
-                    <tr>
+                    <tr >
+
                         <?php $number=0; ?>
 
                     @foreach ($demandes as $demande)
