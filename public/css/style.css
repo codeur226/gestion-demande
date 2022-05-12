@@ -184,6 +184,10 @@ width: 23%;
       display: none;
   }
 
+  .div_res2{
+    display: none;
+  }
+
   @media only screen and (max-width:800px){
 
     /*NAV*/
@@ -255,5 +259,18 @@ width: 23%;
   #row_nom, #row_prenom, #row_email, #row_telephone{
     display: block;
 }
+
+  .div_res1{
+    display: none;
+  }
+
+  .div_res2{
+    display: block;
+  }
+
+  .col_res{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 
   }

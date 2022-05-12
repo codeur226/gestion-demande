@@ -283,11 +283,13 @@
                             </div>
                         </div>
                         <!-- END Step Info -->
-                      
+                      <div class="div_res1">
                     <div class="row">
                         <div class="w-100"></div>
                         
-                        <div class="col" > <label  for="typestage">Type de stage (<span style="color:red;">*</span>)</label>
+                        <div class="col" > 
+                            <div class="form-group">
+                            <label  for="typestage">Type de stage (<span style="color:red;">*</span>)</label>
                             <select class="form-control form-control2" name="typestage" id="typestage">
                                 @foreach($typestages as $typestage)
                                 
@@ -300,8 +302,7 @@
                               @error('typestage')
                               <small class="text-danger">{{$message}}</small>
                               @enderror
-                          
-                          
+                            </div>
                         </div>
                         
                         <div class="col">
@@ -319,7 +320,9 @@
                     </div>
                          
                     <div class="row">
-                                <div class="col"> <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
+                                <div class="col"> 
+                                    <div class="form-group">
+                                    <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
                                     <select class="form-control form-control2" name="direction" id="direction">
                                         @foreach($directions as $direction)
                                         
@@ -332,7 +335,7 @@
                                     @error('direction')
                                     <small class="text-danger">{{$message}}</small>
                                     @enderror
-                                
+                                </div>
                                 </div>
 
 
@@ -352,7 +355,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <div >
+                            <div class="#">
                                     <label  for="cv">Joindre votre CV (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                         <div class="input-group">
@@ -374,7 +377,7 @@
                         </div>
 
                         <div class="col">
-                            <div >
+                            <div class="#">
                                     <label  for="diplome">Joindre votre diplôme/attestation (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                        
@@ -389,6 +392,123 @@
 
                         </div>
                     </div>
+
+                </div>
+
+                <div class="div_res2">
+                    <div class="row">
+                        <div class="w-100"></div>
+                        <div class="col" > 
+                            <label for="typestage">Type de stage (<span style="color:red;">*</span>)</label>
+                            <div class="col_res">
+                            
+                            <select class="form-control form-control2" name="typestage" id="typestage">
+                                @foreach($typestages as $typestage)
+                                
+                                <option value="{{$typestage->id}}">{{$typestage->valeur}}</option>
+                                    
+                                @endforeach 
+                             
+                               </select>
+                              {{-- <span class="help-block">Saisir le profil</span> --}}
+                              @error('typestage')
+                              <small class="text-danger">{{$message}}</small>
+                              @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                                <div class="col"> 
+                                    <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
+                                    <div class="col_res">
+                                    
+                                    <select class="form-control form-control2" name="direction" id="direction">
+                                        @foreach($directions as $direction)
+                                        
+                                        <option value="{{$direction->id}}">{{$direction->domaine}}</option>
+                                            
+                                        @endforeach 
+                                    
+                                    </select>
+                                    {{-- <span class="help-block">Saisir le profil</span> --}}
+                                    @error('direction')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
+                                    </div>
+                                </div>
+                    </div>
+
+                    <div class="row"> 
+                        <div class="col">
+                            <div class="form-group">
+                                    <label  for="datedebut">Date début (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="date" id="datedebut" name="datedebut" class="form-control form-control2" required></div>
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <div class="row"> 
+                        <div class="col">
+                            <div class="form-group">
+                                    <label  for="datefin">Date fin (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="date" id="datefin" name="datefin" class="form-control form-control2" required></div>
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="#">
+                                    <label  for="cv">Joindre votre CV (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="file" name="cv"  id="cv"class="form-control form-control2" accept=".pdf" required > 
+                                            {{-- required title="Ce champs est obligatoire !!" --}}
+                                        </div>
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="#">
+                                    <label  for="diplome">Joindre votre diplôme/attestation (<span style="color:red;">*</span>)</label>
+                                    <div class="col-md-12">
+                                       
+                                        <div class="input-group">
+                                            <input type="file" id="diplome" name="diplome" class="form-control form-control2" required >
+                                            </div>
+                                        </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="#">
+                        <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" ></div>
+                            </div>
+                            <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
 
                     {{-- <div class="row">
                          <div class="w-100"></div>
