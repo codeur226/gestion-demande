@@ -40,11 +40,6 @@
 
 </head>
 <body class="color_white">
-    
-
-
-
-
 
 {{--start body--}}
 <div class="ms-site-container"  style="background-color:#fff;">

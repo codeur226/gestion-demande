@@ -197,57 +197,29 @@ width: 23%;
       display: block;
       cursor: pointer;
       width: fit-content;
-      background-color: #ffffff00;
   }
 
-
-  .navbar-header{
-    margin-left: 0%;
-    margin-top: 1%;
-  }
-
-
-  #menu-div{
-    margin-left: 0px;
-    margin-right: 20px;
-    flex: 1;
-    list-style: none;
-    display: inline-block;
-    top: 75px;
-  }
-
-  #menu-ul, #menu-id2{
-    text-align: right;
-    right: 0;
-    z-index: 2;
-  }
 
   #deroulanta{
-    margin-left: 60px;
-  }
-
-  #menu-ul{
-    margin-top: 35px;
-    margin-left: 0px;
-    width: 0%;
-
+    background-color: rgb(255, 255, 255);
   }
 
   #menu-id2{
     width: fit-content;
     background-color: #159dd9;
-    box-shadow: 10px 20px 50px 15px rgba(128, 128, 128, 0.274);
   }
+
 
   #element-list1, #element-list2, #element-list3, #element-list4{
     color:rgb(0, 0, 0);
-    text-align:right;
     font-size: 1rem;
     font-weight: 300;
-    height: 28px;
+
   }
 
   #div-nav{
+      width: fit-content;
+      margin-top: 5px;
       margin-left: 45%;
   }
 

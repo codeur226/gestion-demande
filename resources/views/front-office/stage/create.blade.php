@@ -42,10 +42,14 @@
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
-    
 </head>
+
+<!--MENU-->
+
+
 <body class="color_white">
 @include('front-office/partials.nav')
+
 {{--start body--}}
 <div class="ms-site-container"  style="background-color:#fff;">
     
