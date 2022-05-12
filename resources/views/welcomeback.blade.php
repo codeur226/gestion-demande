@@ -234,7 +234,8 @@ onclick="event.preventDefault();
                 </thead>
                 <tbody>
 
-                    <tr>
+                    <tr >
+
                         <?php $number=0; ?>
 
                     @foreach ($demandes as $demande)
