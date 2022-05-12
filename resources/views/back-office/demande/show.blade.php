@@ -44,8 +44,8 @@
                                         <ul><li >
                                             {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}
 
-                                            {{-- <a href="{{asset('storage/'.$piece->libelle) }}">{{ $piece->libelle }}</a> --}}
-                                            <a href="{{$piece->url}}"> {{ $piece->libelle }}</a>
+                                            <a href="{{asset($piece->url) }}">{{ $piece->libelle }}</a>
+                                            {{-- <a href="{{asset('{{$piece->url}}'}}"> {{ $piece->libelle }}</a> --}}
                                             <a href="{{ route("supprimerpiece", $piece->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                 event.preventDefault();
                                                 if(confirm('Etes-vous sur de vouloir supprimer cette piece ?'))
