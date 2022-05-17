@@ -66,6 +66,7 @@ class DemandefrontController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         // Test d'existence du mail user
         $demande = Demande::where('email', $request->email)->exists();
 
@@ -80,23 +81,62 @@ class DemandefrontController extends Controller
             $code = 'DS-'.dechex((int) time());
 
             //Enregistrer la demande
-            $demanderencour = Demande::create([
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'telephone' => $request->telephone,
-            'whatsapp' => $request->whatsapp,
-            'email' => $request->email,
-            'type' => $request->typestage,
-            'direction_id' => $request->direction,
-            'date_debut' => $request->datedebut,
-            'date_fin' => $request->datefin,
-            'type_demande' => 6,
-            'etat' => 8,
-            'code' => strtoupper($code),
-            'supprimer' => 0,
-        ]);
+            if($request->datedebut==NULL and $request->datefin==NULL){
 
-            /* ENREGISTREMENT DES PIECE JOINTES**/
+                $demanderencour = Demande::create([
+                    'nom' => $request->nom,
+                    'prenom' => $request->prenom,
+                    'telephone' => $request->telephone,
+                    'whatsapp' => $request->whatsapp,
+                    'email' => $request->email,
+                    'type' => $request->typestageR,
+                    'direction_id' => $request->directionR,
+                    'date_debut' => $request->datedebutR,
+                    'date_fin' => $request->datefinR,
+                    'type_demande' => 6,
+                    'etat' => 8,
+                    'code' => strtoupper($code),
+                    'supprimer' => 0,
+                ]);
+
+                /* ENREGISTREMENT DES PIECE JOINTES**/
+            $type_file = ['cv', 'diplome', 'lettre'];
+            $i = 0;
+            $pieces = [$request->file('cvR'), $request->file('diplomeR'), $request->file('lettrerecommandationR')];
+            foreach ($pieces as $piece) {
+                if ($piece) {
+                    $name = strtoupper($code).'-'.strtoupper($type_file[$i]).'.'.$piece->getClientOriginalExtension();
+                    $filePath = $piece->storeAs('uploads', $name, 'public');
+                    Piece::create(
+                    [
+                        'demande_id' => $demanderencour->id,
+                        'libelle' => $name,
+                        'url' => '/storage/'.$filePath,
+                        'description' => 'RAS',
+                        'supprimer' => 0,
+                    ]);
+                    $i++;
+                }
+            }
+
+            }else{
+                $demanderencour = Demande::create([
+                    'nom' => $request->nom,
+                    'prenom' => $request->prenom,
+                    'telephone' => $request->telephone,
+                    'whatsapp' => $request->whatsapp,
+                    'email' => $request->email,
+                    'type' => $request->typestage,
+                    'direction_id' => $request->direction,
+                    'date_debut' => $request->datedebut,
+                    'date_fin' => $request->datefin,
+                    'type_demande' => 6,
+                    'etat' => 8,
+                    'code' => strtoupper($code),
+                    'supprimer' => 0,
+                ]);
+
+                /* ENREGISTREMENT DES PIECE JOINTES**/
             $type_file = ['cv', 'diplome', 'lettre'];
             $i = 0;
             $pieces = [$request->file('cv'), $request->file('diplome'), $request->file('lettrerecommandation')];
@@ -115,6 +155,9 @@ class DemandefrontController extends Controller
                     $i++;
                 }
             }
+
+            }
+            
 
             try {
                 /* NOTIFICATION PAR MAIL AU DEMANDEUR**/

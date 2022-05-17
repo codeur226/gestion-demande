@@ -30,8 +30,9 @@ background-color: #ffff;
 }
 .inscription_btn
 {
-background-color: #1a3070;
-color: #f5f5f5;
+  font-weight: bold;
+  background-color: #1a3070;
+  color: #f5f5f5;
 }
 
 .bglogin{/*background-color: green !important;*/
@@ -188,6 +189,12 @@ width: 23%;
   .div_res2{
     display: none;
   }
+
+  .col_res1{
+    margin-left: 11.5px;
+    margin-right: 12px;
+  }
+
 
   @media only screen and (max-width:800px){
 

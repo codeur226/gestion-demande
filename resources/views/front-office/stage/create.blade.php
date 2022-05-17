@@ -109,163 +109,178 @@
                             </div>
                         </div>
                         <!-- END Step Info -->
-                        <div class="row" id="row_nom_prenom">
 
-                        <div class="w-100"></div>
-                        <div class="col" id="col_nom">
-                            <div class="form-group">
-                                    <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="nom" name="nom" class="form-control form-control2" >
+                        <div id="non_resp">
+                            <div class="row" id="row_nom_prenom">
+    
+                                <div class="w-100"></div>
+                                <div class="col" id="col_nom">
+                                    <div class="form-group">
+                                            <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="nom" name="nom" class="form-control form-control2" >
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
                                         </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
                                 </div>
-                        </div>
-
-
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="example-prenom">Prénom(s) (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="prenom" name="prenom" class="form-control form-control2" required></div>
-                                        </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
-                        </div>
-                    </div>
-
-                    <!-- DEBUT Responsive DIV -->
-                    <div class="row" id="row_nom">
-
-                        <div class="w-100"></div>
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="nom" name="nom" class="form-control form-control2" >
-                                        </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
+        
+        
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label  for="example-prenom">Prénom(s) (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="prenom" name="prenom" class="form-control form-control2" required></div>
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
                                 </div>
-                        </div>
-                    </div>
-
-                    <div class="row" id="row_prenom">
-
-                        <div class="w-100"></div>
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="nom">Prénom(s) (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="prenom" name="prenom" class="form-control form-control2" >
-                                        </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="row" id="row_telephone">
-
-                        <div class="w-100"></div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
-
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                            </div>
+    
+                            <div class="row" id="row_tel_email">
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
+        
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                            {{-- <label  for="whatsapp">Contact whatsapp (optionnel) </label> --}}
+                                                        
+                                                        <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+        
+                                                        
+                                                    </div>
+                                                </div>
+        
+                                                {{-- <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" id="telephone" name="telephone" class="form-control form-control2" required>
+                                                    </div>
+                                                </div> --}}
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
+        
                                             
-                                            <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
-
-                                            
-                                        </div>
-                                    </div>
-
-                                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                 </div>
-                        </div>
-                    </div>
-
-                    <div class="row" id="row_email">
-
-                        <div class="w-100"></div>
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="email">E-mail (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="email" name="email" class="form-control form-control2" >
-                                        </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
+        
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label  for="email">E-mail (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="email" name="email" class="form-control form-control2" required></div>
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
                                 </div>
+                            </div>
+        {{-- 
+                            <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                                <label  for="example-telephone">Contact whatsapp (optionnel) </label>
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2"></div>
+                                                    </div>
+                                                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                                </div>
+                                        </div>
+        
+                                        <div class="col">
+                                        
+                                        </div>
+                                </div> --}}
+        
+                            <div class="row"> </div>
                         </div>
-                    </div>
-                    <!-- FIN Responsive DIV-->
-
-                    <div class="row" id="row_tel_email">
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
-
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
-                                    {{-- <label  for="whatsapp">Contact whatsapp (optionnel) </label> --}}
-                                                
-                                                <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
-
-                                                
+    
+                        <!-- DEBUT Responsive DIV -->
+                        <div id="resp">
+                            <div class="row" id="row_nom">
+        
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label  for="nom">Noms (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="nomR" name="nom" class="form-control form-control2" >
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                             </div>
                                         </div>
-
-                                        {{-- <div class="col-md-4">
-                                            <div class="input-group">
-                                                <input type="text" id="telephone" name="telephone" class="form-control form-control2" required>
+                                </div>
+                            </div>
+        
+                            <div class="row" id="row_prenom">
+        
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <div class="form-group">
+                                            <label  for="nom">Prénoms(s) (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="prenomR" name="prenom" class="form-control form-control2" >
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                             </div>
-                                        </div> --}}
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
-
-                                    
-                        </div>
-
-                        <div class="col">
-                            <div class="form-group">
-                                    <label  for="email">E-mail (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="text" id="email" name="email" class="form-control form-control2" required></div>
                                         </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
-                        </div>
-                    </div>
-{{-- 
-                    <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                        <label  for="example-telephone">Contact whatsapp (optionnel) </label>
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2"></div>
+                                </div>
+                            </div>
+        
+                            <div class="row" id="row_telephone">
+        
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label  for="telephone">Téléphones (<span style="color:red;">*</span>)</label>
+        
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="telephoneR" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                                    
+                                                    <input type="text" id="whatsappR" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+        
+                                                    
+                                                </div>
                                             </div>
+        
                                             <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                         </div>
                                 </div>
-
+                            </div>
+        
+                            <div class="row" id="row_email">
+        
+                                <div class="w-100"></div>
                                 <div class="col">
-                                
+                                    <div class="form-group">
+                                            <label  for="email">E-mails (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="emailR" name="email" class="form-control form-control2" >
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                            </div>
+                                        </div>
                                 </div>
-                        </div> --}}
-
-                    <div class="row"> </div>
+                            </div>
+                        </div>
+                            <!-- FIN Responsive DIV-->
+                        
+                            <script type="text/javascript">
+                                var div = document.getElementById('advanced-first');
+                                    if(window.innerWidth > 800){
+                                        div.appendChild(non_resp);
+                                    }
+                                    else{
+                                        div.appendChild(resp);
+                                    }
+                                    </script>
 
                     </div>
                     <!-- FIN ETATE 1 -->
@@ -294,6 +309,7 @@
                         <div class="col" > 
                             <div class="form-group">
                             <label  for="typestage">Type de stage (<span style="color:red;">*</span>)</label>
+                            <div class="col_res1">
                             <select class="form-control form-control2" name="typestage" id="typestage">
                                 @foreach($typestages as $typestage)
                                 
@@ -306,6 +322,7 @@
                               @error('typestage')
                               <small class="text-danger">{{$message}}</small>
                               @enderror
+                            </div>
                             </div>
                         </div>
                         
@@ -327,6 +344,7 @@
                                 <div class="col"> 
                                     <div class="form-group">
                                     <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
+                                    <div class="col_res1">
                                     <select class="form-control form-control2" name="direction" id="direction">
                                         @foreach($directions as $direction)
                                         
@@ -339,6 +357,7 @@
                                     @error('direction')
                                     <small class="text-danger">{{$message}}</small>
                                     @enderror
+                                    </div>
                                 </div>
                                 </div>
 
@@ -406,7 +425,7 @@
                             <label for="typestage">Type de stage (<span style="color:red;">*</span>)</label>
                             <div class="col_res">
                             
-                            <select class="form-control form-control2" name="typestage" id="typestage">
+                            <select class="form-control form-control2" name="typestageR" id="typestage">
                                 @foreach($typestages as $typestage)
                                 
                                 <option value="{{$typestage->id}}">{{$typestage->valeur}}</option>
@@ -419,6 +438,7 @@
                               <small class="text-danger">{{$message}}</small>
                               @enderror
                             </div>
+                            <span class="input-group-addon"><i class="gi gi-user"></i></span>
                         </div>
                     </div>
 
@@ -427,7 +447,7 @@
                                     <label  for="direction">Domaine (<span style="color:red;">*</span>)</label>
                                     <div class="col_res">
                                     
-                                    <select class="form-control form-control2" name="direction" id="direction">
+                                    <select class="form-control form-control2" name="directionR" id="direction">
                                         @foreach($directions as $direction)
                                         
                                         <option value="{{$direction->id}}">{{$direction->domaine}}</option>
@@ -440,6 +460,7 @@
                                     <small class="text-danger">{{$message}}</small>
                                     @enderror
                                     </div>
+                                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                 </div>
                     </div>
 
@@ -449,7 +470,7 @@
                                     <label  for="datedebut">Date début (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <input type="date" id="datedebut" name="datedebut" class="form-control form-control2" required></div>
+                                            <input type="date" id="datedebutR" name="datedebutR" class="form-control form-control2" required></div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                     </div>
@@ -462,7 +483,7 @@
                                     <label  for="datefin">Date fin (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <input type="date" id="datefin" name="datefin" class="form-control form-control2" required></div>
+                                            <input type="date" id="datefinR" name="datefinR" class="form-control form-control2" required></div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                     </div>
@@ -475,7 +496,7 @@
                                     <label  for="cv">Joindre votre CV (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <input type="file" name="cv"  id="cv"class="form-control form-control2" accept=".pdf" required > 
+                                            <input type="file" name="cvR"  id="cv"class="form-control form-control2" accept=".pdf" required > 
                                             {{-- required title="Ce champs est obligatoire !!" --}}
                                         </div>
                                         </div>
@@ -491,7 +512,7 @@
                                     <div class="col-md-12">
                                        
                                         <div class="input-group">
-                                            <input type="file" id="diplome" name="diplome" class="form-control form-control2" required >
+                                            <input type="file" id="diplome" name="diplomeR" class="form-control form-control2" required >
                                             </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
@@ -505,7 +526,7 @@
                         <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
                         <div class="col-md-12">
                             <div class="input-group">
-                                <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" ></div>
+                                <input type="file" id="lettrerecommandation" name="lettrerecommandationR" class="form-control form-control2" ></div>
                             </div>
                             <span class="input-group-addon"><i class="gi gi-user"></i></span>
                         </div>
@@ -521,7 +542,20 @@
                         </div>
     
                      </div> --}}
+
+                     <script type="text/javascript">
+                        var div = document.getElementById('advanced-second');
+                            if(window.innerWidth > 800){
+                                div.appendChild(div_res1);
+                            }
+                            else{
+                                div.appendChild(div_res2);
+                            }
+                            </script>
+
             </div>
+
+            
                     
                     <!-- END Second Step -->
 {{-- RECAPITULATIF DEBUT --}}

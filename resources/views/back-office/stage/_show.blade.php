@@ -70,21 +70,12 @@
    
                            <br>
                        <div style="width: 1000px;margin:auto">
-                        @if($url == 'stagevalides')
-                            <a href="{{ route('stagevalides') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
-                            <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
-                        @endif
-                        @if($url == 'stageencours')
-                            <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
-                            <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
-                            <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
-                        @endif
-                            @if($url == 'stagetermines')
-                            <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
-                            <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
-                            <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
-                        @endif
-                     
+                      {{-- @if (getValeur($demande->etape)!='Terminé')
+                      <a href="{{ route('formaffecter', $demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-share-square"></i>Affecter</a>
+                     @endif --}}
+                     <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                     <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                     <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a> 
                         </div>
                         </div>
                    </div>

@@ -8,6 +8,7 @@ use App\Models\Demande_user;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Theme;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -132,8 +133,14 @@ class DemandeController extends Controller
           'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
           'demandes.note_globale', ]);
 
+          $stageattente = Demande::where('demandes.supprimer', '=', 0)
+          ->where('demandes.etat', '=', 8) //etat 8 veut dire en attente(parametre/valeur)
+          ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+          ->get()->count();
+
         return view('back-office.demande.index', [
            'demandes' => $demandes,
+           'stageattente' => $stageattente,
        ]);
     }
 
@@ -155,12 +162,6 @@ class DemandeController extends Controller
         'demande' => $demande,
         'pieces' => $pieces,
     ]);
-
-        return view('back-office.demande.show',
-            [
-                'demande' => $demande,
-                'pieces' => $pieces,
-            ]);
     }
 
     /** ********************************************************************
@@ -418,19 +419,30 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function voirStage(int $id)
     {
-        /*$maitres = User::
-          join('demande_users', 'users.id', '=', 'demande_users.user_id')
-          ->where('demande_users.role', '=', 13)
-          ->where('demande_users.demande_id', '=', $id)
-          ->first();*/
+        // +++++ Affiche les informations détaillées de l'objet concerné +++++
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $id)->first();
+        $url = url()->previous(); // Renvoie l'URL précédente
+        $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
+        $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
+        $chemin_stagetermines = Str::contains($url, 'stagetermines');
 
-        return view('back-office.stage.show',
-    [
-        'demande' => $demande,
-       // 'maitres' => $maitres,
-    ]);
+        if($chemin_stagevalides){
+
+            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stagevalides']);
+
+        }
+        if($chemin_stageencours) {
+
+            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stageencours']);
+        
+        }
+        if($chemin_stagetermines){
+
+            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stagetermines']);
+        
+        }
     }
+
 
     /** ********************************************************************
      * DEMBELE

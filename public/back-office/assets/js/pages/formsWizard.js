@@ -224,10 +224,22 @@ var FormsWizard = function() {
     };
 }();
 
+/*<script type="text/javascript">
+                        var div = document.getElementById('advanced-first');
+                        var resp1 = document.getElementById('non_resp');
+                        var resp2 = document.getElementById('resp');
+                            if(window.innerWidth > 800){
+                                div.appendChild(resp2);
+                            }
+                            else{
+                                div.appendChild(resp1);
+                            }
+                            </script>*/
+
 function resume(){
     // resumé des informations 
-   
-    var type =(document.getElementById("typestage").value)
+    if(window.innerWidth > 800){
+        var type =(document.getElementById("typestage").value)
     $('#nom_tab').text(document.getElementById("nom").value);
     $('#prenom_tab').text(document.getElementById("prenom").value);
     $('#tel_tab').text(document.getElementById("telephone").value);
@@ -240,7 +252,21 @@ $('#domaine_tab').text(document.getElementById('direction').options[document.get
 
     $('#debut_tab').text(document.getElementById("datedebut").value);
     $('#fin_tab').text(document.getElementById("datefin").value);  
-    
+    }
+    else{
+    $('#nom_tab').text(document.getElementById("nomR").value);
+    $('#prenom_tab').text(document.getElementById("prenomR").value);
+    $('#tel_tab').text(document.getElementById("telephoneR").value);
+    $('#mail_tab').text(document.getElementById("emailR").value);
+   //$('#domaine_tab').text(document.getElementById("direction").id);
+//    recuperer le libellé selectionner
+$('#type_tab').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
+$('#domaine_tab').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+
+
+    $('#debut_tab').text(document.getElementById("datedebutR").value);
+    $('#fin_tab').text(document.getElementById("datefinR").value);  
+    }
     
     
 }
