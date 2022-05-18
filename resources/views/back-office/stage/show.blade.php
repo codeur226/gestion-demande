@@ -15,40 +15,43 @@
                            {{-- <h2>Liste des stages</h2> --}}
                        </div>
 
-                       <div class="table-responsive"> 
-
-
-
-                        {{-- @if ($demande!=null) --}}
+                       <div> 
                         <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
                           
                             <tbody>
 
-                             <tr>
-                                 <th>Domaine :</th>
-                                 <td>{{getDirection($demande->direction_id)}}</td>
-                             </tr>
-                             <tr>
-                                 <th>Etape :</th>
-                                 <td>{{ getValeur($demande->etape) }}</td>
-                             </tr>
-                             <tr>
-                                 <th>Note globale :</th>
-                                 <td>{{ $demande->note_globale }}</td>
-                             </tr>
-                             <tr>
-                                 <th>Téléphone :</th>
-                                 <td>{{$demande->telephone}}</td>
-                             </tr>
-                             <tr>
-                                 <th>E-mail :</th>
-                                 <td>{{$demande->email}}</td>
-                             </tr>
-                             <tr>
-                                 <th>Type de stage :</th>
-                                 <td>{{getValeur($demande->type)}}</td>
-                             </tr>
-                          
+                                <tr>
+                                    <th>Maitre de stage :</th>
+                                    <td>{{getMaitreStage($demande->maitre_stage)}}</td>
+                                </tr>
+                            <tr>
+                                <th>Type de stage :</th>
+                                <td>{{getValeur($demande->type)}}</td>
+                            </tr>
+                            <tr>
+                                <th>Domaine :</th>
+                                <td>{{getDirection($demande->direction_id)}}</td>
+                            </tr>
+                            <tr>
+                                <th>Etat :</th>
+                                <td>{{ getValeur($demande->etat) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Etape :</th>
+                                <td>{{ getValeur($demande->etape) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Statut :</th>
+                                <td>{{ getValeur($demande->statut) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Téléphone :</th>
+                                <td>{{$demande->telephone}}</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail :</th>
+                                <td>{{$demande->email}}</td>
+                            </tr>
                              <tr>
                                  <th>Date de début :</th>
                                  <td>{{$demande->date_debut}}</td>
@@ -57,13 +60,25 @@
                                  <th>Date de fin :</th>
                                  <td>{{$demande->date_fin}}</td>
                              </tr>
-                             <tr>
-                                <th>commentaires sur le stage :</th>
-                                <td>{{$demande->commentaires}}</td>
+                            <tr>
+                                <th>Renouvellement début :</th>
+                                <td>{{$renouvellement_date_debut}}</td>
+                            </tr>
+                            <tr>
+                                <th>Rénouvellement fin :</th>
+                                <td>{{$renouvellement_date_fin}}</td>
                             </tr>
                             <tr>
                                 <th>Thème de stage :</th>
                                 <td>{{getTheme($demande->theme_id)}}</td>
+                            </tr>
+                            <tr>
+                                <th>Note globale :</th>
+                                <td>{{ $demande->note_globale }}</td>
+                            </tr>
+                            <tr>
+                                <th>commentaires sur le stage :</th>
+                                <td>{{$demande->commentaires}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -73,13 +88,19 @@
                         @if($url == 'stagevalides')
                             <a href="{{ route('stagevalides') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
+                            <a href="{{ route('formaffecter', $demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-plus"></i> Affecter un maitre de stage</a>
                         @endif
                         @if($url == 'stageencours')
                             <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
                             <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
                         @endif
-                            @if($url == 'stagetermines')
+                        @if($url == 'stagetermines')
+                            <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
+                            <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                        @endif
+                        @if($url == 'stage')
                             <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
                             <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>

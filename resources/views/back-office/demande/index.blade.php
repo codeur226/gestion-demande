@@ -76,7 +76,7 @@
                                             <div class="btn-group">
 
                                                 <a title="Voir les détails" href="{{ route('demandes.show', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
-                                                {{-- <a href="{{ route('demandes.edit', $demande) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a> --}}
+                                                <a title="Affecter un maitre de stage" href="{{ route('formaffecter', $demande->id) }}" class="btn btn-success btn-sm mr-2" ><i class="fa fa-plus"></i> </a>
                                                 <a title="Supprimer la demande" href="{{ route("demandes.destroy", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                     event.preventDefault();
                                                     if(confirm('Etes-vous sur de vouloir supprimer cette demande ?'))

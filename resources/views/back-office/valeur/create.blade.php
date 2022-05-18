@@ -22,8 +22,7 @@
             <!-- Horizontal Form Content -->
            
             <form method="post" action="{{route('valeurs.store')}}">
-          
-                @method('PUT')
+    
                 @include('back-office.partials._valeur-form')
       
             </form>

@@ -24,8 +24,9 @@
                                        <th>Type stage</th>
                                        <th>Date de début souhaitée</th>
                                        <th>Date de fin souhaitée</th>
-                                       <th>Etape</th>
                                        <th>Etat</th>
+                                       <th>Etape</th>
+                                       <th>Statut</th>
                                        <th>Pièces jointes</th>
                                    </tr>
                                </thead>
@@ -38,8 +39,9 @@
                                        <td>{{getValeur($demande->type)}}</td>
                                        <td>{{$demande->date_debut}}</td>
                                        <td>{{$demande->date_fin}}</td>
-                                       <td>{{getValeur($demande->etape)}}</td>
                                        <td>{{getValeur($demande->etat)}}</td>
+                                       <td>{{getValeur($demande->etape)}}</td>
+                                       <td>{{getValeur($demande->statut)}}</td>
                                        <td width="25%">   @foreach ($pieces as $piece)
                                         <ul><li >
                                             {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}
@@ -70,7 +72,7 @@
                            {{-- <a href="{{ route('validerstage', $demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Valider</a> --}}
                            <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
 
-                           <a href="{{ route('formreporter', $demande->id) }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-repeat"></i>Reporter</a>
+                           <a href="{{ route('formreporter', $demande->id) }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-repeat"></i> Reporter</a>
 
                            <a href="{{ route("validerstage", $demande->id) }}" class="btn btn-success btn-lg mr-2"  onClick="
                             event.preventDefault();

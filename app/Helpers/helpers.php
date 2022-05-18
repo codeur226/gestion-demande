@@ -101,6 +101,24 @@ if (!function_exists('getStageAttente')) {
 }
 
 /* ********************************************************************
+     *
+     * recuperer le nom et le prenom du maitre de stage
+     *
+***********************************************************************/
+
+if (!function_exists('getMaitreStage')) {
+    function getMaitreStage($id)
+    {
+        $record = User::where('id', $id)->first();
+        if ($record != null) {
+            return $record['nom'].' '.$record['prenom'];
+        } else {
+            return '';
+        }
+    }
+}
+
+/* ********************************************************************
      * DEMBELE
      * recuperer le nom et le prenom du demandeur
      *

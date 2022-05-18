@@ -62,23 +62,49 @@ class RenouvellementController extends Controller
     {
         //
         $liste = Demande::find($request->demande_id);
+        $dates = Demande::where('id', $request->demande_id)->get();
+        $renouvellements = Renouvellement::where('demande_id', $request->demande_id)->get();
 
-        //dd($liste);
-        if($request->date_debut>Demande::find($request->demande_id)->get('date_fin'))
+        foreach ($dates as $date) {
+            $var_date = $date->date_fin;
+        }
+
+        //dd($var_date);
+        if($request->date_debut >= $var_date)
         {
-            Renouvellement::create(
-                [
-                    'demande_id'=> $request->demande_id,
-                    'date_debut' => $request->date_debut,
-                    'date_fin' => $request->date_fin,
-                ]);
-                
-            $liste->update(
-                [
-                    'statut' => 24, //24 correspond a renouvellé dans la table valeur
-                ]);
-
-            return Redirect::route('stageencours');
+            if($renouvellements->count() > 0)
+            {
+                Renouvellement::where('demande_id', $request->demande_id)->update(
+                    [
+                        'demande_id'=> $request->demande_id,
+                        'date_debut' => $request->date_debut,
+                        'date_fin' => $request->date_fin,
+                    ]);
+                    
+                $liste->update(
+                    [
+                        'etape' => 25,
+                        'statut' => 24, //24 correspond a renouvellé dans la table valeur
+                    ]);
+    
+                return Redirect::route('stagetermines');
+            }else{
+                Renouvellement::create(
+                    [
+                        'demande_id'=> $request->demande_id,
+                        'date_debut' => $request->date_debut,
+                        'date_fin' => $request->date_fin,
+                    ]);
+                    
+                $liste->update(
+                    [
+                        'etape' => 25,
+                        'statut' => 24, //24 correspond a renouvellé dans la table valeur
+                    ]);
+    
+                return Redirect::route('stagetermines');
+            }
+            
         }
         else
         {

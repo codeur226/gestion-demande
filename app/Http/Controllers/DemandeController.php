@@ -8,6 +8,7 @@ use App\Models\Demande_user;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Theme;
+use App\Models\Renouvellement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -177,6 +178,9 @@ class DemandeController extends Controller
      */
     public function dashboard()
     {
+
+        /*$user = auth()->user()->id;
+        dd($user);*/
         //**** LISTES DES DEMANDES EN ATTENTES */
         $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
           ->where('demandes.supprimer', '=', 0)
@@ -426,20 +430,57 @@ class DemandeController extends Controller
         $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
         $chemin_stagetermines = Str::contains($url, 'stagetermines');
 
+        $renouvellements = Renouvellement::where('demande_id', $id)->get();
+        //dd($renouvellements);
+
+        if($renouvellements->count() > 0)
+        {
+            foreach ($renouvellements as $renouvellement) {
+                $renouvellement_date_debut = $renouvellement->date_debut;
+                $renouvellement_date_fin = $renouvellement->date_fin;
+            }
+        }else
+        {
+            $renouvellement_date_debut = 'none';
+            $renouvellement_date_fin = 'none';
+        }
+
         if($chemin_stagevalides){
 
-            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stagevalides']);
+            return view('back-office.stage.show',[
+                'demande' => $demande, 
+                'url' => 'stagevalides', 
+                'renouvellement_date_debut' => $renouvellement_date_debut, 
+                'renouvellement_date_fin' => $renouvellement_date_fin,
+            ]);
 
         }
         if($chemin_stageencours) {
 
-            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stageencours']);
+            return view('back-office.stage.show',[
+                'demande' => $demande, 
+                'url' => 'stageencours',
+                'renouvellement_date_debut' => $renouvellement_date_debut, 
+                'renouvellement_date_fin' => $renouvellement_date_fin,
+            ]);
         
         }
         if($chemin_stagetermines){
 
-            return view('back-office.stage.show',['demande' => $demande, 'url' => 'stagetermines']);
+            return view('back-office.stage.show',[
+                'demande' => $demande, 
+                'url' => 'stagetermines',
+                'renouvellement_date_debut' => $renouvellement_date_debut, 
+                'renouvellement_date_fin' => $renouvellement_date_fin,
+            ]);
         
+        }else{
+            return view('back-office.stage.show',[
+                'demande' => $demande, 
+                'url' => 'stage',
+                'renouvellement_date_debut' => $renouvellement_date_debut, 
+                'renouvellement_date_fin' => $renouvellement_date_fin,
+            ]);
         }
     }
 
@@ -451,6 +492,9 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function stagefini($id)
     {
+        $url = url()->previous(); // Renvoie l'URL précédente
+        $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
+        $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
         $demande = Demande::find($id);
         $demande->update(
             [
@@ -458,7 +502,16 @@ class DemandeController extends Controller
             ]
             );
 
-        return Redirect::route('stageencours');
+            if($chemin_stagevalides){
+
+                return Redirect::route('stagevalides');
+    
+            }
+            if($chemin_stageencours) {
+    
+                return Redirect::route('stageencours');
+            
+            }
     }
 
     /** ********************************************************************
@@ -551,6 +604,7 @@ class DemandeController extends Controller
             );
 
         return Redirect::route('voirStage', $demande->id);
+        //return Redirect::back();
     }
 
     // Téléchargement des pièces jointes
