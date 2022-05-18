@@ -36,17 +36,18 @@ background-color: #ffff;
 }
 
 .bglogin{/*background-color: green !important;*/
-background-color: rgb(45 101 175)!important;
+background-color: rgb(255, 255, 255)!important;
 background-image: url('../logins.jpg');
-background-repeat: no-repeat;
+/*background-repeat: no-repeat;*/
 background-position: center;
 background-size: 66%;
 }
 
 .bglogin2{
 background: transparent;
-margin-left: 25%;
-width: 23%;
+margin-left: 48%;
+width: 35%;
+
 }
 
 .bglogin2 label, .bglogin2 span, .bglogin2 a {color: #fff; font-weight: bold;}
@@ -123,11 +124,11 @@ width: 23%;
   }
 
   .bgcreate {
-    background-color: rgb(45 101 175)!important;
+    background-color: rgb(255, 255, 255)!important;
     background-image: url('../logins.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100% !important;
+    background-size: 118.5% 155.5%!important;
   }
 
   .form-control3 {

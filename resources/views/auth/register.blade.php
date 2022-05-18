@@ -36,11 +36,15 @@
             
                             <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                         </div>
+                        <style>
+                            
+                        </style>
 
                         <!-- Direction -->
                         <div class="mt-1">
                             <x-label for="direction" :value="__('Direction')" />
-                                    <select style="width:300px" class="form-control form-control2" name="direction" id="direction">
+                                    <select style="width:300px;border-color:lightgray;
+                                    border-radius: 5px;" class="form-control form-control2" name="direction" id="direction">
                                         @foreach($directions as $direction)
                                             <option value="{{$direction->id}}">{{$direction->libelle_long}}</option>
                                         @endforeach 

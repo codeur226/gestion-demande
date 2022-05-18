@@ -205,7 +205,7 @@
                                 <div class="w-100"></div>
                                 <div class="col">
                                     <div class="form-group">
-                                            <label  for="nom">Noms (<span style="color:red;">*</span>)</label>
+                                            <label  for="nom">Nom (<span style="color:red;">*</span>)</label>
                                             <div class="col-md-12">
                                                 <div class="input-group">
                                                     <input type="text" id="nomR" name="nom" class="form-control form-control2" >
@@ -221,7 +221,7 @@
                                 <div class="w-100"></div>
                                 <div class="col">
                                     <div class="form-group">
-                                            <label  for="nom">Prénoms(s) (<span style="color:red;">*</span>)</label>
+                                            <label  for="nom">Prénom(s) (<span style="color:red;">*</span>)</label>
                                             <div class="col-md-12">
                                                 <div class="input-group">
                                                     <input type="text" id="prenomR" name="prenom" class="form-control form-control2" >
@@ -237,7 +237,7 @@
                                 <div class="w-100"></div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label  for="telephone">Téléphones (<span style="color:red;">*</span>)</label>
+                                        <label  for="telephone">Téléphone (<span style="color:red;">*</span>)</label>
         
                                             <div class="col-md-12">
                                                 <div class="input-group">
@@ -259,7 +259,7 @@
                                 <div class="w-100"></div>
                                 <div class="col">
                                     <div class="form-group">
-                                            <label  for="email">E-mails (<span style="color:red;">*</span>)</label>
+                                            <label  for="email">E-mail (<span style="color:red;">*</span>)</label>
                                             <div class="col-md-12">
                                                 <div class="input-group">
                                                     <input type="text" id="emailR" name="email" class="form-control form-control2" >
@@ -581,11 +581,23 @@
     <div class="w-100"></div>
     <div class="tab-wizard">
    
+<style>
+    @media only screen and (max-width:800px){
+    #recap{
+        position:relative; right:80px;
+    }
+}
+
+@media only screen and (max-width:500px){
+    #recap{
+        position:relative; right:100px;
+    }
+}
+</style>
 
 
-
-        <div class="card" >
-            <div class="card-body card-body2" >
+        <div class="card" id="recap">
+            <div class="card-body card-body2">
                 <div class="row center-block">
                     <div class="col-md-12">
                         <div class="block">
