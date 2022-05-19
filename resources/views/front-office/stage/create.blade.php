@@ -614,24 +614,32 @@
                     <tr class="space-row">                       
                         <th>Nom</th>
                         <td id="nom_tab"></td>
+                    </tr>
+                    <tr class="space-row">                       
                         <th>Prénom(s)</th>
                         <td id="prenom_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Téléphone</th>
                         <td id="tel_tab"></td>                       
+                    </tr>
+                    <tr class="space-row">                                             
                         <th>E-mail</th>
                         <td id="mail_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Type stage</th>
                         <td id="type_tab"></td>                      
+                    </tr>
+                    <tr class="space-row">                                           
                         <th>Domaine</th>
                         <td id="domaine_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Date début</th>
                         <td id="debut_tab"></td>                      
+                    </tr>
+                    <tr class="space-row">                                            
                         <th>Date fin</th>
                         <td id="fin_tab"></td>
                     </tr>
