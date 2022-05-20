@@ -26,7 +26,6 @@
                                        <th>Date de fin souhaitée</th>
                                        <th>Etat</th>
                                        <th>Etape</th>
-                                       <th>Statut</th>
                                        <th>Pièces jointes</th>
                                    </tr>
                                </thead>
@@ -35,13 +34,12 @@
 
                                    <tr>
 
-                                       <td>{{getDirection($demande->direction_id)}}</td>
+                                       <td>{{getDomaine($demande->direction_id)}}</td>
                                        <td>{{getValeur($demande->type)}}</td>
                                        <td>{{$demande->date_debut}}</td>
                                        <td>{{$demande->date_fin}}</td>
                                        <td>{{getValeur($demande->etat)}}</td>
                                        <td>{{getValeur($demande->etape)}}</td>
-                                       <td>{{getValeur($demande->statut)}}</td>
                                        <td width="25%">   @foreach ($pieces as $piece)
                                         <ul><li >
                                             {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}
@@ -72,6 +70,7 @@
                            {{-- <a href="{{ route('validerstage', $demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Valider</a> --}}
                            <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
 
+                           @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                            <a href="{{ route('formreporter', $demande->id) }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-repeat"></i> Reporter</a>
 
                            <a href="{{ route("validerstage", $demande->id) }}" class="btn btn-success btn-lg mr-2"  onClick="
@@ -82,6 +81,7 @@
                             @csrf
                             @method("GET")
                         </form>
+                        @endif
 
 
 

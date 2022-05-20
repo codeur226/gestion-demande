@@ -25,6 +25,7 @@
                                        <th>Numéro de téléphone</th>
                                        <th>Email</th>
                                        <th>Direction</th>
+                                       <th>Role</th>
                                        
                                    </tr>
                                </thead>
@@ -37,6 +38,7 @@
                                        <td>{{$user->telephone}}</td>
                                        <td>{{$user->email}}</td>
                                        <td>{{getDirection($user->direction_id)}}</td>
+                                       <td>{{getRole($user->role_id)}}</td>
                                        
                                    </tr>
                                    

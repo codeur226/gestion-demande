@@ -254,18 +254,18 @@ $('#domaine_tab').text(document.getElementById('direction').options[document.get
     $('#fin_tab').text(document.getElementById("datefin").value);  
     }
     else{
-    $('#nom_tab').text(document.getElementById("nomR").value);
-    $('#prenom_tab').text(document.getElementById("prenomR").value);
-    $('#tel_tab').text(document.getElementById("telephoneR").value);
-    $('#mail_tab').text(document.getElementById("emailR").value);
+    $('#nom_tabR').text(document.getElementById("nomR").value);
+    $('#prenom_tabR').text(document.getElementById("prenomR").value);
+    $('#tel_tabR').text(document.getElementById("telephoneR").value);
+    $('#mail_tabR').text(document.getElementById("emailR").value);
    //$('#domaine_tab').text(document.getElementById("direction").id);
 //    recuperer le libellé selectionner
-$('#type_tab').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
-$('#domaine_tab').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+$('#type_tabR').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
+$('#domaine_tabR').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
 
 
-    $('#debut_tab').text(document.getElementById("datedebutR").value);
-    $('#fin_tab').text(document.getElementById("datefinR").value);  
+    $('#debut_tabR').text(document.getElementById("datedebutR").value);
+    $('#fin_tabR').text(document.getElementById("datefinR").value);  
     }
     
     

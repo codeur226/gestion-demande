@@ -31,9 +31,11 @@
                     <a href="{{ route('admin')}}" class="{{ request()->is('admin') ? 'active' : null }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tableau de bord</span></a>
                 </li>
                 
+                @if(Auth::user()->role_id == 2)
                 <li>
                     <a href="#" class="sidebar-nav-menu {{ request()->is('#') ? 'active' : null }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-cogwheel sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Paramétrage</span></a>
                     <ul>
+                        
                         <li>
                             <a href="{{ route('parametres.index')}}" class="{{ request()->is('parametres.index') ? 'active' : null }}">Paramètre</a>
                         </li>
@@ -50,10 +52,17 @@
                         <li>
                             <a href="{{ route('themes.index')}}" class="{{ request()->is('themes.index') ? 'active' : null }}">Thèmes des stages</a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('directions.index')}}" class="{{ request()->is('directions.index') ? 'active' : null }}">Directions</a>
+                        </li>
                        
                     </ul>
                 </li>
+                @endif
 
+
+                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-envelope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Gestion demandes</span></a>
                     <ul>
@@ -65,6 +74,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
 
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-briefcase sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Gestion des stages</span></a>
@@ -93,6 +103,7 @@
                 </li>
                 
 
+                @if(Auth::user()->role_id == 2)
                 <li>
                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Gestion utilisateurs</span></a>
                     <ul>
@@ -101,6 +112,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
             
              
             </ul>

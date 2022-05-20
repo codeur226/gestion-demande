@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Direction;
 use App\Models\User;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -44,10 +45,12 @@ class RegisteredUserController extends Controller
     {
         $user = User::All();
         $directions = Direction::All();
+        $roles = Role::All();
 
         return view('auth.register', [
             'directions' => $directions,
             'users' => $user,
+            'roles' => $roles,
         ]);
     }
 
@@ -75,6 +78,7 @@ class RegisteredUserController extends Controller
             'type_user' => 15, // Correspond a user système parametre/valeur
             'email' => $request->email,
             'direction_id' => $request->direction,
+            'role_id' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
@@ -114,11 +118,13 @@ class RegisteredUserController extends Controller
         $user = User::find($id);
         //dd($user);
         $directions = Direction::All();
+        $roles = Role::All();
 
         return view('back-office.user.edit',
         [
             'user' => $user,
             'directions' => $directions,
+            'roles' => $roles,
         ]);
     }
 
@@ -129,7 +135,7 @@ class RegisteredUserController extends Controller
      */
     public function update(Request $request, $user)
     {
-        //dd($request);
+        //dd($request->role);
 
         $userCount = User::where('users.type_user', '=', 15)->count();
 
@@ -145,16 +151,8 @@ class RegisteredUserController extends Controller
             'telephone' => $request->telephone,
             //'email' => $request->email,
             'direction_id' => $request->direction,
+            'role_id' => $request->role,
         ]);
-
-        $user->update(
-        [
-        'nom' => $request->name,
-        'prenom' => $request->prenom,
-        'telephone' => $request->telephone,
-        'direction_id' => $request->direction,
-        ]
-            );
 
             $users = User::where('users.type_user', '=', 15)
             ->orderBy('users.nom')

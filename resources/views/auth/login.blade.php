@@ -21,17 +21,17 @@
             <!-- Email Address -->
             <div>
                 
-                <x-label for="email" :value="__('Email')" />
+                <x-label class="label_res" for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full input_res" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 
-                <x-label for="password" :value="__('Password')" />
+                <x-label class="label_res" for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="password" class="block mt-1 w-full input_res"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
@@ -52,7 +52,7 @@
                     </a>
                 @endif --}} 
 
-                <x-button class="ml-3 btcon">
+                <x-button class="ml-3 btcon btn_res">
                     {{ __('Connecter') }}
                 </x-button>
             </div>

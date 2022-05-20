@@ -178,9 +178,8 @@ class DemandeController extends Controller
      */
     public function dashboard()
     {
-
-        /*$user = auth()->user()->id;
-        dd($user);*/
+        $user = auth()->user()->role_id;
+        //dd($user);
         //**** LISTES DES DEMANDES EN ATTENTES */
         $demandes = Demande::join('valeurs', 'valeurs.id', '=', 'demandes.etat')
           ->where('demandes.supprimer', '=', 0)
@@ -243,6 +242,7 @@ class DemandeController extends Controller
            'stagetermines' => $stagetermines,
            'demandes' => $demandes,
            'stageencours'=>$stageencours,
+           'user' => $user,
        ]);
     }
 

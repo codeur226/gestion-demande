@@ -83,6 +83,8 @@
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
                                                <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>  
+
+                                               @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                                                 <a title="Affecter un maitre de stage" href="{{ route('formaffecter', $demande->id) }}" class="btn btn-success btn-sm mr-2" ><i class="fa fa-plus"></i> </a>  
                     
                                                 <a title="Mettre fin au stage" href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
@@ -93,6 +95,7 @@
                                                     @csrf
                                                     @method("GET")
                                                 </form>
+                                                @endif
 
                                             
                                             

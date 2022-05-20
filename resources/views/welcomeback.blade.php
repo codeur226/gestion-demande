@@ -146,6 +146,7 @@ onclick="event.preventDefault();
 
         <!-- Mini Top Stats Row -->
         <div class="row">
+            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)
             <div class="col-sm-6 col-lg-3">
                 <!-- Widget -->
                 <a href="{{ route('demandes.index')}}" class="widget widget-hover-effect1">
@@ -166,6 +167,8 @@ onclick="event.preventDefault();
                 </a>
                 <!-- END Widget -->
             </div>
+            @endif
+
             <div class="col-sm-6 col-lg-3">
                 <!-- Widget -->
                 <a href="{{ route('stagevalides')}}" class="widget widget-hover-effect1">
@@ -217,6 +220,8 @@ onclick="event.preventDefault();
 
 
         </div>
+
+        @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)
         <div class="table-responsive">
             <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
                 <thead>
@@ -270,6 +275,8 @@ onclick="event.preventDefault();
                 </tbody>
             </table>
         </div>
+        @endif
+
     </div>
     <!-- END Page Content -->
 

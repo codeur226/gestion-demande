@@ -68,7 +68,7 @@
                                         <td>{{$demande->nom}}</td>
                                         <td>{{$demande->prenom}}</td>
                                         <td>{{$demande->email}}</td>
-                                        <td>{{getDirection($demande->direction_id)}}</td>
+                                        <td>{{getDomaine($demande->direction_id)}}</td>
                                         <td>{{$demande->date_debut}}</td>
                                         <td>{{$demande->date_fin}}</td>
                                         <td>{{getValeur($demande->etat)}}</td>
@@ -76,7 +76,11 @@
                                             <div class="btn-group">
 
                                                 <a title="Voir les détails" href="{{ route('demandes.show', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
+                                                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                                                 <a title="Affecter un maitre de stage" href="{{ route('formaffecter', $demande->id) }}" class="btn btn-success btn-sm mr-2" ><i class="fa fa-plus"></i> </a>
+                                                @endif
+
+                                                @if(Auth::user()->role_id == 2)
                                                 <a title="Supprimer la demande" href="{{ route("demandes.destroy", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                     event.preventDefault();
                                                     if(confirm('Etes-vous sur de vouloir supprimer cette demande ?'))
@@ -85,6 +89,7 @@
                                                     @csrf
                                                     @method("delete")
                                                 </form>
+                                                @endif
 
                                                 {{--<a href="#" class="btn btn-danger btn-sm"  onClick=" event.preventDefault();suppressionConfirm('{{ $param->id }}')" ><i class="fa fa-trash-o fa-lg"></i></a>--}}
                                         </div>

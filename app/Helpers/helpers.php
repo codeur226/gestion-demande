@@ -3,6 +3,7 @@
 
 use App\Models\Demande;
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Theme;
 use App\Models\Valeur;
 use App\Models\Direction;
@@ -161,5 +162,23 @@ if (!function_exists('getPermission')) {
         }
 
         return false;
+    }
+}
+
+/* ********************************************************************
+     *
+     * recuperer le nom du role en fonction de son id
+     *
+***********************************************************************/
+
+if (!function_exists('getRole')) {
+    function getRole($id)
+    {
+        $record = Role::where('id', $id)->first();
+        if ($record != null) {
+            return $record['nom'];
+        } else {
+            return '';
+        }
     }
 }

@@ -87,23 +87,33 @@
                        <div style="width: 1000px;margin:auto">
                         @if($url == 'stagevalides')
                             <a href="{{ route('stagevalides') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
+                            @endif
+                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                             <a href="{{ route('formaffecter', $demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-plus"></i> Affecter un maitre de stage</a>
+                            @endif
                         @endif
                         @if($url == 'stageencours')
                             <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
                             <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                            @endif
                         @endif
                         @if($url == 'stagetermines')
                             <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
                             <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                            @endif
                         @endif
                         @if($url == 'stage')
                             <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
                             <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                            @endif
                         @endif
                      
                         </div>

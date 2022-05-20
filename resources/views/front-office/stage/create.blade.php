@@ -582,9 +582,27 @@
     <div class="tab-wizard">
    
 <style>
+    #div_recap_res{
+        display: none;
+    }
+
+    #div_recap{
+        display: block;
+    }
+
     @media only screen and (max-width:800px){
+    #div_recap{
+        display: none;
+    }
+
+    #div_recap_res{
+        display: block;
+    }
     #recap{
         position:relative; right:80px;
+    }
+    .recap_block{
+        margin-left: 20%;
     }
 }
 
@@ -595,7 +613,7 @@
 }
 </style>
 
-
+    <div id="div_recap">
         <div class="card" id="recap">
             <div class="card-body card-body2">
                 <div class="row center-block">
@@ -614,32 +632,24 @@
                     <tr class="space-row">                       
                         <th>Nom</th>
                         <td id="nom_tab"></td>
-                    </tr>
-                    <tr class="space-row">                       
                         <th>Prénom(s)</th>
                         <td id="prenom_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Téléphone</th>
                         <td id="tel_tab"></td>                       
-                    </tr>
-                    <tr class="space-row">                                             
                         <th>E-mail</th>
                         <td id="mail_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Type stage</th>
                         <td id="type_tab"></td>                      
-                    </tr>
-                    <tr class="space-row">                                           
                         <th>Domaine</th>
                         <td id="domaine_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Date début</th>
                         <td id="debut_tab"></td>                      
-                    </tr>
-                    <tr class="space-row">                                            
                         <th>Date fin</th>
                         <td id="fin_tab"></td>
                     </tr>
@@ -653,6 +663,68 @@
                 </div>
             </div>
     </div>
+
+    </div>
+
+    <div id="div_recap_res">
+        <div class="card" id="recap">
+            <div class="card-body card-body2">
+                <div class="row center-block">
+                    <div class="col-md-12 recap_block">
+                        <div class="block" >
+                            <div class="w-100"></div>
+                                <div class="col" >
+                                
+                                <h3 style="color: green"><i class="bi bi-check-circle-fill">Récapitulatif de votre inscription </i></h3>
+        <div class="form-row table-responsive">
+            <table id="example-datatable" class="table"  >
+               
+                
+                <tbody>
+                    
+                    <tr class="space-row">                       
+                        <th>Nom</th>
+                        <td id="nom_tabR"></td>
+                    </tr>
+                    <tr class="space-row">                       
+                        <th>Prénom(s)</th>
+                        <td id="prenom_tabR"></td>
+                    </tr>
+                    <tr class="space-row">                       
+                        <th>Téléphone</th>
+                        <td id="tel_tabR"></td>                       
+                    </tr>
+                    <tr class="space-row">                                             
+                        <th>E-mail</th>
+                        <td id="mail_tabR"></td>
+                    </tr>
+                    <tr class="space-row">                       
+                        <th>Type stage</th>
+                        <td id="type_tabR"></td>                      
+                    </tr>
+                    <tr class="space-row">                                           
+                        <th>Domaine</th>
+                        <td id="domaine_tabR"></td>
+                    </tr>
+                    <tr class="space-row">                       
+                        <th>Date début</th>
+                        <td id="debut_tabR"></td>                      
+                    </tr>
+                    <tr class="space-row">                                            
+                        <th>Date fin</th>
+                        <td id="fin_tabR"></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
 
 
 

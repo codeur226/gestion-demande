@@ -83,7 +83,9 @@
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
                                                <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>  {{-- <i class="fa fa-eye fa-lg"></i> --}}
-                                                <a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" > renouveller</a>  {{--<i class="fa fa-repeat"></i> --}}
+                                               @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
+                                                <a title="Renouveller" href="{{ route('renouveller', $demande->id) }}" class="btn btn-warning btn-sm mr-2" > renouveller</a>
+                                                @endif  {{--<i class="fa fa-repeat"></i> --}}
                                                 {{-- <a href="{{ route('stagefini', $demande->id) }}" class="btn btn-danger btn-sm mr-2" >Mettre fin</a>  <i class="fa fa-trash"></i> --}}
                                             {{-- Bouton mettre fin au stage avec message de confirmation --}}
                                                 {{-- <a href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="

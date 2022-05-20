@@ -49,6 +49,21 @@
                                     @enderror
                                 
                                 </div>
+
+                                <div class="mt-4">
+                                    <x-label for="role" :value="__('Role')" />
+                                            <select style="width:300px" class="form-control form-control2" name="role" id="role" required>
+                                                @foreach($roles as $role)
+                                                    <option value="{{$role->id}}">{{$role->nom}}</option>
+                                                @endforeach 
+                                            
+                                            </select>
+                                            {{-- <span class="help-block">Saisir le profil</span> --}}
+                                            @error('role')
+                                            <small class="text-danger">{{$message}}</small>
+                                            @enderror
+                                        
+                                        </div>
         
                       
             
