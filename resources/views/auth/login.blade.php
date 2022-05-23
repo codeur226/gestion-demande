@@ -1,3 +1,5 @@
+
+
 <x-guest-layout>
     <x-auth-card>
 
@@ -6,6 +8,12 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
+
+        <div>
+            <a href="{{route('acceuil')}}">
+                <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
+            </a>
+          </div>
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -21,7 +29,7 @@
             <!-- Email Address -->
             <div>
                 
-                <x-label class="label_res" for="email" :value="__('Email')" />
+                <x-label class="label_res mt-6" for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full input_res" type="email" name="email" :value="old('email')" required autofocus />
             </div>

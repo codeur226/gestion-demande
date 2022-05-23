@@ -5,6 +5,12 @@
                             <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                         </a>
                     </x-slot>
+
+                    <div>
+                        <a href="{{route('acceuil')}}">
+                            <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
+                        </a>
+                      </div>
             
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -56,6 +62,22 @@
                                     @enderror
                                 
                                 </div>
+
+                                <div class="mt-1">
+                                    <x-label for="role" :value="__('Role')" />
+                                            <select style="width:300px;border-color:lightgray;
+                                            border-radius: 5px;" class="form-control form-control2" name="role" id="role">
+                                                @foreach($roles as $role)
+                                                    <option value="{{$role->id}}">{{$role->nom}}</option>
+                                                @endforeach 
+                                            
+                                            </select>
+                                            {{-- <span class="help-block">Saisir le profil</span> --}}
+                                            @error('role')
+                                            <small class="text-danger">{{$message}}</small>
+                                            @enderror
+                                        
+                                        </div>
             
                         <!-- Password -->
                         <div class="mt-1">

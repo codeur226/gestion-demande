@@ -5,6 +5,12 @@
                             <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                         </a>
                     </x-slot>
+
+                    <div>
+                        <a href="{{route('acceuil')}}">
+                            <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
+                        </a>
+                      </div>
             
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -39,7 +45,7 @@
                             <x-label for="direction" :value="__('Direction')" />
                                     <select style="width:300px" class="form-control form-control2" name="direction" id="direction" required>
                                         @foreach($directions as $direction)
-                                            <option value="{{$direction->id}}">{{$direction->libelle_long}}</option>
+                                            <option {{ ($user->direction_id==$direction->id OR old('direction_id')==$direction->id) ? "selected": "" }} value="{{$direction->id}}">{{$direction->libelle_long}}</option>
                                         @endforeach 
                                     
                                     </select>
@@ -54,7 +60,7 @@
                                     <x-label for="role" :value="__('Role')" />
                                             <select style="width:300px" class="form-control form-control2" name="role" id="role" required>
                                                 @foreach($roles as $role)
-                                                    <option value="{{$role->id}}">{{$role->nom}}</option>
+                                                    <option {{ ($user->role_id==$role->id OR old('role_id')==$role->id) ? "selected": "" }} value="{{$role->id}}">{{$role->nom}}</option>
                                                 @endforeach 
                                             
                                             </select>
