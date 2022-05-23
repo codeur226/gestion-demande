@@ -46,6 +46,8 @@
 
                                             <a href="{{asset($piece->url) }}">{{ $piece->libelle }}</a>
                                             {{-- <a href="{{asset('{{$piece->url}}'}}"> {{ $piece->libelle }}</a> --}}
+
+                                            @if(Auth::user()->role_id == 2)
                                             <a href="{{ route("supprimerpiece", $piece->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                 event.preventDefault();
                                                 if(confirm('Etes-vous sur de vouloir supprimer cette piece ?'))
@@ -54,6 +56,7 @@
                                                 @csrf
                                                 @method("delete")
                                             </form>
+                                            @endif
                                         </li></ul>
 
                                         @endforeach </td>

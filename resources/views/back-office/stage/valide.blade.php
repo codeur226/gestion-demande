@@ -83,23 +83,20 @@
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
                                                 <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
-                                                <a title="Démarrer le stage" href="{{ route("encours", $demande->id) }}" class="btn btn-success btn-sm mr-2"  onClick="
-                                                    event.preventDefault(); 
-                                                    if(confirm('Etes-vous sur de vouloir mettre ce stage en cours?')) 
-                                                    document.getElementById('{{ $demande->code }}').submit();"><i class="fa fa-check fa-lg"></i></a>
+                                                
+                                                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
+                                                <a title="Affecter un maitre de stage" href="{{ route("formaffecter", $demande->id) }}" class="btn btn-success btn-sm mr-2"><i class="fa fa-plus fa-lg"></i></a>
                                                     <a title="Mettre fin au stage" href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
                                                         event.preventDefault(); 
                                                         if(confirm('Etes-vous sur de vouloir mettre fin a ce stage ?')) 
                                                         document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-stop-circle fa-lg"></i></a>
-                                                            <form id="{{ $demande->code }}" method="post" action="{{ route("encours", $demande->id) }}">
-                                                                @csrf
-                                                                @method("GET")
-                                                            </form>
 
                                                             <form id="{{ $demande->id }}" method="post" action="{{ route("stagefini", $demande->id) }}">
                                                                 @csrf
                                                                 @method("GET")
                                                             </form>
+
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
