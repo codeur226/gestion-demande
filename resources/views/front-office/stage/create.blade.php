@@ -602,7 +602,7 @@
         position:relative; right:80px;
     }
     .recap_block{
-        margin-left: 20%;
+        margin-left: 15%;
     }
 }
 

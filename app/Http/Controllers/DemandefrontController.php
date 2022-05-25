@@ -70,11 +70,18 @@ class DemandefrontController extends Controller
         // Test d'existence du mail user
         $demande = Demande::where('email', $request->email)->exists();
 
-        if ($demande) {
+        if ($demande) 
+        {
             // si le mail existe, renvoyer la page de connexion
             return redirect()->route('demandesfront.create', [
             ])->with('message', 'Une demande a déjà été enregistré avec cette adresse email !');
-        } else {
+        }
+        elseif ($request->datefinR < $request->datedebutR or $request->datefin < $request->datedebut) 
+        {
+            return redirect()->route('demandesfront.create', [
+                ])->with('message', 'La date de fin de stage doit etre supérieure à la date de début de stage !');
+        }
+        else {
             // sinon si le mail n'existe pas, on enregistre la demande
 
             // Génération du code de la demande

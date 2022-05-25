@@ -10,7 +10,7 @@
         </x-slot>
 
         <div>
-            <a href="{{route('acceuil')}}">
+            <a href="{{route('admin')}}">
                 <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
             </a>
           </div>
