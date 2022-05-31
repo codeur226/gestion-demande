@@ -1,5 +1,3 @@
-
-
 <x-guest-layout>
     <x-auth-card>
 
@@ -10,10 +8,12 @@
         </x-slot>
 
         <div>
+
+{{--        <div>
             <a href="{{route('admin')}}">
                 <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
             </a>
-          </div>
+          </div>--}}
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -65,5 +65,6 @@
                 </x-button>
             </div>
         </form>
+    </div>
     </x-auth-card>
 </x-guest-layout>

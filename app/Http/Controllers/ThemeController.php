@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use App\Models\Demande;
 
 class ThemeController extends Controller
 {
@@ -74,10 +75,21 @@ class ThemeController extends Controller
      */
     public function show(Theme $theme)
     {
-        // dd($theme);
-      // $theme=Theme::all();
-     // $theme=
-       return view("back-office.theme.show", compact('theme'));
+        $demandes = Demande::where('demandes.supprimer', '=', 0)
+        ->where('theme_id', '=', $theme->id)
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->get();
+        //dd($demandes);
+        $nbrDemandes = Demande::where('demandes.supprimer', '=', 0)
+        ->where('theme_id', '=', $theme->id)
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->get()->count();
+       return view("back-office.theme.show", 
+       [
+           'theme' => $theme,
+           'demandes' => $demandes,
+           'nbrDemandes' => $nbrDemandes,
+        ]);
     }
 
 

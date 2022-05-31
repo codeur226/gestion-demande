@@ -68,7 +68,7 @@
                                         <td>{{$demande->nom}} {{" ".$demande->prenom}}</td>
                                         {{-- <td></td> --}}
                                         <td>{{$demande->email}}</td>
-                                        <td>{{getDirection($demande->direction_id)}}</td>
+                                        <td>{{getDomaine($demande->direction_id)}}</td>
                                         @if($demande->debutrenouv==null)                                       
                                         <td>{{$demande->date_debut}}</td>
                                         @else

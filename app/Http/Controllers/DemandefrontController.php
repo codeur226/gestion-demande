@@ -69,19 +69,36 @@ class DemandefrontController extends Controller
         //dd($request);
         // Test d'existence du mail user
         $demande = Demande::where('email', $request->email)->exists();
+        $demandeGet = Demande::where('demandes.supprimer', '=', 0)
+            ->where('demandes.email', '=', $request->email)
+            ->first();
+
 
         if ($demande) 
         {
-            // si le mail existe, renvoyer la page de connexion
+            if($demandeGet->etape != 10)
+            {
+            // si le mail existe et l'etape de la demande est différente de "terminé", renvoyer la page de connexion
             return redirect()->route('demandesfront.create', [
             ])->with('message', 'Une demande a déjà été enregistré avec cette adresse email !');
+            }
+            else
+            {
+                // sinon si le mail existe et l'etape de la demande est égale à "terminé", on modifie le mail
+                Demande::where('email', $request->email)->update(
+                    [
+                        'email' => $request->email.'*',
+                    ]
+                );
+            }
         }
-        elseif ($request->datefinR < $request->datedebutR or $request->datefin < $request->datedebut) 
+        if ($request->datefinR < $request->datedebutR or $request->datefin < $request->datedebut) 
         {
             return redirect()->route('demandesfront.create', [
                 ])->with('message', 'La date de fin de stage doit etre supérieure à la date de début de stage !');
         }
         else {
+            
             // sinon si le mail n'existe pas, on enregistre la demande
 
             // Génération du code de la demande
@@ -171,7 +188,7 @@ class DemandefrontController extends Controller
                 Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
                 
                 /* NOTIFICATION PAR WHATSAPP A DRH */
-                $demanderencour->notify(new OrderProcessed($demanderencour));
+                //$demanderencour->notify(new OrderProcessed($demanderencour));
             } catch (\Exception $e) {
                 /*
                 S'il ya erreur dans la notification par mail/whatsapp

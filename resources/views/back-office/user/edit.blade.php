@@ -6,11 +6,11 @@
                         </a>
                     </x-slot>
 
-                    <div>
+                    {{--<div>
                         <a href="{{route('admin')}}">
                             <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
                         </a>
-                      </div>
+                      </div>--}}
             
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />

@@ -708,8 +708,8 @@ class DemandeController extends Controller
             }
         }else
         {
-            $renouvellement_date_debut = 'none';
-            $renouvellement_date_fin = 'none';
+            $renouvellement_date_debut = 'non renouvellé';
+            $renouvellement_date_fin = 'non renouvellé';
         }
 
         if($chemin_stagevalides){
@@ -840,32 +840,27 @@ class DemandeController extends Controller
         //dd($request);
         $demande = Demande::find($request->iddemande);
 
-        $url = url()->previous(); // Renvoie l'URL précédente
-        $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
-        $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
-        $chemin_demandes = Str::contains($url, 'demandes');
-
-        if($chemin_stagevalides){
-
-            return redirect()->route('stagevalides')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
-
-        }
-        if($chemin_stageencours) {
-
-            return redirect()->route('stageencours')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
-        
-        }
-        if($chemin_demandes){
-
-            return redirect()->route('demandes')->with('statutDemande', 'La demande a bien été affectée à un maitre de stage ! ');
-        
-        }
-
         $demande->update([
 
             'maitre_stage' => $request->maitre
 
         ]);
+
+        if($demande->etape == 25){
+
+            return redirect()->route('stagevalides')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
+
+        }
+        if($demande->etape == 11) {
+
+            return redirect()->route('stageencours')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
+        
+        }
+        if($demande->etat == 8){
+
+            return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été affectée à un maitre de stage ! ');
+        
+        }
 
     }
 

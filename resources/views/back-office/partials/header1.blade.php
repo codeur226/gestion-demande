@@ -25,7 +25,7 @@
 
           <!-- Template Options -->
           <!-- Change Options functionality can be found in back-office/assets/js/app.js - templateOptions() -->
-          <li class="dropdown">
+          {{--<li class="dropdown">
               <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="gi gi-settings"></i>
               </a>
@@ -45,7 +45,14 @@
                       </div>
                   </li>
               </ul>
-          </li>
+          </li>--}}
+
+          <li>
+            <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
+                <i class="fa fa-bars fa-fw"></i>
+            </a>
+        </li>
+
           <!-- END Template Options -->
       </ul>
       <!-- END Left Header Navigation -->

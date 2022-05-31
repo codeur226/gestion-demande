@@ -6,11 +6,11 @@
                         </a>
                     </x-slot>
 
-                    <div>
+{{--                   <div>
                         <a href="{{route('admin')}}">
                             <img class="w-20 h-30" style="margin:auto;" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
                         </a>
-                      </div>
+                      </div>--}}
             
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -49,8 +49,8 @@
                         <!-- Direction -->
                         <div class="mt-1">
                             <x-label for="direction" :value="__('Direction')" />
-                                    <select style="width:300px;border-color:lightgray;
-                                    border-radius: 5px;" class="form-control form-control2" name="direction" id="direction">
+                                    <select style="border-color:lightgray;
+                                    border-radius: 5px;" class="block mt-1 w-full" name="direction" id="direction">
                                         @foreach($directions as $direction)
                                             <option value="{{$direction->id}}">{{$direction->libelle_long}}</option>
                                         @endforeach 
@@ -65,8 +65,8 @@
 
                                 <div class="mt-1">
                                     <x-label for="role" :value="__('Role')" />
-                                            <select style="width:300px;border-color:lightgray;
-                                            border-radius: 5px;" class="form-control form-control2" name="role" id="role">
+                                            <select style="border-color:lightgray;
+                                            border-radius: 5px;" class="block mt-1 w-full" name="role" id="role">
                                                 @foreach($roles as $role)
                                                     <option value="{{$role->id}}">{{$role->nom}}</option>
                                                 @endforeach 

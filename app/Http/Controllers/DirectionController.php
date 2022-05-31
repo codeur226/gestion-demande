@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Direction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Demande;
 
 class DirectionController extends Controller
 {
@@ -63,9 +65,33 @@ class DirectionController extends Controller
     {
         $direction = Direction::find($direction->id);
 
+        $stageencours = Demande::where('demandes.supprimer', '=', 0)
+        ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+        ->where('demandes.etape', '=', 11) //etape 11 veut dire en cours
+        ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->where('direction_id', '=', $direction->id)
+        //->where('demandes.date_debut', '<=', now()) //validé et est en cours
+        ->get()->count();
+
+        $demandes = DB::table('demandes')
+       ->join('valeurs', 'valeurs.id', '=', 'demandes.etat')
+       ->LeftJoin('renouvellements', 'demandes.id', '=', 'renouvellements.demande_id')
+       ->where('demandes.supprimer', '=', 0)
+       ->where('demandes.etat', '=', 9) // etat 9 veut dire validé
+       ->where('demandes.type_demande', '=', 6) //6 correspond a stage
+        ->where('demandes.etape', '=', 11) //etape 11 veut dire en cours
+        ->where('direction_id', '=', $direction->id)
+       ->distinct('demandes.id')
+       ->orderbyDesc('demandes.id')
+       ->get(['demandes.nom as nom', 'demandes.prenom', 'demandes.telephone', 'demandes.email', 'demandes.id', 'demandes.direction_id',
+         'demandes.date_debut', 'demandes.date_fin', 'demandes.etape', 'demandes.etat', 'demandes.code',
+         'demandes.note_globale', 'renouvellements.date_debut as debutrenouv', 'renouvellements.date_fin as finrenouv', ]);
+
         return view('back-office.direction.show',
     [
         'direction' => $direction,
+        'demandes' => $demandes,
+        'stageencours' => $stageencours,
     ]);
     }
 

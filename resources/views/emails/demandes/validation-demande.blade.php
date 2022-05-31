@@ -1,5 +1,5 @@
 @component('mail::message')
-# Bonjour, Monsieur /Madame  {{ $user->prenom  }} {{ $user->nom  }}
+# Bonjour, Monsieur /Madame  {{ $demande->prenom  }} {{ $demande->nom  }}
 
 Votre demande de stage a été accordée pour la période du <span style="color: red">{{ $demande->date_debut  }} </span> au <span style="color: red">{{ $demande->date_fin  }}</span> 
  

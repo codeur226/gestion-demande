@@ -22,6 +22,6 @@
   @enderror
 </div>
 <div class="form-group form-actions">
-  <a href="{{ route('stagevalides') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+  <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
   <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-check-square"></i> Valider</button>
 </div>

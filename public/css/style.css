@@ -1,17 +1,17 @@
 .fld{
-    border:1px solid;
-    border-radius: 30px;
-
+  border:1px solid;
+  border-radius: 30px;
+  
 }
 .fld legend{
-    padding: 5px 20px;
-    text-align: center;
-    width: 40%;
-
+  padding: 5px 20px;
+  text-align: center;
+  width: 40%;
+  
 }
 
 .monserrat{
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .color_white{
@@ -20,55 +20,78 @@ background-color: #ffff;
 
 .snd_color
 {
-    background-color :#1a3070;
+  background-color :#1a3070;
 }
 
 /*coluer au niveau de l'affichage des donnees statistiques*/
 .snd_color_state
 {
-    color :#1a3070;
+  color :#1a3070;
 }
 .inscription_btn
 {
-  font-weight: bold;
-  background-color: #1a3070;
-  color: #f5f5f5;
+background-color: #1a3070;
+color: #f5f5f5;
+}
+
+@media only screen and (min-width:1200px){
+.bglogin{/*background-color: green !important;*/
+background-image: url('/logins.jpg');
+background-repeat: no-repeat;
+background-position: center;
+background-size: 100% 150%;
+}
+
+.bglogin2{
+  background: transparent;
+  margin-left: 44%;
+  width: 23%;
+  }
+}
+
+@media only screen and (max-width:1200px){
+.bglogin{/*background-color: green !important;*/
+  /*background: linear-gradient(to right, #2c65af,#c9dff4);*/
+  background-image: linear-gradient(140deg, #c9dff4 0%, #2c65af 50%);
+  background-repeat: no-repeat;
+
+  }
 }
 
 
 
+.bglogin2 label, .bglogin2 span, .bglogin2 a {color: #fff; font-weight: bold;}
 
-
-
-
-
-
-
-    .btn.btn-xlg {
-        padding: 10px 10px !important;
-        font-size: 16px;
-    }
-    .btn, .input-group-btn .btn {
-
-        margin: 10px 40px !important;
-    }
-
+.btcon {
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 16px;
+  font-weight: bold;}
+  .btn.btn-xlg {
+      padding: 10px 10px !important;
+      font-size: 16px;
+  }
+  .btn, .input-group-btn .btn {
+      
+      margin: 10px 40px !important;
+  }
+  
 .hauteurbas {
 
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 
 }
 .inscription_btn {
-    background-color: #159dd9 !important;
+  background-color: #159dd9 !important;
 }
 .btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary {
-    color: #fff;
+  color: #fff;
 }
 .btn-primary {
-    background-color: #159dd9 !important;
+  background-color: #159dd9 !important;
 }
 .btn:not(.btn-raised).btn-warning, .input-group-btn .btn:not(.btn-raised).btn-warning {
-    color: #fff;
+  color: #fff;
 }
 .tab-wizard {
     -ms-flex: 0 0 66.666667%;
@@ -111,7 +134,7 @@ background-color: #ffff;
   }
 
 
-  }
+
 
   .form-control3 {
     margin-left: 15px !important;
