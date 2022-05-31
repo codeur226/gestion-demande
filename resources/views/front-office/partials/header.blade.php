@@ -27,7 +27,7 @@
                   <p class="monserrat" style="text-align:center;font-size: 1.5rem;">Faites vos demandes de stages entièrement en ligne</p>
                   
                 </h1>
-                <div class="text-center">
+                <div class="text-center front-btn">
                   <a href="{{ route('demandesfront.create') }}" class="monserrat btn btn-primary btn-xlg  animated flipInX animation-delay-16 inscription_btn">DEMANDE DE STAGE</a>
                   <a href="#" class="monserrat btn btn-primary btn-xlg  animated flipInX animation-delay-16 inscription_btn">DEMANDE D'EMPLOI</a>
                  

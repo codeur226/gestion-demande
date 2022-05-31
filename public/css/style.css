@@ -34,7 +34,7 @@ background-color: #1a3070;
 color: #f5f5f5;
 }
 
-@media only screen and (min-width:1200px){
+@media only screen and (min-width:800px){
 .bglogin{/*background-color: green !important;*/
 background-image: url('/logins.jpg');
 background-repeat: no-repeat;
@@ -49,7 +49,7 @@ background-size: 100% 150%;
   }
 }
 
-@media only screen and (max-width:1200px){
+@media only screen and (max-width:800px){
 .bglogin{/*background-color: green !important;*/
   /*background: linear-gradient(to right, #2c65af,#c9dff4);*/
   background-image: linear-gradient(140deg, #c9dff4 0%, #2c65af 50%);
@@ -202,6 +202,7 @@ background-size: 100% 150%;
   }
 
 
+
   @media only screen and (max-width:800px){
 
     /*NAV*/
@@ -233,7 +234,7 @@ background-size: 100% 150%;
   #div-nav{
       width: fit-content;
       margin-top: 5px;
-      margin-left: 45%;
+      margin-right: 45%;
   }
 
   /*Page Create*/
@@ -260,3 +261,29 @@ background-size: 100% 150%;
   }
 
   }
+
+  
+
+  @media only screen and (max-width:500px){
+    #div-nav{
+      width: fit-content;
+      margin-top: 5px;
+      margin-right: 30%;
+  }
+  }
+
+  @media only screen and (max-width:600px){
+    #div-nav{
+      width: fit-content;
+      margin-top: 5px;
+      margin-right: 40%;
+  }
+}
+
+@media only screen and (max-width:400px){
+  #div-nav{
+    width: fit-content;
+    margin-top: 5px;
+    margin-right: 30%;
+}
+}

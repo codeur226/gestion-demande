@@ -1,10 +1,5 @@
 <nav class="navbar navbar-expand-md  navbar-static ms-navbar ms-navbar-white navbar-mode">
       <div class="container container-full">
-        <div id="div-nav" class="navbar-header">
-          <a class="navbar-brand" href="{{route('acceuil')}}">
-           <img class="logo" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
-          </a>
-        </div>
 
         <script>
           function togglemenu(){
@@ -53,6 +48,12 @@
               <a class="nav-link" href="{{ url('formconsulter') }}" role="tab">Consulter sa demande</a>
             </li>
           </ul>
+        </div>
+
+        <div id="div-nav" class="navbar-header">
+          <a class="navbar-brand" href="{{route('acceuil')}}">
+           <img class="logo" src="{{ asset('front-office/assets/img/ANPTIC.jpg') }}">
+          </a>
         </div>
 
       </div> <!-- container -->
