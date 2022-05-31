@@ -52,7 +52,7 @@ background-size: 100% 150%;
 @media only screen and (max-width:800px){
 .bglogin{/*background-color: green !important;*/
   /*background: linear-gradient(to right, #2c65af,#c9dff4);*/
-  background-image: linear-gradient(140deg, #c9dff4 0%, #2c65af 50%);
+  background-image: linear-gradient(140deg,#2c65af 50%, #c9dff4 0%);
   background-repeat: no-repeat;
 
   }
