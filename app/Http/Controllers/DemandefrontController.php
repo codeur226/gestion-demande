@@ -183,13 +183,13 @@ class DemandefrontController extends Controller
             }
             
 
-            try {
+            //try {
                 /* NOTIFICATION PAR MAIL AU DEMANDEUR**/
                 Mail::to($demanderencour)->send(new AjoutDemande($demanderencour)); // envoie du mail
                 
                 /* NOTIFICATION PAR WHATSAPP A DRH */
                 //$demanderencour->notify(new OrderProcessed($demanderencour));
-            } catch (\Exception $e) {
+           // } catch (\Exception $e) {
                 /*
                 S'il ya erreur dans la notification par mail/whatsapp
                 Toujours confirmer la notification d'enregistrement de la demande sur la vue
@@ -227,7 +227,7 @@ class DemandefrontController extends Controller
         'demandes' => $demandes,
         'demande' => $demanderencour,
     ])->with('message', 'Le code de votre demande est : '.' '.$demanderencour->code.' '.'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
-        }
+      //  }
     }
 
     // private function whatsappNotification(string $recipient)
