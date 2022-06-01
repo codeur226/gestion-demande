@@ -15,7 +15,7 @@
                            {{-- <h2>Liste des stages</h2> --}}
                        </div>
 
-                       <div> 
+                       <div class="table-responsive"> 
                         <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
                           
                             <tbody>

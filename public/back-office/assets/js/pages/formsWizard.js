@@ -14,6 +14,11 @@ var FormsWizard = function() {
              */
 
             /* Initialize Progress Wizard */
+
+            $.validator.addMethod('le', function (value, element, param) {
+                return this.optional(element) || value.toString() < $(param).val().toString();
+            }, 'Donnée invalide');
+
             $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
                 
                 validationOptions: {
@@ -59,6 +64,7 @@ var FormsWizard = function() {
                         },
                         datedebut: {
                             required: true,
+                            le: '#datefin'
                         },
                         datefin: {
                             required: true,
@@ -67,7 +73,6 @@ var FormsWizard = function() {
                         diplome: {
                             required: true,
                         },
-
                     },
                     
                     messages: {
@@ -79,7 +84,7 @@ var FormsWizard = function() {
                         },
                         datedebut: {
                             required: 'Veuillez saisir la date de début souhaitée',
-                            
+                            le: 'La date de fin de stage doit etre supérieure à la date de début de stage !',
                         },
                         datefin: {
                             required: 'Veuillez saisir la date de fin souhaitée',
@@ -219,6 +224,10 @@ var FormsWizard = function() {
 
                 clickableWizard.formwizard('show', gotostep);
                 
+            });
+
+            $('[name="datefin"]').on('change blur keyup', function() {
+                $('[name="datedebut"]').valid();
             });
         }
     };

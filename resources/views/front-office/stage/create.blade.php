@@ -555,6 +555,24 @@
 
             </div>
 
+            {{--<script>
+                if(window.innerWidth > 800){
+                    var date_debut = document.getElementById('datedebut');
+                    var date_fin = document.getElementById('datefin');
+                }else{
+                    var date_debut = document.getElementById('datedebutR');
+                    var date_fin = document.getElementById('datefinR');
+                }
+                if(date_debut>date_fin){
+                    alert("La date de fin de stage doit etre supérieure à la date de début de stage !");
+                    date_debut.focus();
+                    date_fin.focus();
+                    return false;
+                }else{
+                    return true;
+                }
+            </script>--}}
+
             
                     
                     <!-- END Second Step -->
