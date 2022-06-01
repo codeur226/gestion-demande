@@ -253,7 +253,8 @@ background-color: #159dd9;
 
     .bglogin{
       background-image: none;
-      background-color: #2c65af;
+      background: linear-gradient(#2c65af, #159dd9);
+      /*background-color: #159dd9 50%, #2c65af;*/
       }
 
       .bglogin2{
