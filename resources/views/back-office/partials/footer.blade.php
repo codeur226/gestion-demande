@@ -4,7 +4,7 @@
         Developpée par <a href="https://www.anptic.gov.bf/" target="_blank">ANPTIC</a>
     </div>
     <div class="pull-left">
-        <span > 2022</span> &copy; Copyright Agence Nationale de Promotion des TIC
+        <span > 2022</span> &copy; Tous droits réservés. Agence Nationale de Promotion des TIC
     </div>
 </footer>
 <!-- END Footer -->

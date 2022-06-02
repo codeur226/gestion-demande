@@ -42,14 +42,19 @@ color: #f5f5f5;
     background-position: 53% 53%;
   }
 }
+
+
+  
 .bglogin {
   background-image: url('../logins.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 110% 155%;
   background-color: #2c65af;
-  animation: animatedBackground 10s linear infinite alternate;
+  /*animation: animatedBackground 10s linear infinite alternate;*/
 }
+
+
 
 /*.bglogin{
 background-image: url('/logins.jpg');
@@ -59,10 +64,23 @@ background-size: 100% 150%;
 background-color: #159dd9;
 }*/
 
+@keyframes zoom-in-zoom-out {
+  0% {
+  transform: scale(1, 1);
+  }
+  50% {
+  transform: scale(1.02, 1.02);
+  }
+  100% {
+  transform: scale(1, 1);
+  }
+  }
+
 .bglogin2{
   background: transparent;
   margin-left: 44%;
-  width: auto;
+  width: 23%;
+  /*animation: zoom-in-zoom-out 5s ease-in-out infinite alternate;*/
   }
 
 
@@ -299,5 +317,9 @@ background-color: #159dd9;
         margin-left: 0%;
         width: auto;
         }
+
+  .part_res{
+    margin-top: 100%;
+  }
 
   }

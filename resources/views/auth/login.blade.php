@@ -27,7 +27,7 @@
             @csrf
 
             <!-- Email Address -->
-            <div>
+            <div class="part_res">
                 
                 <x-label class="label_res mt-6" for="email" :value="__('Email')" />
 
