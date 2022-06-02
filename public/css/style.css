@@ -47,6 +47,7 @@ color: #f5f5f5;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 110% 155%;
+  background-color: #2c65af;
   animation: animatedBackground 10s linear infinite alternate;
 }
 
@@ -289,14 +290,14 @@ background-color: #159dd9;
     margin-right: 15px;
   }
 
-  /*.bglogin{
+  .bglogin{
     background: linear-gradient(#2c65af, #159dd9);
-  }*/
+  }
 
       .bglogin2{
         background: transparent;
-        margin-left: 40%;
-        width: 23%;
+        margin-left: 0%;
+        width: auto;
         }
 
   }
