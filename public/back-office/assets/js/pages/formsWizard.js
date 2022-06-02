@@ -19,101 +19,204 @@ var FormsWizard = function() {
                 return this.optional(element) || value.toString() < $(param).val().toString();
             }, 'Donnée invalide');
 
-            $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
+            if (window.innerWidth > 800) {
+                $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
                 
-                validationOptions: {
-                    errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
-                    errorElement: 'span',
-                    errorPlacement: function(error, e) {
-                        e.parents('.form-group > div').append(error);
+                    validationOptions: {
+                        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                        errorElement: 'span',
+                        errorPlacement: function(error, e) {
+                            e.parents('.form-group > div').append(error);
+                        },
+                        highlight: function(e) {
+                            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                            $(e).closest('.help-block').remove();
+                        },
+                        success: function(e) {
+                            // You can use the following if you would like to highlight with green color the input after successful validation!
+                            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+                            e.closest('.help-block').remove();
+                        },
+                        
+                        rules: {
+                            nom: {
+                                required: true,
+                                minlength: 2
+                            },
+                            prenom: {
+                                required: true,
+                                minlength: 2
+                            },
+                            telephone: {
+                                required: true,
+                                minlength: 8
+                            },
+                            confirmationtelephone: {
+                                required: true,
+                                equalTo: '#telephone',
+                                minlength: 8
+                            },
+                            lieunaissance: {
+                                required: true,
+                                minlength: 2
+                            },
+    
+                            datenaissance: {
+                                required: true,
+                            },
+                            
+                            datedebut: {
+                                required: true,
+                                le: '#datefin'
+                            },
+                            datefin: {
+                                required: true,
+                            },
+    
+                            diplome: {
+                                required: true,
+                            },
+                        },
+                        
+                        messages: {
+                            diplome: {
+                                required: 'Veuillez joindre votre diplôme ou attestation',
+                            },
+                            datenaissance: {
+                                required: 'Veuillez saisir votre date de naissance',
+                            },
+                            datedebut: {
+                                required: 'Veuillez saisir la date de début souhaitée',
+                                le: 'Veuillez entrer une période valide !',
+                            },
+                            datefin: {
+                                required: 'Veuillez saisir la date de fin souhaitée',
+                            },
+                            nom: {
+                                required: 'Veuillez saisir votre nom',
+                                minlength: 'Votre nom doit comporter au moins 2 caractères'
+                            },
+                            prenom: {
+                                required: 'Veuillez saisir votre prenom',
+                                minlength: 'Votre prénom doit comporter au moins 2 caractères'
+                            },
+                            email: {
+                                required: 'Veuillez saisir votre adresse E-mail valide',
+                            },
+    
+    
+                            telephone: {
+                                required: 'Veuillez saisir votre de téléphone ',
+                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères'
+                            },
+                            confirmationtelephone: {
+                                required: 'Confirmez votre numéro de téléphone svp',
+                                minlength: 'Votre téléphone doit comporter au moins 8 caractères',
+                                equalTo: 'Entrez le même numéro de téléphone svp'
+                            },
+                        }
                     },
-                    highlight: function(e) {
-                        $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
-                        $(e).closest('.help-block').remove();
+                    disableUIStyles: true, inDuration: 0, outDuration: 0});
+            }else{
+                $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
+                
+                    validationOptions: {
+                        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                        errorElement: 'span',
+                        errorPlacement: function(error, e) {
+                            e.parents('.form-group > div').append(error);
+                        },
+                        highlight: function(e) {
+                            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                            $(e).closest('.help-block').remove();
+                        },
+                        success: function(e) {
+                            // You can use the following if you would like to highlight with green color the input after successful validation!
+                            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+                            e.closest('.help-block').remove();
+                        },
+                        
+                        rules: {
+                            nom: {
+                                required: true,
+                                minlength: 2
+                            },
+                            prenom: {
+                                required: true,
+                                minlength: 2
+                            },
+                            telephone: {
+                                required: true,
+                                minlength: 8
+                            },
+                            confirmationtelephone: {
+                                required: true,
+                                equalTo: '#telephone',
+                                minlength: 8
+                            },
+                            lieunaissance: {
+                                required: true,
+                                minlength: 2
+                            },
+    
+                            datenaissance: {
+                                required: true,
+                            },
+                            
+                            datedebutR: {
+                                required: true,
+                                le: '#datefinR'
+                            },
+                            datefinR: {
+                                required: true,
+                            },
+    
+                            diplome: {
+                                required: true,
+                            },
+                        },
+                        
+                        messages: {
+                            diplome: {
+                                required: 'Veuillez joindre votre diplôme ou attestation',
+                            },
+                            datenaissance: {
+                                required: 'Veuillez saisir votre date de naissance',
+                            },
+                            datedebutR: {
+                                required: 'Veuillez saisir la date de début souhaitée',
+                                le: 'Veuillez entrer une période valide !',
+                            },
+                            datefinR: {
+                                required: 'Veuillez saisir la date de fin souhaitée',
+                            },
+                            nom: {
+                                required: 'Veuillez saisir votre nom',
+                                minlength: 'Votre nom doit comporter au moins 2 caractères'
+                            },
+                            prenom: {
+                                required: 'Veuillez saisir votre prenom',
+                                minlength: 'Votre prénom doit comporter au moins 2 caractères'
+                            },
+                            email: {
+                                required: 'Veuillez saisir votre adresse E-mail valide',
+                            },
+    
+    
+                            telephone: {
+                                required: 'Veuillez saisir votre de téléphone ',
+                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères'
+                            },
+                            confirmationtelephone: {
+                                required: 'Confirmez votre numéro de téléphone svp',
+                                minlength: 'Votre téléphone doit comporter au moins 8 caractères',
+                                equalTo: 'Entrez le même numéro de téléphone svp'
+                            },
+                        }
                     },
-                    success: function(e) {
-                        // You can use the following if you would like to highlight with green color the input after successful validation!
-                        e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
-                        e.closest('.help-block').remove();
-                    },
-                    rules: {
-                        nom: {
-                            required: true,
-                            minlength: 2
-                        },
-                        prenom: {
-                            required: true,
-                            minlength: 2
-                        },
-                        telephone: {
-                            required: true,
-                            minlength: 8
-                        },
-                        confirmationtelephone: {
-                            required: true,
-                            equalTo: '#telephone',
-                            minlength: 8
-                        },
-                        lieunaissance: {
-                            required: true,
-                            minlength: 2
-                        },
-
-                        datenaissance: {
-                            required: true,
-                        },
-                        datedebut: {
-                            required: true,
-                            le: '#datefin'
-                        },
-                        datefin: {
-                            required: true,
-                        },
-
-                        diplome: {
-                            required: true,
-                        },
-                    },
-                    
-                    messages: {
-                        diplome: {
-                            required: 'Veuillez joindre votre diplôme ou attestation',
-                        },
-                        datenaissance: {
-                            required: 'Veuillez saisir votre date de naissance',
-                        },
-                        datedebut: {
-                            required: 'Veuillez saisir la date de début souhaitée',
-                            le: 'La date de fin de stage doit etre supérieure à la date de début de stage !',
-                        },
-                        datefin: {
-                            required: 'Veuillez saisir la date de fin souhaitée',
-                        },
-                        nom: {
-                            required: 'Veuillez saisir votre nom',
-                            minlength: 'Votre nom doit comporter au moins 2 caractères'
-                        },
-                        prenom: {
-                            required: 'Veuillez saisir votre prenom',
-                            minlength: 'Votre prénom doit comporter au moins 2 caractères'
-                        },
-                        email: {
-                            required: 'Veuillez saisir votre adresse E-mail valide',
-                        },
-
-
-                        telephone: {
-                            required: 'Veuillez saisir votre de téléphone ',
-                            minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères'
-                        },
-                        confirmationtelephone: {
-                            required: 'Confirmez votre numéro de téléphone svp',
-                            minlength: 'Votre téléphone doit comporter au moins 8 caractères',
-                            equalTo: 'Entrez le même numéro de téléphone svp'
-                        },
-                    }
-                },
-                disableUIStyles: true, inDuration: 0, outDuration: 0});
+                    disableUIStyles: true, inDuration: 0, outDuration: 0});
+            }
+            
 
             // Get the progress bar and change its width when a step is shown
             var progressBar = $('#progress-bar-wizard');
@@ -226,9 +329,16 @@ var FormsWizard = function() {
                 
             });
 
-            $('[name="datefin"]').on('change blur keyup', function() {
-                $('[name="datedebut"]').valid();
-            });
+            if (window.innerWidth > 800) {
+                $('[name="datefin"]').on('change blur keyup', function() {
+                    $('[name="datedebut"]').valid();
+                });
+            }else{
+                $('[name="datefinR"]').on('change blur keyup', function() {
+                    $('[name="datedebutR"]').valid();
+                });
+            }
+            
         }
     };
 }();
