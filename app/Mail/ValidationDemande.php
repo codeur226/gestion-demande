@@ -16,10 +16,9 @@ class ValidationDemande extends Mailable
      *
      * @return void
      */
-    public function __construct($demande, $user)
+    public function __construct($demande)
     {
         $this->demande = $demande;
-        $this->user = $user;
     }
 
     /**
@@ -30,9 +29,8 @@ class ValidationDemande extends Mailable
     public function build()
     {
         $demande = $this->demande;
-        $user = $this->user;
 
-        return $this->subject('Validation de votre demande de stage')->markdown('emails.demandes.validation-demande', compact('demande', 'user'));
+        return $this->subject('Validation de votre demande de stage')->markdown('emails.demandes.validation-demande', compact('demande'));
         // return $this->markdown('emails.produits.ajout-produit');
             //  return $this->subject("Un nouveau produit sur OpenShop")->from("marketing@open-shop.com","Service Marketing de OpenShop")->markdown('emails.produits.ajout-produit');
     }

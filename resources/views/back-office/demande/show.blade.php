@@ -25,7 +25,7 @@
                                        <th>Date de début souhaitée</th>
                                        <th>Date de fin souhaitée</th>
                                        <th>Etat</th>
-                                       <th>Etape</th>
+                                       <th>Téléphone</th>
                                        <th>Pièces jointes</th>
                                    </tr>
                                </thead>
@@ -39,7 +39,7 @@
                                        <td>{{$demande->date_debut}}</td>
                                        <td>{{$demande->date_fin}}</td>
                                        <td>{{getValeur($demande->etat)}}</td>
-                                       <td>{{getValeur($demande->etape)}}</td>
+                                       <td>{{$demande->telephone}}</td>
                                        <td width="25%">   @foreach ($pieces as $piece)
                                         <ul><li >
                                             {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}

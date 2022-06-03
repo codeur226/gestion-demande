@@ -403,7 +403,7 @@ class DemandeController extends Controller
             ]
             );
         //$user = Demande::where('demandes', '=', $id)->first();
-        //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
+        Mail::to($demande)->send(new ValidationDemande($demande)); // envoie du mail de notification de la validation
 
         return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été validée ! ');
     }

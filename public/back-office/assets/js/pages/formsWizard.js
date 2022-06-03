@@ -16,8 +16,15 @@ var FormsWizard = function() {
             /* Initialize Progress Wizard */
 
             $.validator.addMethod('le', function (value, element, param) {
+                /*alert(value.toString());*/
                 return this.optional(element) || value.toString() < $(param).val().toString();
             }, 'Donnée invalide');
+
+            
+            $.validator.addMethod('filesize', function (value, element, param) {
+                /*alert(element.files[0].size.toString());*/
+                return this.optional(element) || (parseInt(element.files[0].size.toString()) < parseInt(param.toString()))
+            }, 'Fichier invalide');
 
             if (window.innerWidth > 800) {
                 $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
@@ -73,15 +80,36 @@ var FormsWizard = function() {
                                 required: true,
                             },
     
+                            cv: {
+                                required: true,
+                                filesize: 2000000,
+                            },
+
                             diplome: {
                                 required: true,
+                                filesize: 2000000,
+                            },
+
+                            lettrerecommandation: {
+                                filesize: 2000000,
                             },
                         },
                         
                         messages: {
+                            cv: {
+                                required: 'Veuillez joindre votre cv',
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
+                            },
+
                             diplome: {
                                 required: 'Veuillez joindre votre diplôme ou attestation',
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
                             },
+
+                            lettrerecommandation: {
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
+                            },
+
                             datenaissance: {
                                 required: 'Veuillez saisir votre date de naissance',
                             },
@@ -171,14 +199,34 @@ var FormsWizard = function() {
                                 required: true,
                             },
     
-                            diplome: {
+                            cvR: {
                                 required: true,
+                                filesize: 2000000,
+                            },
+
+                            diplomeR: {
+                                required: true,
+                                filesize: 2000000,
+                            },
+
+                            lettrerecommandationR: {
+                                filesize: 2000000,
                             },
                         },
                         
                         messages: {
-                            diplome: {
+                            cvR: {
+                                required: 'Veuillez joindre votre cv',
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
+                            },
+
+                            diplomeR: {
                                 required: 'Veuillez joindre votre diplôme ou attestation',
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
+                            },
+
+                            lettrerecommandationR: {
+                                filesize: 'Veuillez entrer un fichier de taille inférieure à 2 Mo',
                             },
                             datenaissance: {
                                 required: 'Veuillez saisir votre date de naissance',
@@ -343,17 +391,6 @@ var FormsWizard = function() {
     };
 }();
 
-/*<script type="text/javascript">
-                        var div = document.getElementById('advanced-first');
-                        var resp1 = document.getElementById('non_resp');
-                        var resp2 = document.getElementById('resp');
-                            if(window.innerWidth > 800){
-                                div.appendChild(resp2);
-                            }
-                            else{
-                                div.appendChild(resp1);
-                            }
-                            </script>*/
 
 function resume(){
     // resumé des informations 

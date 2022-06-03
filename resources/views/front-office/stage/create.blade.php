@@ -376,13 +376,40 @@
 
                     </div>
 
+                    {{--<script>
+    /*document.getElementById("next2").addEventListener("click", function showFileSize() {
+    if (!window.FileReader) {
+        console.log("L'api n'est pas supportée sur ce navigateur");
+        return;
+    }
+
+    var input = document.getElementById('cv');
+    if (!input.files) { 
+        console.error("Ce navigateur ne supporte pas les propriétés du fichiers");
+    } else if (!input.files[0]) {
+        addPara("Svp choisir un fichier");
+    } else {
+        var file = input.files[0];
+        addPara("File " + file.name + " is " + file.size + " bytes in size");
+    }
+});
+
+function addPara(text) {
+    var p = document.createElement("p");
+    p.textContent = text;
+    document.body.appendChild(p);
+    alert(text);
+}*/
+                    </script>--}}
+
+<div class="row" style="width:55%; margin-left:25%;"><label style="color:red;">Veuillez joindre uniquement des fichiers pdf de taille inférieure à 2 Mo</label></div>
                     <div class="row">
                         <div class="col">
                             <div class="#">
                                     <label  for="cv">Joindre votre CV (<span style="color:red;">*</span>)</label>
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <input type="file" name="cv"  id="cv"class="form-control form-control2" accept=".pdf" required > 
+                                            <input type="file" name="cv"  id="cv" class="form-control form-control2" accept=".pdf" required >
                                             {{-- required title="Ce champs est obligatoire !!" --}}
                                            
                                         </div>
@@ -392,7 +419,7 @@
                                             <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
                                             <div class="col-md-12">
                                                 <div class="input-group">
-                                                    <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" ></div>
+                                                    <input type="file" id="lettrerecommandation" name="lettrerecommandation" class="form-control form-control2" accept=".pdf"></div>
                                                 </div>
                                                 <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                             </div>
@@ -405,7 +432,7 @@
                                     <div class="col-md-12">
                                        
                                         <div class="input-group">
-                                            <input type="file" id="diplome" name="diplome" class="form-control form-control2" required >
+                                            <input type="file" id="diplome" name="diplome" class="form-control form-control2" accept=".pdf" required>
                                             </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
@@ -489,7 +516,7 @@
                                     </div>
                         </div>
                     </div>
-
+                    <div class="row" style="width:100%;"><label style="color:red;">Veuillez joindre uniquement des fichiers pdf de taille inférieure à 2 Mo</label></div>
                     <div class="row">
                         <div class="col">
                             <div class="#">
@@ -512,7 +539,7 @@
                                     <div class="col-md-12">
                                        
                                         <div class="input-group">
-                                            <input type="file" id="diplome" name="diplomeR" class="form-control form-control2" required >
+                                            <input type="file" id="diplome" name="diplomeR" class="form-control form-control2" accept=".pdf" required>
                                             </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
@@ -526,7 +553,7 @@
                         <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
                         <div class="col-md-12">
                             <div class="input-group">
-                                <input type="file" id="lettrerecommandation" name="lettrerecommandationR" class="form-control form-control2" ></div>
+                                <input type="file" id="lettrerecommandation" name="lettrerecommandationR" class="form-control form-control2" accept=".pdf"></div>
                             </div>
                             <span class="input-group-addon"><i class="gi gi-user"></i></span>
                         </div>
@@ -775,6 +802,18 @@
                             <input type="submit" class="btn btn-lg btn-primary" id="next2" value="Next" onclick="resume()"></div>
                     </div>
                     <!-- END Form Buttons -->
+
+                    {{--@if(!empty($_POST))
+                        <div id="ms-preload" class="ms-preload">
+                            <div id="status">
+                            <div class="spinner">
+                                <div class="dot1"></div>
+                                <div class="dot2"></div>
+                            </div>
+                            </div>
+                        </div>
+                    @endif--}}
+
                 </form>
                 <!-- END Wizard with Validation Content -->
                  

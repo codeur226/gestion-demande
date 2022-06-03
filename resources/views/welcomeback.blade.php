@@ -54,87 +54,80 @@
         <!-- END Left Header Navigation -->
 
         <!-- Search Form -->
-        <form action="page_ready_search_results.html" method="post" class="navbar-form-custom">
+        {{--<form action="page_ready_search_results.html" method="post" class="navbar-form-custom">
             <div class="form-group">
                 <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
             </div>
-        </form>
+        </form>--}}
         <!-- END Search Form -->
 
         <!-- Right Header Navigation -->
         <ul class="nav navbar-nav-custom pull-right">
             <!-- Alternative Sidebar Toggle Button -->
-            <li>
+            {{--<li>
                 <!-- If you do not want the main sidebar to open when the alternative sidebar is closed, just remove the second parameter: App.sidebar('toggle-sidebar-alt'); -->
                 <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt', 'toggle-other');this.blur();">
                     <i class="gi gi-share_alt"></i>
                     <span class="label label-primary label-indicator animation-floating">4</span>
                 </a>
-            </li>
+            </li>--}}
             <!-- END Alternative Sidebar Toggle Button -->
 
             <!-- User Dropdown -->
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-
-                    <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar"> <i class="fa fa-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                    <li class="dropdown-header text-center">Compte</li>
-
-                    <li class="divider"></li>
-                    {{-- <li>
-                        <a href="page_ready_user_profile.html">
-                            <i class="fa fa-user fa-fw pull-right"></i>
-                            Profile
-                        </a>
-                        <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
-                        <a href="#modal-user-settings" data-toggle="modal">
-                            <i class="fa fa-cog fa-fw pull-right"></i>
-                            Settings
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a> --}}
-
-
-
-
-
- <!-- Authentication -->
- <form method="POST" action="{{ route('logout') }}">
-    @csrf
-
-    {{-- <x-responsive-nav-link :href="route('logout')"
-            onclick="event.preventDefault();
-                        this.closest('form').submit();">
-        {{ __('Déconnecter') }}
-    </x-responsive-nav-link> --}}
-
-    <a href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-            this.closest('form').submit();"><i class="fa fa-ban fa-fw pull-right"></i> Déconnecter <br> </a>
-
-
-{{--
-<a href="{{ route('logout') }}"
-onclick="event.preventDefault();
-        this.closest('form').submit();" data-toggle="tooltip" data-placement="bottom" title="Deconnecter"><i class="gi gi-exit"></i></a> --}}
-</form>
-
-
-
-
-
-
-
-
-                    </li>
-
-                </ul>
-            </li>
-            <!-- END User Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="{{ asset('back-office/assets/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar"> <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                <li class="dropdown-header text-center">Compte</li>
+                
+                <li class="divider"></li>
+                <li>
+                    <a href="page_ready_user_profile.html">
+                        <i class="fa fa-user fa-fw pull-right"></i>
+                        Votre Profile
+                    </a>
+                    <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
+                    {{-- <a href="#modal-user-settings" data-toggle="modal">
+                        <i class="fa fa-cog fa-fw pull-right"></i>
+                        Settings
+                    </a> --}}
+                </li>
+                <li class="divider"></li>
+                 
+                <li>
+                  <form method="POST" action="{{ route('logout') }}">
+                      @csrf 
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  this.closest('form').submit();"
+                    ><i class="fa fa-lock fa-fw pull-right"></i> Déconnecter</a>
+                   </form>
+                   
+{{--                      
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf --}}
+  
+                      {{-- <x-responsive-nav-link :href="route('logout')"
+                              onclick="event.preventDefault();
+                                          this.closest('form').submit();">
+                          {{ __('Déconnecter') }}
+                      </x-responsive-nav-link> --}}
+                      {{-- <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                                  this.closest('form').submit();"><i class="fa fa-ban fa-fw pull-right"></i> Déconnecter</a>
+               --}}
+              {{-- <a href= data-toggle="tooltip" data-placement="bottom" title="Deconnecter"><i class="gi gi-exit"></i></a> --}}
+            {{-- </form> --}}
+                   
+                   
+                   
+                    
+                </li>
+                
+            </ul>
+        </li>
+        <!-- END User Dropdown -->
         </ul>
         <!-- END Right Header Navigation -->
     </header>
