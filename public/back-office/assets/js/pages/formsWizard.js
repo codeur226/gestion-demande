@@ -393,6 +393,7 @@ var FormsWizard = function() {
 
 
 function resume(){
+
     // resumé des informations 
     if(window.innerWidth > 800){
         var type =(document.getElementById("typestage").value)
@@ -422,7 +423,5 @@ $('#domaine_tabR').text(document.getElementById('direction').options[document.ge
 
     $('#debut_tabR').text(document.getElementById("datedebutR").value);
     $('#fin_tabR').text(document.getElementById("datefinR").value);  
-    }
-    
-    
+    }   
 }

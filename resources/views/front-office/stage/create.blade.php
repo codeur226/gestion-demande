@@ -793,27 +793,28 @@ function addPara(text) {
 </div>
 <!-- END First Step -->
 {{-- FIN RECAPITULATIF --}}
-
-
+<style>
+    .hide{
+        display: none;
+    }
+</style>
                     <!-- Form Buttons -->
                     <div class="form-bordered2 form-group2">
                         <div class="tab-wizard col-md-offset-6">
                             <input type="reset" class="btn btn-lg btn-warning" id="back2" value="Back">
                             <input type="submit" class="btn btn-lg btn-primary" id="next2" value="Next" onclick="resume()"></div>
+                            <div id="div_id" class="hide">
+                                <div id="ms-preload" class="ms-preload">
+                                    <div id="status">
+                                      <div class="spinner">
+                                        <div class="dot1"></div>
+                                        <div class="dot2"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
                     </div>
                     <!-- END Form Buttons -->
-
-                    {{--@if(!empty($_POST))
-                        <div id="ms-preload" class="ms-preload">
-                            <div id="status">
-                            <div class="spinner">
-                                <div class="dot1"></div>
-                                <div class="dot2"></div>
-                            </div>
-                            </div>
-                        </div>
-                    @endif--}}
-
                 </form>
                 <!-- END Wizard with Validation Content -->
                  
@@ -847,6 +848,14 @@ function addPara(text) {
         var earrings = document.getElementById('idsession');
         earrings.style.visibility = 'hidden';
    </script>
+
+<script>
+    $(document).ready(function() {
+      $("#progress-wizard").submit(function() {
+        $("#div_id").removeClass("hide");
+      });
+    });
+    </script>
 </body>
 
 </html>
