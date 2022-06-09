@@ -126,7 +126,7 @@ class DirectionController extends Controller
             ]
             );
 
-        return redirect()->route('directions.index')->with('message', 'La direction été modifiée');
+        return redirect()->route('directions.index')->with('message', 'La direction a bien été modifiée');
     }
 
     /**
@@ -138,6 +138,6 @@ class DirectionController extends Controller
     public function destroy(Direction $direction)
     {
         Direction::destroy($direction->id);
-        return redirect()->route('directions.index')->with("statutDirection","La direction a bien été supprimée");
+        return redirect()->route('directions.index')->with("message","La direction a bien été supprimée");
     }
 }

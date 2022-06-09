@@ -1,8 +1,35 @@
+
+
 <x-master-layout>
 
 <!-- Main Container -->
      <div id="main-container">
         @include('back-office/partials.header1')
+
+        <div class="block">
+
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session()->get('message') }}
+            </div>
+
+             <script>
+                $(".alert").alert();
+                $(document).ready(function () {
+                    
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                    
+                    });
+              </script>
+            @endif
+        </div>
 
         <!-- Page content -->
         <div id="page-content">
@@ -71,12 +98,19 @@
                        <div style="width: 500px;margin:auto">
 
                            {{-- <a href="{{ route('validerstage', $demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Valider</a> --}}
+
+                           @if($url=='dashboard')
+                           <a href="{{ route('admin') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                           @endif
+
+                           @if($url=='demande')
                            <a href="{{ route('demandes.index') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
+                           @endif
 
                            @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                            <a href="{{ route('formreporter', $demande->id) }}" class="btn btn-danger btn-lg mr-2" ><i class="fa fa-repeat"></i> Reporter</a>
 
-                           <a href="{{ route("validerstage", $demande->id) }}" class="btn btn-success btn-lg mr-2"  onClick="
+                           <a href="{{ route("validerstage", $demande->id) }}" class="btn btn-success btn-lg mr-2 btn_valider"  onClick="
                             event.preventDefault();
                             if(confirm('Voulez vous vraiment valider cette demande de stage ?'))
                             document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-check-square"></i> Valider</a>
@@ -92,10 +126,35 @@
                         </div>
                    </div>
 
+                   <style>
+                    .hidennn{
+                        display: none;
+                    }
+                </style>
+                
+                <div id="div_id" class="hidennn">
+                    <div id="ms-preload" class="ms-preload">
+                        <div id="status">
+                          <div class="spinner">
+                            <div class="dot1"></div>
+                            <div class="dot2"></div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                
+                <script>
+                    $(document).ready(function() {
+                      $("#{{ $demande->id }}").submit(function() {
+                        $("#div_id").removeClass("hidennn");
+                      });
+                    });
+                </script>
+
                    <!-- END Datatables Content -->
 
                    <span class="material-icons">
                     </span>
 
-
 </x-master-layout>
+

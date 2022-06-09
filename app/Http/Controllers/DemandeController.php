@@ -109,10 +109,26 @@ class DemandeController extends Controller
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $id)->first();
         $pieces = Piece::where('demande_id', $id)->get();
 
-        return view('back-office.demande.show', [
-        'demande' => $demande,
-        'pieces' => $pieces,
-    ]);
+        $url = url()->previous();
+        $chemin_dashboard = Str::contains($url, 'admin');
+        $chemin_demande = Str::contains($url, 'demande');
+
+        if($chemin_dashboard) {
+            return view('back-office.demande.show',[
+                'url' => 'dashboard',
+                'demande' => $demande,
+                'pieces' => $pieces,
+            ]);
+        }
+        
+        if($chemin_demande) {
+            return view('back-office.demande.show', [
+                'url' => 'demande',
+                'demande' => $demande,
+                'pieces' => $pieces,
+            ]);
+        }
+        
     }
 
     /**
@@ -160,10 +176,19 @@ class DemandeController extends Controller
           ->where('demandes.type_demande', '=', 6) //6 correspond a stage
           ->get()->count();
 
-        return view('back-office.demande.index', [
+        /*return view('back-office.demande.index', [
            'demandes' => $demandes,
            'stageattente' => $stageattente,
-       ]);
+       ]);*/
+
+       $url = url()->previous();
+       $chemin_dashboard = Str::contains($url, 'admin');
+
+       if ($chemin_dashboard) {
+           return redirect()->route('admin')->with('message','La demande a bien été supprimée !');
+       }else {
+           return redirect()->route('demandes.index')->with('message','La demande a bien été supprimée !');
+       }
     }
 
     /** ********************************************************************
@@ -380,10 +405,10 @@ class DemandeController extends Controller
         //$user = Demande::where('demandes', '=', $id)->first();
         //Mail::to($user)->send(new ValidationDemande($demande, $user)); // envoie du mail de notification de la validation
 
-        return Redirect::route('demandes.index');
+        return Redirect::route('demandes.show',$request->iddemande)->with('message','La demande a bien été reportée');
     }
 
-    /** ********************************************************************
+    /***********************************************************************
      * DEMBELE
      * Valider un stage.
      *
@@ -403,9 +428,13 @@ class DemandeController extends Controller
             ]
             );
         //$user = Demande::where('demandes', '=', $id)->first();
-        Mail::to($demande)->send(new ValidationDemande($demande)); // envoie du mail de notification de la validation
+        try {
+            Mail::to($demande)->send(new ValidationDemande($demande)); // envoie du mail de notification de la validation
+        } catch (\Exception $e) {
+            return redirect()->route('demandes.index')->with('message', 'La demande a bien été validée ! ');
+        }
 
-        return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été validée ! ');
+        return redirect()->route('demandes.index')->with('message', 'La demande a bien été validée ! ');
     }
 
     /** ********************************************************************
@@ -771,12 +800,12 @@ class DemandeController extends Controller
 
             if($chemin_stagevalides){
 
-                return Redirect::route('stagevalides');
+                return Redirect::route('stagevalides')->with('message','Le stage a bien été arrêté');
     
             }
             if($chemin_stageencours) {
     
-                return Redirect::route('stageencours');
+                return Redirect::route('stageencours')->with('message','Le stage a bien été arrêté');
             
             }
     }
@@ -848,17 +877,17 @@ class DemandeController extends Controller
 
         if($demande->etape == 25){
 
-            return redirect()->route('stagevalides')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
+            return redirect()->route('stagevalides')->with('message', 'Le stagiaire a bien été affecté à un maitre de stage ! ');
 
         }
         if($demande->etape == 11) {
 
-            return redirect()->route('stageencours')->with('statutDemande', 'Le stage a bien été affecté à un maitre de stage ! ');
+            return redirect()->route('stageencours')->with('message', 'Le stagiaire a bien été affecté à un maitre de stage ! ');
         
         }
         if($demande->etat == 8){
 
-            return redirect()->route('demandes.index')->with('statutDemande', 'La demande a bien été affectée à un maitre de stage ! ');
+            return redirect()->route('demandes.index')->with('message', 'Le stagiaire a bien été affecté à un maitre de stage ! ');
         
         }
 
@@ -884,14 +913,20 @@ class DemandeController extends Controller
     public function noter(Request $request)
     {
         $demande = Demande::find($request->iddemande);
-        $demande->update(
-            [
-                'note_globale' => $request->note,
-                'commentaires' => $request->comment,
-            ]
-            );
 
-        return Redirect::route('voirStage', $demande->id);
+        if ($demande->maitre_stage==NULL || $demande->theme_id==NULL) {
+            return redirect()->route('formnoter', $demande->id)->with('message', "Veuillez d'abord affecter un maitre de stage et un thème au stagiaire !");
+        }else{
+            $demande->update(
+                [
+                    'note_globale' => $request->note,
+                    'commentaires' => $request->comment,
+                ]
+                );
+    
+            return Redirect::route('voirStage', $demande->id)->with('message','La note a bien été ajoutée');
+        }
+        
     }
 
     public function formtheme($id)
@@ -914,7 +949,7 @@ class DemandeController extends Controller
             ]
             );
 
-        return Redirect::route('voirStage', $demande->id);
+        return Redirect::route('voirStage', $demande->id)->with('message','Le thème a bien été attribué');
         //return Redirect::back();
     }
 
@@ -943,7 +978,7 @@ class DemandeController extends Controller
             ]
             );
 
-        return Redirect::route('stagevalides');
+        return Redirect::route('stagevalides')->with('message','Le stage a bien été démarré');
     }
 
 

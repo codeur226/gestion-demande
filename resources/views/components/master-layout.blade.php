@@ -41,6 +41,9 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>
+
+
+
     </head>
     <body>
 
@@ -136,7 +139,7 @@
        <!-- Scroll to top link, initialized in back-office/assets/js/app.js') }} - scrollToTop() -->
        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
        <!-- start popup manage setting user and ActivityUI  -->
-   @include('back-office/partials.modal-user-settings')
+        @include('back-office/partials.modal-user-settings')
         <!-- END  -->
 
 
@@ -146,6 +149,7 @@
    <script src="{{ asset('back-office/assets/js/plugins.js') }}"></script>
    <script src="{{ asset('back-office/assets/js/app.js') }}"></script>
 
+
    <!-- Google Maps API Key (you will have to obtain a Google Maps API key to use Google Maps) -->
    <!-- For more info please have a look at https://developers.google.com/maps/documentation/javascript/get-api-key#key -->
 
@@ -153,7 +157,7 @@
 
 
    <script src="{{ asset('back-office/assets/js/pages/tablesDatatables.js') }}"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>
+   <script>$(function(){ TablesDatatables.init(); });</script>
 
 
    <!-- Load and execute javascript code used only in this page -->

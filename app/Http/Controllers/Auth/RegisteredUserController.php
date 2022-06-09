@@ -86,7 +86,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('message',"L'utilisateur a bien été ajouté");
     }
 
     /**
@@ -143,13 +143,14 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'telephone' => 'required|string|max:13',
+            'email' => 'required|string|email|max:255',
         ]);
         $user = User::find($user);
         $user->update([
             'nom' => $request->name,
             'prenom' => $request->prenom,
             'telephone' => $request->telephone,
-            //'email' => $request->email,
+            'email' => $request->email,
             'direction_id' => $request->direction,
             'role_id' => $request->role,
         ]);
@@ -158,10 +159,10 @@ class RegisteredUserController extends Controller
             ->orderBy('users.nom')
             ->get();
 
-        return view('back-office.user.index', [
+        return redirect()->route('listeUser', [
             'users' => $users,
             'userCount' => $userCount,
-        ]);
+        ])->with('message',"L'utilisateur a bien été modifié");
     }
 
     /**
@@ -178,10 +179,10 @@ class RegisteredUserController extends Controller
         $users = User::where('users.type_user', '=', 15)->get();
         $userCount = User::where('users.type_user', '=', 15)->count();
 
-        return view('back-office.user.index', [
+        return redirect()->route('listeUser', [
             'users' => $users,
             'userCount' => $userCount,
-        ])->with('statutUser', "L'utilisateur a bien été supprimé");
+        ])->with('message', "L'utilisateur a bien été supprimé");
     }
 
     public function updateStatus(Request $request)

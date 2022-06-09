@@ -5,7 +5,7 @@
   <input type="hidden" id="iddemande" name="iddemande" value="{{ $demande->id }}">
 
   <label for="datedebut">Date début</label>
-  <input type="date" id="datedebut" name="datedebut" class="form-control" placeholder="Enter la date de début">
+  <input type="date" id="datedebut" name="datedebut" class="form-control" placeholder="Enter la date de début" required>
   
   @error('datedebut')
   <small class="text-danger">{{$message}}</small>
@@ -14,7 +14,7 @@
 
 
   <label for="datedefin">Date fin</label>
-  <input type="date" id="datedefin" name="datedefin" class="form-control" placeholder="Enter la date de fin">
+  <input type="date" id="datedefin" name="datedefin" class="form-control" placeholder="Enter la date de fin" required>
   
   @error('datedefin')
   <small class="text-danger">{{$message}}</small>

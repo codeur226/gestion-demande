@@ -47,7 +47,7 @@ class ThemeController extends Controller
            
        ]);
 
-       return redirect()->route('themes.index', $theme)->with('statut', 'Votre nouveau théme a été bien ajouté !');
+       return redirect()->route('themes.index', $theme)->with('message', 'Le thème a été bien ajouté !');
    }
 
 
@@ -108,7 +108,7 @@ class ThemeController extends Controller
                 "description"=>$request->description,
             ]
             );
-            return redirect()->route('themes.index');
+            return redirect()->route('themes.index')->with('message','Le thème a bien été modifié');
     }
 
     /**
@@ -121,6 +121,6 @@ class ThemeController extends Controller
     {
         Theme::destroy($theme->id);
 
-        return redirect()->route('themes.index')->with('statut', 'votre produit a bien été supprimé !');
+        return redirect()->route('themes.index')->with('message', 'Le thème a bien été supprimé !');
     }
 }

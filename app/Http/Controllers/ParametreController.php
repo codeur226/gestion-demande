@@ -47,7 +47,7 @@ class ParametreController extends Controller
             'parametre' => $request->parametre,
         ]);
 
-        return redirect()->route('parametres.index')->with('message', 'Le Parametre a bien été ajoutée');
+        return redirect()->route('parametres.index')->with('message', 'Le paramètre a bien été ajouté');
     }
 
     /**
@@ -92,7 +92,7 @@ class ParametreController extends Controller
             ]
             );
 
-        return redirect()->route('parametres.index')->with('message', 'Le Parametre été modifier');
+        return redirect()->route('parametres.index')->with('message', 'Le parametre a bien été modifié');
     }
 
     /**
@@ -103,6 +103,6 @@ class ParametreController extends Controller
     public function destroy($id)
     {
         Parametre::destroy($id);
-        return redirect()->route('parametres.index')->with("statutParametre","Le paramètre a bien ete supprimée");
+        return redirect()->route('parametres.index')->with("message","Le paramètre a bien été supprimé");
     }
 }

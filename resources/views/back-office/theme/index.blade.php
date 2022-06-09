@@ -3,6 +3,31 @@
         <!-- Main Container -->
         <div id="main-container">
          @include('back-office/partials.header1')
+
+         <div class="block">
+
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session()->get('message') }}
+            </div>
+
+             <script>
+                $(".alert").alert();
+                $(document).ready(function () {
+                    
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                    
+                    });
+              </script>
+            @endif
+        </div>
      
          <!-- Page content -->
          <div id="page-content">
@@ -36,7 +61,7 @@
                                             <div class="btn-group">
                                                 <a href="{{ route('themes.show', $theme) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>
                                                 <a href="{{ route('themes.edit', $theme) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-pencil fa-lg"></i></a>
-                                                <a href="{{ route('themes.destroy', $theme) }}" class="btn btn-danger btn-sm mr-2" onClick="event.preventDefault(); if(confirm('Etes-vous sur de supprimer cet element ?'))
+                                                <a href="{{ route('themes.destroy', $theme) }}" class="btn btn-danger btn-sm mr-2" onClick="event.preventDefault(); if(confirm('Etes-vous sur de vouloir supprimer ce thème ?'))
                                                 document.getElementById('{{$theme->id}}').submit();"  ><i class="fa fa-trash-o fa-lg"></i></a>
                                                 <form id="{{ $theme->id }}" method="post" action="{{ route('themes.destroy', $theme) }}">
                                         @csrf

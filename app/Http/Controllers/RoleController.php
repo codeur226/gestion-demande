@@ -50,7 +50,7 @@ class RoleController extends Controller
 
         $liste = Role::All();
 
-        return view('back-office.role.index', compact('liste'));
+        return redirect()->route('roles.index')->with('message','Le role a bien été ajouté');
     }
 
     /**
@@ -100,7 +100,7 @@ class RoleController extends Controller
 
         $liste = Role::All();
 
-        return view('back-office.role.index', ['liste' => $liste]);
+        return redirect()->route('roles.index')->with('message','Le role a bien été modifié');
     }
 
     /**
@@ -113,6 +113,6 @@ class RoleController extends Controller
         $liste = Role::findOrFail($role->id);
         $liste->delete();
 
-        return redirect('role');
+        return redirect()->route('roles.index')->with('message','Le role a bien été supprimé');
     }
 }

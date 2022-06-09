@@ -44,7 +44,7 @@ class PermissionController extends Controller
             'supprimer' => 0,
         ]);
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('permissions.index')->with('message','La permission a bien été ajoutée');
     }
 
     /**
@@ -80,7 +80,7 @@ class PermissionController extends Controller
             'pour' => $request['pour'],
         ]);
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('permissions.index')->with('message','La permission a bien été modifiée');
     }
 
     /**
@@ -91,6 +91,6 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         Permission::destroy($id);
-        return redirect()->route('permissions.index')->with("statutPermission","La permission a bien été supprimée");
+        return redirect()->route('permissions.index')->with("message","La permission a bien été supprimée");
     }
 }

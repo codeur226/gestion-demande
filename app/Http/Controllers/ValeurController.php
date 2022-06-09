@@ -51,7 +51,7 @@ class ValeurController extends Controller
             'parametre_id' => $request->parametre_id,
         ]);
 
-        return redirect()->route('valeurs.index')->with('statutProduit', 'Le paramètre a bien ete ajoutée');
+        return redirect()->route('valeurs.index')->with('message', 'La valeur a bien été ajoutée');
     }
 
     /**
@@ -101,7 +101,7 @@ class ValeurController extends Controller
             ]
             );
 
-        return redirect()->route('valeurs.index')->with('statutProduit', 'Le produit a bien ete modifiée');
+        return redirect()->route('valeurs.index')->with('message', 'La valeur a bien été modifiée');
     }
 
     /**
@@ -109,7 +109,9 @@ class ValeurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Valeur $valeur)
+    public function destroy($id)
     {
+        Valeur::destroy($id);
+        return redirect()->route('valeurs.index')->with("message","La valeur a bien été supprimée");
     }
 }

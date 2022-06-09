@@ -87,7 +87,7 @@ class RenouvellementController extends Controller
                         'statut' => 24, //24 correspond a renouvellé dans la table valeur
                     ]);
     
-                return Redirect::route('stagetermines');
+                return Redirect::route('stagetermines')->with('message','Le stage a bien été renouvellé');
             }else{
                 Renouvellement::create(
                     [
@@ -102,7 +102,7 @@ class RenouvellementController extends Controller
                         'statut' => 24, //24 correspond a renouvellé dans la table valeur
                     ]);
     
-                return Redirect::route('stagetermines');
+                return Redirect::route('stagetermines')->with('message','Le stage a bien été renouvellé');
             }
             
         }

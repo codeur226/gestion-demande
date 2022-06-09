@@ -137,6 +137,32 @@
     <div id="page-content">
         {{-- @include('back-office/partials.header') --}}
 
+        <div class="row">
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session()->get('message') }}
+                
+            </div>
+
+             <script>
+                $(".alert").alert();
+                $(document).ready(function () {
+                    
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                    
+                    });
+              </script>
+            @endif
+          
+        </div>
+
         <!-- Mini Top Stats Row -->
         <div class="row">
             @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)

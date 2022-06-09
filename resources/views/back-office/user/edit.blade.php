@@ -37,8 +37,13 @@
             
                             <x-input value="{{old('telephone') ?? $user->telephone}}" id="telephone" class="block mt-1 w-full" type="text" name="telephone" required autofocus />
                         </div>
-            
 
+                        <!-- Email -->
+                        <div>
+                            <x-label for="email" :value="__('Email')" />
+            
+                            <x-input value="{{old('email') ?? $user->email}}" id="email" class="block mt-1 w-full" type="text" name="email" required autofocus />
+                        </div>
                         
                         <!-- Direction -->
                         <div class="mt-4">
