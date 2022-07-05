@@ -41,6 +41,9 @@
     <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     
 </head>
 
@@ -82,18 +85,20 @@
                 {{-- <div class="col-md-6 offset-md-2"> --}}
                     <div class="col-md-12">
                     <h1 class="text-center">DEMANDE DE STAGE</h1>
-                    <div class="block">
+                    <div class="block" style="width:auto;">
+
+                   <!-- Wizard with Validation Content -->
+                   <form id="progress-wizard" action="{{route('demandesfront.store')}}" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data" onsubmit="process(event)">
+                    @csrf
+                    <!-- ETAPE 1 -->
+                    <div id="advanced-first" class="step">
+
                         <!-- Progress Bars Wizard Title -->
-                        <div class="block-title">
+                        <div id="form-title" class="block-title" style="margin:2px 2px;">
                             <h2><strong>Inscrivez-vous en suivant les étapes</strong></h2>
                             <h2><strong style="color:red;">NB: les champs en rouge (*) sont obligatoire</strong></h2>
                         </div>
 
-                   <!-- Wizard with Validation Content -->
-                   <form id="progress-wizard" action=" {{route('demandesfront.store')}}" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
-                    @csrf
-                    <!-- ETAPE 1 -->
-                    <div id="advanced-first" class="step">
                         <!-- Step Info -->
                         <div class="wizard-steps">
                             <div class="row">
@@ -146,10 +151,11 @@
         
                                                 <div class="col-md-12">
                                                     <div class="input-group">
-                                                        <input type="text" id="telephone" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                                        <input type="tel" id="telephone" name="telephone" class="form-control form-control2"  {{-- placeholder="+226XXXXXXXX" --}} required >
+                                                        <div class="alert alert-info" style="display: none;"></div>
                                             {{-- <label  for="whatsapp">Contact whatsapp (optionnel) </label> --}}
                                                         
-                                                        <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+                                                        <input type="tel" id="whatsapp" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
         
                                                         
                                                     </div>
@@ -241,9 +247,9 @@
         
                                             <div class="col-md-12">
                                                 <div class="input-group">
-                                                    <input type="text" id="telephoneR" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
+                                                    <input type="tel" id="telephoneR" name="telephone" class="form-control form-control2"  placeholder="+226XXXXXXXX" required >
                                                     
-                                                    <input type="text" id="whatsappR" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
+                                                    <input type="tel" id="whatsappR" name="whatsapp" class="form-control form-control2 form-control3" placeholder="Numéro Whatsapp (optionnel)" >
         
                                                     
                                                 </div>
@@ -287,6 +293,13 @@
 
                     <!-- SEGOND ETAPE -->
                     <div id="advanced-second" class="step">
+
+                        <!-- Progress Bars Wizard Title -->
+                        <div id="form-title" class="block-title" style="margin:2px 2px;">
+                            <h2><strong>Inscrivez-vous en suivant les étapes</strong></h2>
+                            <h2><strong style="color:red;">NB: les champs en rouge (*) sont obligatoire</strong></h2>
+                        </div>
+
                         <!-- Step Info -->
                         <div class="wizard-steps">
                             <div class="row">
@@ -327,14 +340,31 @@
                         </div>
                         
                         <div class="col">
-                            <div class="form-group">
-                                    <label  for="datedebut">Date début (<span style="color:red;">*</span>)</label>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <input type="date" id="datedebut" name="datedebut" class="form-control form-control2" required></div>
+                            <table>
+                                <tr>
+                                    <td style="width: 5%;">
+                                        <div class="form-group">
+                                            <label  for="datedebut">Date début (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="date" id="datedebut" name="datedebut" class="form-control form-control2" required>
+                                                </div>
+                                            </div>
+                                            <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                         </div>
-                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                    </div>
+                                    </td>
+                                    <td style="width: 5%;">
+                                        <div class="form-group">
+                                            <label  for="datefin">Date fin (<span style="color:red;">*</span>)</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input type="date" id="datefin" name="datefin" class="form-control form-control2" required></div>
+                                                </div>
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
 
 
@@ -365,44 +395,19 @@
                         
                             <div class="col">
                                 <div class="form-group">
-                                        <label  for="datefin">Date fin (<span style="color:red;">*</span>)</label>
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <input type="date" id="datefin" name="datefin" class="form-control form-control2" required></div>
-                                            </div>
-                                            <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    <label  for="nom">Spécialité(s)</label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" id="specialite" name="specialite" class="form-control form-control2" placeholder="ex: Administration Système, Fibre optique, Sécrétariat,...">
                                         </div>
+                                        <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                    </div>
+                                </div>
                             </div>
 
                     </div>
 
-                    {{--<script>
-    /*document.getElementById("next2").addEventListener("click", function showFileSize() {
-    if (!window.FileReader) {
-        console.log("L'api n'est pas supportée sur ce navigateur");
-        return;
-    }
-
-    var input = document.getElementById('cv');
-    if (!input.files) { 
-        console.error("Ce navigateur ne supporte pas les propriétés du fichiers");
-    } else if (!input.files[0]) {
-        addPara("Svp choisir un fichier");
-    } else {
-        var file = input.files[0];
-        addPara("File " + file.name + " is " + file.size + " bytes in size");
-    }
-});
-
-function addPara(text) {
-    var p = document.createElement("p");
-    p.textContent = text;
-    document.body.appendChild(p);
-    alert(text);
-}*/
-                    </script>--}}
-
-<div class="row" style="width:55%; margin-left:25%;"><label style="color:red;">Veuillez joindre uniquement des fichiers pdf de taille inférieure à 2 Mo</label></div>
+                <div class="row" style="width:55%; margin-left:25%;"><label style="color:red;">Veuillez joindre uniquement des fichiers pdf de taille inférieure à 2 Mo</label></div>
                     <div class="row">
                         <div class="col">
                             <div class="#">
@@ -411,10 +416,10 @@ function addPara(text) {
                                         <div class="input-group">
                                             <input type="file" name="cv"  id="cv" class="form-control form-control2" accept=".pdf" required >
                                             {{-- required title="Ce champs est obligatoire !!" --}}
-                                           
-                                        </div>
                                         </div>
                                         <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                        </div>
+                                        
                                         <div >
                                             <label  for="lettrerecommandation">Joindre votre lettre de recommandation (optionnelle)</label>
                                             <div class="col-md-12">
@@ -489,6 +494,20 @@ function addPara(text) {
                                     </div>
                                     <span class="input-group-addon"><i class="gi gi-user"></i></span>
                                 </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label  for="nom">Spécialité(s)</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <input type="text" id="specialiteR" name="specialiteR" class="form-control form-control2" >
+                                    </div>
+                                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row"> 
@@ -581,26 +600,6 @@ function addPara(text) {
                             </script>
 
             </div>
-
-            {{--<script>
-                if(window.innerWidth > 800){
-                    var date_debut = document.getElementById('datedebut');
-                    var date_fin = document.getElementById('datefin');
-                }else{
-                    var date_debut = document.getElementById('datedebutR');
-                    var date_fin = document.getElementById('datefinR');
-                }
-                if(date_debut>date_fin){
-                    alert("La date de fin de stage doit etre supérieure à la date de début de stage !");
-                    date_debut.focus();
-                    date_fin.focus();
-                    return false;
-                }else{
-                    return true;
-                }
-            </script>--}}
-
-            
                     
                     <!-- END Second Step -->
 {{-- RECAPITULATIF DEBUT --}}
@@ -692,6 +691,10 @@ function addPara(text) {
                         <th>Domaine</th>
                         <td id="domaine_tab"></td>
                     </tr>
+                    <tr class="space-row">                                           
+                        <th>Spécialité</th>
+                        <td id="specialite_tab"></td>
+                    </tr>
                     <tr class="space-row">                       
                         <th>Date début</th>
                         <td id="debut_tab"></td>                      
@@ -750,6 +753,10 @@ function addPara(text) {
                     <tr class="space-row">                                           
                         <th>Domaine</th>
                         <td id="domaine_tabR"></td>
+                    </tr>
+                    <tr class="space-row">                                           
+                        <th>Spécialité</th>
+                        <td id="specialite_tabR"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Date début</th>

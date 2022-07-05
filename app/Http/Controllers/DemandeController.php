@@ -93,6 +93,38 @@ class DemandeController extends Controller
 
     /** ********************************************************************
      * DEMBELE
+     * Mettre fin a un stage.
+     *
+     * @return \Illuminate\Http\Response
+     ***********************************************************************/
+
+    public function stagefini(Request $request)
+    {
+        $url = url()->previous(); // Renvoie l'URL précédente
+        $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
+        $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
+        $demande = Demande::find($request->iddemande);
+        $demande->update(
+            [
+                'etape' => 10, // etape 10 correspond a terminé
+                'motif' => $request->motif
+            ]
+            );
+
+            if($chemin_stagevalides){
+
+                return Redirect::route('stagevalides')->with('message','Le stage a bien été arrêté');
+    
+            }
+            if($chemin_stageencours) {
+    
+                return Redirect::route('stageencours')->with('message','Le stage a bien été arrêté');
+            
+            }
+    }
+
+    /** ********************************************************************
+     * DEMBELE
      * recupérer une demande spécifique.
      *
      ***********************************************************************/
@@ -781,34 +813,6 @@ class DemandeController extends Controller
     }
 
 
-    /** ********************************************************************
-     * DEMBELE
-     *Mettre fin a un stage.
-     *
-     ***********************************************************************/
-    public function stagefini($id)
-    {
-        $url = url()->previous(); // Renvoie l'URL précédente
-        $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
-        $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
-        $demande = Demande::find($id);
-        $demande->update(
-            [
-                'etape' => 10 // etape 10 correspond a terminé
-            ]
-            );
-
-            if($chemin_stagevalides){
-
-                return Redirect::route('stagevalides')->with('message','Le stage a bien été arrêté');
-    
-            }
-            if($chemin_stageencours) {
-    
-                return Redirect::route('stageencours')->with('message','Le stage a bien été arrêté');
-            
-            }
-    }
 
     /** ********************************************************************
      * DEMBELE
@@ -905,7 +909,7 @@ class DemandeController extends Controller
         return view('back-office.stage.noter', ['demande' => $demande]);
     }
 
-    /** ********************************************************************
+    /***********************************************************************
      * DEMBELE
      * Noter un stagiaire.
      *

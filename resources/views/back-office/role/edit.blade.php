@@ -12,9 +12,9 @@
         <div class="block">
             <!-- Horizontal Form Title -->
             <div class="block-title">
-                <div class="block-options pull-right">
+                {{--<div class="block-options pull-right">
                     <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
-                </div>
+                </div>--}}
                 <h2>Modifier un role</h2>
             </div>
             <!-- END Horizontal Form Title -->

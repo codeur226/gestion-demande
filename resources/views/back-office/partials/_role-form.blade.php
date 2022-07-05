@@ -3,7 +3,7 @@
 
 <div class="form-group">
   <label for="role">Libellé du rôle</label>
-  <input type="text" id="role"  value="{{ old('role') ?? $role->nom}}" name="role" class="form-control" placeholder="Saisir le nom du role">
+  <input type="text" id="role"  value="{{ old('role') ?? $role->nom}}" name="role" class="form-control" placeholder="Entrer le nom du role" required>
   <!--<span class="help-block">saisir le paramètre</span>-->
   @error('role')
   <small class="text-danger">{{$message}}</small>

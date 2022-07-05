@@ -2,7 +2,7 @@
   <label class="col-md-4 control-label" for="nom">libellé de la permission<span class="text-danger">*</span></label>
   <div class="col-md-6">
       <div class="input-group">
-              <input id="nom" type="text" value="{{ old('nom') ?? $permission->nom }}" name="nom" class="form-control" placeholder="Entrer une permission..>
+              <input id="nom" type="text" value="{{ old('nom') ?? $permission->nom }}" name="nom" class="form-control" placeholder="Entrer une permission.." required>
           <span class="input-group-addon"><i class=""></i></span>
       </div>
       @if ($errors->has('nom'))

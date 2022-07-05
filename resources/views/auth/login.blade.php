@@ -37,7 +37,7 @@
             <!-- Password -->
             <div class="mt-4">
                 
-                <x-label class="label_res" for="password" :value="__('Password')" />
+                <x-label class="label_res" for="password" :value="__('Mot de passe')" />
 
                 <x-input id="password" class="block mt-1 w-full input_res"
                                 type="password"
@@ -54,11 +54,11 @@
             </div> --}}
 
             <div class="flex items-center justify-center mt-10">
-               {{-- @if (Route::has('password.request'))
+                @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Vous avez oublié votre mot de passe?') }}
                     </a>
-                @endif --}} 
+                @endif
 
                 <x-button class="ml-3 btcon btn_res">
                     {{ __('Connecter') }}

@@ -42,7 +42,8 @@
         <!-- Modernizr (browser feature detection library) -->
         <script src="{{ asset('back-office/assets/js/vendor/modernizr.min.js') }}"></script>
 
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -164,5 +165,55 @@
    <script src="{{ asset('back-office/assets/js/pages/index.js') }}"></script>
    <script>$(function(){ Index.init(); });</script>
 
+   <script type="text/javascript">
+    $(document).ready(function($){
+       $('#addNewBook').click(function () {
+          $('#addEditBookForm').trigger("reset");
+          $('#ajaxBookModel').html("Donner un motif");
+          $('#ajax-book-model').modal('show');
+       });
+    
+       $('body').on('click', '.edit', function () {
+           var id = $(this).data('id');
+            
+           // ajax
+           $.ajax({
+               type:"POST",
+               url: "{{ url('stagefini') }}",
+               data: { id: id },
+               dataType: 'json',
+               success: function(res){
+                 $('#ajaxBookModel').html("Motif");
+                 $('#ajax-book-model').modal('show');
+                 $('#id').val(res.id);
+                 $('#motif').val(res.motif);
+              }
+           });
+       });
+   
+       $('body').on('click', '#btn-save', function (event) {
+             var id = $("#id").val();
+             var motif = $("#motif").val();
+             $("#btn-save").html('Patientez SVP...');
+             $("#btn-save"). attr("disabled", true);
+            
+           // ajax
+           $.ajax({
+               type:"POST",
+               url: "{{ url('demandes.store') }}",
+               data: {
+                 id:id,
+                 motif:motif,
+               },
+               dataType: 'json',
+               success: function(res){
+                window.location.reload();
+               $("#btn-save").html('Valider');
+               $("#btn-save"). attr("disabled", false);
+              }
+           });
+       });
+   });
+   </script>
     </body>
 </html>

@@ -45,10 +45,10 @@
                           
                             <tbody>
 
-                                <tr>
-                                    <th>Maitre de stage :</th>
-                                    <td>{{getMaitreStage($demande->maitre_stage)}}</td>
-                                </tr>
+                            <tr>
+                                <th>Maitre de stage :</th>
+                                <td>{{getMaitreStage($demande->maitre_stage)}}</td>
+                            </tr>
                             <tr>
                                 <th>Type de stage :</th>
                                 <td>{{getValeur($demande->type)}}</td>
@@ -56,6 +56,10 @@
                             <tr>
                                 <th>Domaine :</th>
                                 <td>{{getDirection($demande->direction_id)}}</td>
+                            </tr>
+                            <tr>
+                                <th>Spécialité :</th>
+                                <td>{{$demande->specialite}}</td>
                             </tr>
                             <tr>
                                 <th>Etat :</th>
@@ -102,8 +106,17 @@
                                 <td>{{ $demande->note_globale }}</td>
                             </tr>
                             <tr>
-                                <th>commentaires sur le stage :</th>
+                                <th>Commentaires sur le stage :</th>
                                 <td>{{$demande->commentaires}}</td>
+                            </tr>
+                            <tr>
+                                <th>Motif de fin de stage :</th>
+                                @if($demande->motif==NULL && $demande->etat == 9 && $demande->etape==10)
+                                <td> Fin de la période de stage</td>
+                                @endif
+                                @if($demande->motif!=NULL && $demande->etat == 9 && $demande->etape==10)
+                                <td>{{$demande->motif}}</td>
+                                @endif
                             </tr>
                             </tbody>
                         </table>
@@ -133,7 +146,7 @@
                             <a href="{{ route('stageencours') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                             @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
-                            <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                            <a href="{{ route('formnoter',$demande->id) }}" id="noter1" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
                             @endif
                             @endif
                         @endif
@@ -142,7 +155,7 @@
                             <a href="{{ route('stagetermines') }}" class="btn btn-primary btn-lg mr-2" ><i class="fa fa-arrow-circle-o-left"></i> Retour</a>
                             @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 6)
                             <a href="{{ route('formtheme',$demande->id) }}" class="btn btn-success btn-lg mr-2" ><i class="fa fa-check-square"></i> Attribuer un thème</a>
-                            <a href="{{ route('formnoter',$demande->id) }}" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
+                            <a href="{{ route('formnoter',$demande->id) }}" id="noter2" class="btn btn-warning btn-lg mr-2" ><i class="fa fa-pencil" aria-hidden="true"></i> Noter le stagiaire</a>
                             @endif
                             @endif
                         @endif
@@ -158,3 +171,17 @@
                    
  
 </x-master-layout>
+
+@if($demande->theme==NULL && $demande->maitre_stage==NULL)
+<style>
+    #noter1{
+        pointer-events: none;
+        background-color:lightgray; !important
+    }
+
+    #noter2{
+        pointer-events: none;
+        background-color:lightgray; !important
+    }
+</style>
+@endif

@@ -56,12 +56,11 @@
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
+
+                                <?php $number=0; ?>
+                                @foreach ($demandes as $demande)
                                 <tbody>
-                                    
                                     <tr>
-                                        <?php $number=0; ?>
-                                   
-                                    @foreach ($demandes as $demande)
                                     <?php $number++; ?>
                                         <td class="text-center"> {{$number}}</td>
                                         <td>{{$demande->code}}</td>
@@ -83,38 +82,20 @@
                                          <td class="text-center" width="23%">
                                             <div class="btn-group">                                                
                                                <a title="Voir les détails" href="{{ route('voirStage', $demande->id) }}" class="btn btn-primary btn-sm mr-2" ><i class="fa fa-eye fa-lg"></i></a>  
-
                                                @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                                                 <a title="Affecter un maitre de stage" href="{{ route('formaffecter', $demande->id) }}" class="btn btn-success btn-sm mr-2" ><i class="fa fa-plus"></i> </a>  
-                    
-                                                <a title="Mettre fin au stage" href="{{ route("stagefini", $demande->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
-                                                    event.preventDefault(); 
-                                                    if(confirm('Etes-vous sur de vouloir mettre fin a ce stage ?')) 
-                                                    document.getElementById('{{ $demande->id }}').submit();" ><i class="fa fa-stop-circle fa-lg"></i></a>
-                                                <form id="{{ $demande->id }}" method="post" action="{{ route("stagefini", $demande->id) }}">
-                                                    @csrf
-                                                    @method("GET")
-                                                </form>
+                                                <a href="#" class="btn btn-danger btn-sm mr-2" data-toggle="modal" data-target="#ModalEdit{{$demande->id}}"><i class="fa fa-stop-circle fa-lg"></i></a>
                                                 @endif
-
-                                            
-                                            
-                                            
-                                            
-                                            
                                             </div>
                                         </td>
+                                        @include('back-office.stage.modal.edit')
                                     </tr>
-                                    @endforeach
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                     </div>
                     <!-- END Datatables Content -->
-
-                    
-                    
-            
             </div>
-        </div>  
+        </div>
 </x-master-layout>

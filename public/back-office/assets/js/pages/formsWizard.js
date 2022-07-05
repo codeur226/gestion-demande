@@ -4,6 +4,17 @@
  *  Description: Custom javascript code used in Forms Wizard page
  */
 
+/* Add country flag to phone number field */
+
+/*const phoneInputField = document.querySelector("#telephone");
+const phoneInput = window.intlTelInput(phoneInputField, {utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",});*/
+
+/* Initialize Masked Inputs */
+
+$('#telephone').mask('99-99-99-99');
+$('#whatsapp').mask('99-99-99-99');
+
+
 var FormsWizard = function() {
 
     return {
@@ -16,15 +27,29 @@ var FormsWizard = function() {
             /* Initialize Progress Wizard */
 
             $.validator.addMethod('le', function (value, element, param) {
-                /*alert(value.toString());*/
+                //alert(value.toString());
                 return this.optional(element) || value.toString() < $(param).val().toString();
             }, 'Donnée invalide');
 
             
             $.validator.addMethod('filesize', function (value, element, param) {
-                /*alert(element.files[0].size.toString());*/
+                //alert(element.files[0].size.toString());
                 return this.optional(element) || (parseInt(element.files[0].size.toString()) < parseInt(param.toString()))
             }, 'Fichier invalide');
+
+            function datenow(){
+                var d = new Date();
+
+                var month = d.getMonth()+1;
+                var day = d.getDate();
+
+                var output = d.getFullYear()  + '-' + 
+                            ((''+month).length<2 ? '0' : '') + month + '-' +
+                            ((''+day).length<2 ? '0' : '') + day;
+
+                return output;
+                
+            }
 
             if (window.innerWidth > 800) {
                 $('#progress-wizard').formwizard({focusFirstInput: true, validationEnabled: true,
@@ -56,7 +81,7 @@ var FormsWizard = function() {
                             },
                             telephone: {
                                 required: true,
-                                minlength: 8
+                                minlength: 8,
                             },
                             confirmationtelephone: {
                                 required: true,
@@ -74,6 +99,7 @@ var FormsWizard = function() {
                             
                             datedebut: {
                                 required: true,
+                                min: datenow(),
                                 le: '#datefin'
                             },
                             datefin: {
@@ -115,6 +141,7 @@ var FormsWizard = function() {
                             },
                             datedebut: {
                                 required: 'Veuillez saisir la date de début souhaitée',
+                                min: "Veuillez entrer une date de début supérieure ou égale à la date d'aujourd'hui",
                                 le: 'Veuillez entrer une période valide !',
                             },
                             datefin: {
@@ -135,7 +162,8 @@ var FormsWizard = function() {
     
                             telephone: {
                                 required: 'Veuillez saisir votre de téléphone ',
-                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères'
+                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères',
+                                format: 'Veuillez entrer un numéro de téléphone valide !'
                             },
                             confirmationtelephone: {
                                 required: 'Confirmez votre numéro de téléphone svp',
@@ -193,6 +221,7 @@ var FormsWizard = function() {
                             
                             datedebutR: {
                                 required: true,
+                                min: datenow(),
                                 le: '#datefinR'
                             },
                             datefinR: {
@@ -233,6 +262,7 @@ var FormsWizard = function() {
                             },
                             datedebutR: {
                                 required: 'Veuillez saisir la date de début souhaitée',
+                                min: "Veuillez entrer une date de début supérieure ou égale à la date d'aujourd'hui",
                                 le: 'Veuillez entrer une période valide !',
                             },
                             datefinR: {
@@ -249,11 +279,11 @@ var FormsWizard = function() {
                             email: {
                                 required: 'Veuillez saisir votre adresse E-mail valide',
                             },
-    
-    
+
                             telephone: {
                                 required: 'Veuillez saisir votre de téléphone ',
-                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères'
+                                minlength: 'Le numéro de téléphone doit comporter au moins 8 caractères',
+                                format: 'Veuillez entrer un numéro de téléphone valide !'
                             },
                             confirmationtelephone: {
                                 required: 'Confirmez votre numéro de téléphone svp',
@@ -267,37 +297,7 @@ var FormsWizard = function() {
             
 
             // Get the progress bar and change its width when a step is shown
-            var progressBar = $('#progress-bar-wizard');
-            progressBar
-                .css('width', '33%')
-                .attr('aria-valuenow', '33');
-
-            $("#progress-wizard").bind('step_shown', function(event, data){
-		if (data.currentStep === 'progress-first') {
-                    progressBar
-                        .css('width', '33%')
-                        .attr('aria-valuenow', '33')
-                        .removeClass('progress-bar-warning progress-bar-success')
-                        .addClass('progress-bar-danger');
-                }
-                else if (data.currentStep === 'progress-second') {
-                    progressBar
-                        .css('width', '66%')
-                        .attr('aria-valuenow', '66')
-                        .removeClass('progress-bar-danger progress-bar-success')
-                        .addClass('progress-bar-warning');
-                }
-                else if (data.currentStep === 'progress-third') {
-                    progressBar
-                        .css('width', '100%')
-                        .attr('aria-valuenow', '100')
-                        .removeClass('progress-bar-danger progress-bar-warning')
-                        .addClass('progress-bar-success');
-                        
-                }
-                //
-               
-            });
+            
 
             /* Initialize Basic Wizard */
             $('#basic-wizard').formwizard({disableUIStyles: true, inDuration: 0, outDuration: 0});
@@ -381,6 +381,11 @@ var FormsWizard = function() {
                 $('[name="datefin"]').on('change blur keyup', function() {
                     $('[name="datedebut"]').valid();
                 });
+
+                $('[name="telephone"]').on('change blur keyup', function() {
+                    $('[name="telephone"]').valid();
+                });
+                
             }else{
                 $('[name="datefinR"]').on('change blur keyup', function() {
                     $('[name="datedebutR"]').valid();
@@ -401,10 +406,13 @@ function resume(){
     $('#prenom_tab').text(document.getElementById("prenom").value);
     $('#tel_tab').text(document.getElementById("telephone").value);
     $('#mail_tab').text(document.getElementById("email").value);
-   //$('#domaine_tab').text(document.getElementById("direction").id);
-//    recuperer le libellé selectionner
-$('#type_tab').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
-$('#domaine_tab').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+    //$('#domaine_tab').text(document.getElementById("direction").id);
+
+    //recuperer le libellé selectionner
+    $('#type_tab').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
+    $('#domaine_tab').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+    
+    $('#specialite_tab').text(document.getElementById("specialite").value);
 
 
     $('#debut_tab').text(document.getElementById("datedebut").value);
@@ -415,13 +423,22 @@ $('#domaine_tab').text(document.getElementById('direction').options[document.get
     $('#prenom_tabR').text(document.getElementById("prenomR").value);
     $('#tel_tabR').text(document.getElementById("telephoneR").value);
     $('#mail_tabR').text(document.getElementById("emailR").value);
-   //$('#domaine_tab').text(document.getElementById("direction").id);
-//    recuperer le libellé selectionner
-$('#type_tabR').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
-$('#domaine_tabR').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+    //$('#domaine_tab').text(document.getElementById("direction").id);
+
+    //recuperer le libellé selectionner
+    $('#type_tabR').text(document.getElementById('typestage').options[document.getElementById('typestage').selectedIndex].text);
+    $('#domaine_tabR').text(document.getElementById('direction').options[document.getElementById('direction').selectedIndex].text);
+
+    $('#specialite_tabR').text(document.getElementById("specialiteR").value);
 
 
     $('#debut_tabR').text(document.getElementById("datedebutR").value);
     $('#fin_tabR').text(document.getElementById("datefinR").value);  
     }   
+
+    /*if(document.getElementById("nom").value!=null)
+{
+    $('#form-title').remove();
+}*/
 }
+

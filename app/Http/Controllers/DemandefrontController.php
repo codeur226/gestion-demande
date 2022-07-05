@@ -66,7 +66,9 @@ class DemandefrontController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        $numeroTel = str_replace('-','',$request->telephone);
+        $numeroWhatsapp = str_replace('-','',$request->whatsapp);
+
         // Test d'existence du mail user
         $demande = Demande::where('email', $request->email)->exists();
         $demandeGet = Demande::where('demandes.supprimer', '=', 0)
@@ -110,11 +112,12 @@ class DemandefrontController extends Controller
                 $demanderencour = Demande::create([
                     'nom' => $request->nom,
                     'prenom' => $request->prenom,
-                    'telephone' => $request->telephone,
-                    'whatsapp' => $request->whatsapp,
+                    'telephone' => $numeroTel,
+                    'whatsapp' => $numeroWhatsapp,
                     'email' => $request->email,
                     'type' => $request->typestageR,
                     'direction_id' => $request->directionR,
+                    'specialite' => $request->specialiteR,
                     'date_debut' => $request->datedebutR,
                     'date_fin' => $request->datefinR,
                     'type_demande' => 6,
@@ -147,11 +150,12 @@ class DemandefrontController extends Controller
                 $demanderencour = Demande::create([
                     'nom' => $request->nom,
                     'prenom' => $request->prenom,
-                    'telephone' => $request->telephone,
-                    'whatsapp' => $request->whatsapp,
+                    'telephone' => $numeroTel,
+                    'whatsapp' => $numeroWhatsapp,
                     'email' => $request->email,
                     'type' => $request->typestage,
                     'direction_id' => $request->direction,
+                    'specialite' => $request->specialite,
                     'date_debut' => $request->datedebut,
                     'date_fin' => $request->datefin,
                     'type_demande' => 6,
@@ -205,7 +209,10 @@ class DemandefrontController extends Controller
                 return redirect()->route('formconsulter', [
             'demandes' => $demandes,
             'demande' => $demanderencour,
-        ])->with('message', 'Le code de votre demande est : '.' '.$demanderencour->code.' '.'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+        ])->with('text1', 'Le code de votre demande est : ')
+            ->with('message', $demanderencour->code)
+            ->with('text2', 'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+        
             }
             // $this->whatsappNotification($userencour->telephone);
 
@@ -226,7 +233,9 @@ class DemandefrontController extends Controller
             return redirect()->route('formconsulter', [
         'demandes' => $demandes,
         'demande' => $demanderencour,
-    ])->with('message', 'Le code de votre demande est : '.' '.$demanderencour->code.' '.'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
+    ])->with('text1', 'Le code de votre demande est : ')
+    ->with('message', $demanderencour->code)
+    ->with('text2', 'Veuillez noter ce code pour la suite de la procédure, consulter aussi votre e-mail ');
         }
     }
 

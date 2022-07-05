@@ -47,8 +47,9 @@
                                <thead>
                                    <tr>
 
-                                       <th>Domaine</th>
-                                       <th>Type stage</th>
+                                        <th>Type stage</th>
+                                        <th>Domaine</th>
+                                        <th>Spécialité</th>
                                        <th>Date de début souhaitée</th>
                                        <th>Date de fin souhaitée</th>
                                        <th>Etat</th>
@@ -61,8 +62,14 @@
 
                                    <tr>
 
+                                        <td>{{getValeur($demande->type)}}</td>
                                        <td>{{getDomaine($demande->direction_id)}}</td>
-                                       <td>{{getValeur($demande->type)}}</td>
+                                       @if($demande->specialite==NULL)
+                                       <td>Aucune spécialité renseignée</td>
+                                       @endif
+                                       @if($demande->specialite!=NULL)
+                                       <td>{{$demande->specialite}}</td>
+                                       @endif
                                        <td>{{$demande->date_debut}}</td>
                                        <td>{{$demande->date_fin}}</td>
                                        <td>{{getValeur($demande->etat)}}</td>

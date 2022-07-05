@@ -10,7 +10,7 @@
     @endforeach 
  
    </select>
-  <span class="help-block">saisir le paramètre</span>
+  <span class="help-block"></span>
   @error('parametre_id')
   <small class="text-danger">{{$message}}</small>
   @enderror
@@ -18,8 +18,8 @@
 
 <div class="form-group">
   <label for="valeur">Valeur</label>
-  <input value="{{ old('valeur') ?? $valeur->valeur}}" type="text" name="valeur" id="valeur" class="form-control" placeholder="" aria-describedby="helpId">
-  <span class="help-block">saisir la valeur</span>
+  <input value="{{ old('valeur') ?? $valeur->valeur}}" type="text" name="valeur" id="valeur" class="form-control" placeholder="Entrer une valeur" aria-describedby="helpId" required>
+  <span class="help-block"></span>
   @error('valeur')
   <small class="text-danger">{{$message}}</small>
   @enderror

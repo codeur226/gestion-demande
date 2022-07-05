@@ -6,7 +6,7 @@
 
 <div class="form-group">
   <label for="date_debut">DATE DEBUT</label>
-  <input type="date" id="date_debut" value="{{ old('liste') ?? $liste->date_debut}}" name="date_debut" class="form-control" placeholder="saisir la date de début">
+  <input type="date" id="date_debut" value="{{ old('liste') ?? $liste->date_debut}}" name="date_debut" class="form-control" placeholder="saisir la date de début" required>
   <!--<span class="help-block">saisir le paramètre</span>-->
   @error('date_debut')
   <small class="text-danger">{{$message}}</small>
@@ -15,7 +15,7 @@
 
 <div class="form-group">
   <label for="date_fin">DATE FIN</label>
-  <input type="date" id="date_fin" value="{{ old('liste') ?? $liste->date_fin}}" name="date_fin" class="form-control" placeholder="saisir la date de fin">
+  <input type="date" id="date_fin" value="{{ old('liste') ?? $liste->date_fin}}" name="date_fin" class="form-control" placeholder="saisir la date de fin" required>
   <!--<span class="help-block">saisir le paramètre</span>-->
   @error('date_fin')
   <small class="text-danger">{{$message}}</small>

@@ -163,6 +163,24 @@
           
         </div>
 
+        <style>
+            .txt-color-default{
+                color: #1bbae1;
+            }
+
+            .txt-color-autumn{
+                color: #e67e22;
+            }
+
+            .txt-color-spring{
+                color: #27ae60;
+            }
+
+            .txt-color-fire{
+                color: #e74c3c;
+            }
+        </style>
+
         <!-- Mini Top Stats Row -->
         <div class="row">
             @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)
@@ -176,7 +194,7 @@
 
                         </div>
 
-                        <h3 class="widget-content text-right animation-pullDown">
+                        <h3 class="widget-content text-right animation-pullDown txt-color-autumn">
                             Total des <strong>Demandes</strong><br>
                             <small>de stage</small>
                         </h3>
@@ -196,7 +214,7 @@
                             <i >{{ $stagevalide }}</i>
                             {{-- class="gi gi-usd" --}}
                         </div>
-                        <h3 class="widget-content text-right animation-pullDown">
+                        <h3 class="widget-content text-right animation-pullDown txt-color-spring">
                             Total des <br> <strong>Stages</strong><br>
                             <small>validés</small>
                         </h3>
@@ -208,11 +226,11 @@
                 <!-- Widget -->
                 <a href="{{ route('stageencours')}}" class="widget widget-hover-effect1">
                     <div class="widget-simple">
-                        <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                        <div class="widget-icon pull-left themed-background-default animation-fadeIn">
                             <i >{{ $stageencours }}</i>
                             {{-- class="gi gi-envelope" --}}
                         </div>
-                        <h3 class="widget-content text-right animation-pullDown">
+                        <h3 class="widget-content text-right animation-pullDown txt-color-default">
                             Total des <br> <strong>Stages</strong>
                             <small>en cours</small>
                         </h3>
@@ -224,11 +242,11 @@
                 <!-- Widget -->
                 <a href="{{ route('stagetermines')}}" class="widget widget-hover-effect1">
                     <div class="widget-simple">
-                        <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
+                        <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
                             <i > {{ $stagetermines }} </i>
                             {{-- class="gi gi-picture" --}}
                         </div>
-                        <h3 class="widget-content text-right animation-pullDown">
+                        <h3 class="widget-content text-right animation-pullDown txt-color-fire">
                            Total des<strong> <br> Stages</strong>
                             <small>terminés</small>
                         </h3>

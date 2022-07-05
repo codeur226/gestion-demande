@@ -88,7 +88,7 @@
                                             <div class="w-100"></div>
                                         
                                                 {{-- CODE ICI --}}
-                               <h2 style="color: red"> Aucune   demande ne correspond au code et a l'e-mail entrés !</h2>
+                               <h2 style="color: red"> Aucune demande ne correspond au code et à l'e-mail entrés !</h2>
 
                                     
                                         </div>

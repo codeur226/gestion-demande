@@ -52,7 +52,9 @@
                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    {{ session()->get('message') }}
+                    {{ session()->get('text1') }}
+                    <strong style="font-size: 25px;"> {{ session()->get('message') }} </strong>
+                    {{ session()->get('text2') }}
                     
                 </div>
     

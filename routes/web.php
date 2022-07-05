@@ -67,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stagetermines', [DemandeController::class, 'stagetermines'])->name('stagetermines');
     Route::get('stagevalides', [DemandeController::class, 'stagevalides'])->name('stagevalides');
     Route::get('voirStage/{id}', [DemandeController::class, 'voirStage'])->name('voirStage');
-    Route::get('stagefini/{id}', [DemandeController::class, 'stagefini'])->name('stagefini');
+    Route::post('stagefini', [DemandeController::class, 'stagefini'])->name('stagefini');
     Route::get('formnoter/{id}', [DemandeController::class, 'formnoter'])->name('formnoter');
     Route::post('noter', [DemandeController::class, 'noter'])->name('noter');
     Route::get('formtheme/{id}', [DemandeController::class, 'formtheme'])->name('formtheme');

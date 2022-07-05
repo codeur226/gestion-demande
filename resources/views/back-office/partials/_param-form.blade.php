@@ -3,8 +3,8 @@
 
 <div class="form-group">
   <label for="parametre">Paramètre</label>
-  <input type="text" id="parametre" value="{{ old('parametre') ?? $parametre->parametre}}" name="parametre" class="form-control" placeholder="Enter un paramètre..">
-  <span class="help-block">saisir le paramètre</span>
+  <input type="text" id="parametre" value="{{ old('parametre') ?? $parametre->parametre}}" name="parametre" class="form-control" placeholder="Enter un paramètre.." required>
+  <span class="help-block"></span>
   @error('parametre')
   <small class="text-danger">{{$message}}</small>
   @enderror

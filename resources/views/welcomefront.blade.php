@@ -15,7 +15,7 @@
   <div class="card">
     <div class="card-body snd_color">
      
-      <p class="monserrat" style="text-align:center;color: rgb(248, 245, 245); ">L'ANPTIC, le Label du Numérique !</p>
+      <p class="monserrat" style="text-align:center;color: rgb(248, 245, 245); font-weight:bold;">L'ANPTIC, le Label du Numérique !</p>
      
      {{-- <div class="center">
       <p class="monserrat" style="text-align:center;color: rgb(248, 245, 245); ">Donnez nous votre avis en laissant votre commentaire ! </p>

@@ -6,7 +6,7 @@
 
 <div class="form-group" >
   <label for="note">Note du stagiaire /20</label>
-  <input type="number" id="note" name="note" value="{{ old('demande') ?? $demande->note}}" class="form-control" placeholder="Enter une note" min="0" max="20" required>
+  <input value="{{ old('demande') ?? $demande->note_globale}}" type="number" id="note" name="note"  class="form-control" placeholder="Enter une note" min="0" max="20" required>
   @error('note')
   <small class="text-danger">{{$message}}</small>
   @enderror
@@ -14,7 +14,7 @@
 
 <div class="form-group" >
   <label for="comment">Commentaire sur le stagiaire</label>
-  <textarea id="comment" name="comment" value="{{ old('demande') ?? $demande->commentaire}}" class="form-control" placeholder="Commentaire sur le stagiaire"> </textarea>
+  <textarea id="comment" name="comment" class="form-control" placeholder="Commentaire sur le stagiaire"> {{ old('demande') ?? $demande->commentaires}} </textarea>
   @error('comment')
   <small class="text-danger">{{$message}}</small>
   @enderror
