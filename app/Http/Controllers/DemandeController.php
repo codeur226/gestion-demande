@@ -230,6 +230,9 @@ class DemandeController extends Controller
      ***********************************************************************/
     public function supprimerpiece($id)
     {
+        $url = url()->previous(); // Renvoie l'URL précédente
+        $chemin = Str::contains($url, 'voirStage');
+
         //Affiche une demande spécifique
         $iddemande = Piece::where('id', $id)->first();
         //  dd($iddemande);
@@ -237,10 +240,38 @@ class DemandeController extends Controller
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $iddemande->demande_id)->first();
         $pieces = Piece::where('demande_id', $iddemande->demande_id)->get();
 
-        return view('back-office.demande.show', [
-        'demande' => $demande,
-        'pieces' => $pieces,
-    ]);
+        $renouvellements = Renouvellement::where('demande_id', $id)->get();
+        //dd($renouvellements);
+
+        if($renouvellements->count() > 0)
+        {
+            foreach ($renouvellements as $renouvellement) {
+                $renouvellement_date_debut = $renouvellement->date_debut;
+                $renouvellement_date_fin = $renouvellement->date_fin;
+            }
+        }else
+        {
+            $renouvellement_date_debut = 'non renouvellé';
+            $renouvellement_date_fin = 'non renouvellé';
+        }
+
+        if($chemin)
+        {
+            return view('back-office.stage.show', [
+                'demande' => $demande,
+                'pieces' => $pieces,
+                'renouvellement_date_debut' => $renouvellement_date_debut, 
+                'renouvellement_date_fin' => $renouvellement_date_fin,
+            ])->with('message','Le fichier a bien été supprimé !');
+            
+        }
+        else
+        {
+            return view('back-office.demande.show', [
+                'demande' => $demande,
+                'pieces' => $pieces,
+            ]);
+        }
     }
 
     /** ********************************************************************
@@ -753,6 +784,7 @@ class DemandeController extends Controller
     {
         // +++++ Affiche les informations détaillées de l'objet concerné +++++
         $demande = Demande::where('demandes.supprimer', '=', 0)->where('id', '=', $id)->first();
+        $pieces = Piece::where('demande_id', $id)->get();
         $url = url()->previous(); // Renvoie l'URL précédente
         $chemin_stagevalides = Str::contains($url, 'stagevalides'); // Str::contains() permet de vérifier 
         $chemin_stageencours = Str::contains($url, 'stageencours'); // qu'un élément est contenu dans une chaine de caractère
@@ -780,6 +812,7 @@ class DemandeController extends Controller
                 'url' => 'stagevalides', 
                 'renouvellement_date_debut' => $renouvellement_date_debut, 
                 'renouvellement_date_fin' => $renouvellement_date_fin,
+                'pieces' => $pieces,
             ]);
 
         }
@@ -790,6 +823,7 @@ class DemandeController extends Controller
                 'url' => 'stageencours',
                 'renouvellement_date_debut' => $renouvellement_date_debut, 
                 'renouvellement_date_fin' => $renouvellement_date_fin,
+                'pieces' => $pieces,
             ]);
         
         }
@@ -800,6 +834,7 @@ class DemandeController extends Controller
                 'url' => 'stagetermines',
                 'renouvellement_date_debut' => $renouvellement_date_debut, 
                 'renouvellement_date_fin' => $renouvellement_date_fin,
+                'pieces' => $pieces,
             ]);
         
         }else{
@@ -808,6 +843,7 @@ class DemandeController extends Controller
                 'url' => 'stage',
                 'renouvellement_date_debut' => $renouvellement_date_debut, 
                 'renouvellement_date_fin' => $renouvellement_date_fin,
+                'pieces' => $pieces,
             ]);
         }
     }
@@ -957,15 +993,26 @@ class DemandeController extends Controller
         //return Redirect::back();
     }
 
-    // Téléchargement des pièces jointes
 
-    public function download($id)
+    public function download(Request $request)
     {
-        $piece_libelle = Piece::where('id', $id)->value('libelle');
 
-        $path = storage_path()."/".$piece_libelle;
-        $contents= Storage::disk('public')->get($path);
-        dd($contents);
+        $stage = Demande::find($request->iddemande);
+        $piece = $request->file('piece');
+        $char = array(" ", ".", ",", "/", "'", "=", ";", ":", "!", "?", "|", "(", ")", "^", "*", "<", ">");
+        $libelle = str_replace($char,'',$request->libelle);
+        $name = strtoupper($stage->code).'-'.strtoupper($libelle).'.'.$piece->getClientOriginalExtension();
+        $filePath = $piece->storeAs('uploads', $name, 'public');
+        Piece::create(
+        [
+            'demande_id' => $request->iddemande,
+            'libelle' => $name,
+            'url' => '/storage/'.$filePath,
+            'description' => 'RAS',
+            'supprimer' => 0,
+        ]);
+
+        return Redirect::route('voirStage', $stage->id)->with('message','Le fichier a bien été ajouté !');
     }
 
     /** ********************************************************************

@@ -57,10 +57,18 @@
                                 <th>Domaine :</th>
                                 <td>{{getDirection($demande->direction_id)}}</td>
                             </tr>
+                            @if($demande->specialite==NULL)
+                            <tr>
+                                <th>Spécialité :</th>
+                                <td>Aucune spécialité renseignée</td>
+                            </tr>
+                            @endif
+                            @if($demande->specialite!=NULL)
                             <tr>
                                 <th>Spécialité :</th>
                                 <td>{{$demande->specialite}}</td>
                             </tr>
+                            @endif
                             <tr>
                                 <th>Etat :</th>
                                 <td>{{ getValeur($demande->etat) }}</td>
@@ -117,6 +125,32 @@
                                 @if($demande->motif!=NULL && $demande->etat == 9 && $demande->etape==10)
                                 <td>{{$demande->motif}}</td>
                                 @endif
+                                @if($demande->motif==NULL && $demande->etat == 9 && $demande->etape!=10)
+                                <td>Néant</td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <th>Pièces jointes :</th>
+                                <td>   @foreach ($pieces as $piece)
+                                    <ul><li >
+                                        {{-- <a href="{{$piece->url}}"> {{ $piece->libelle }}</a> --}}
+
+                                        <a href="{{asset($piece->url) }}">{{ $piece->libelle }}</a>
+                                        {{-- <a href="{{asset('{{$piece->url}}'}}"> {{ $piece->libelle }}</a> --}}
+
+                                        @if(Auth::user()->role_id == 2)
+                                        <a href="{{ route("supprimerpiece", $piece->id) }}" class="btn btn-danger btn-sm mr-2"  onClick="
+                                            event.preventDefault();
+                                            if(confirm('Etes-vous sur de vouloir supprimer cette piece ?'))
+                                            document.getElementById('{{ $piece->id }}').submit();" ><i class="fa fa-trash-o fa-lg"></i></a>
+                                        <form id="{{ $piece->id }}" method="post" action="{{ route("supprimerpiece", $piece->id) }}">
+                                            @csrf
+                                            @method("delete")
+                                        </form>
+                                        @endif
+                                    </li></ul>
+
+                                    @endforeach </td>
                             </tr>
                             </tbody>
                         </table>
@@ -159,10 +193,13 @@
                             @endif
                             @endif
                         @endif
+                        <a href="#" class="btn btn-danger btn-lg mr-2" data-toggle="modal" data-target="#ModalDownload{{$demande->id}}"><i class="fa fa-upload" aria-hidden="true"></i> Enregistrer un fichier</a>
                      
                         </div>
                         </div>
                    </div>
+
+                   @include('back-office.stage.modal.download')
                   
                    <!-- END Datatables Content -->
 
