@@ -693,7 +693,7 @@
                     </tr>
                     <tr class="space-row">                                           
                         <th>Spécialité</th>
-                        <td id="specialite_tab"></td>
+                        <td colspan="3" id="specialite_tab"></td>
                     </tr>
                     <tr class="space-row">                       
                         <th>Date début</th>

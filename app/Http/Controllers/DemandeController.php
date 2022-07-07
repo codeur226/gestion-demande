@@ -287,6 +287,99 @@ class DemandeController extends Controller
      */
     public function dashboard()
     {
+        $janvier = $fevrier = $mars = $avril = $mai = $juin = $juillet = $aout = $septembre = $octobre = $novembre = $decembre = 0; 
+
+        $mois=
+        [
+            'janvier' => date('Y').'-'.'01',
+            'fevrier' => date('Y').'-'.'02',
+            'mars' => date('Y').'-'.'03',
+            'avril' => date('Y').'-'.'04',
+            'mai' => date('Y').'-'.'05',
+            'juin' => date('Y').'-'.'06',
+            'juillet' => date('Y').'-'.'07',
+            'aout' => date('Y').'-'.'08',
+            'septembre' => date('Y').'-'.'09',
+            'octobre' => date('Y').'-'.'10',
+            'novembre' => date('Y').'-'.'11',
+            'decembre' => date('Y').'-'.'12',
+        ];
+
+        foreach (DB::table('demandes')->get() as $one) {
+            if(Str::contains($one->created_at, $mois['janvier']))
+            {
+                $janvier++;
+            }
+            elseif(Str::contains($one->created_at, $mois['fevrier']))
+            {
+                $fevrier++;
+            }
+            elseif(Str::contains($one->created_at, $mois['mars']))
+            {
+                $mars++;
+            }
+            elseif(Str::contains($one->created_at, $mois['avril']))
+            {
+                $avril++;
+            }
+            elseif(Str::contains($one->created_at, $mois['mai']))
+            {
+                $mai++;
+            }
+            elseif(Str::contains($one->created_at, $mois['juin']))
+            {
+                $juin++;
+            }
+            elseif(Str::contains($one->created_at, $mois['juillet']))
+            {
+                $juillet++;
+            }
+            elseif(Str::contains($one->created_at, $mois['aout']))
+            {
+                $aout++;
+            }
+            elseif(Str::contains($one->created_at, $mois['septembre']))
+            {
+                $septembre++;
+            }
+            elseif(Str::contains($one->created_at, $mois['octobre']))
+            {
+                $octobre++;
+            }
+            elseif(Str::contains($one->created_at, $mois['novembre']))
+            {
+                $novembre++;
+            }
+            elseif(Str::contains($one->created_at, $mois['decembre']))
+            {
+                $decembre++;
+            }
+
+        }
+
+        $data = [$janvier, $fevrier, $mars, $avril, $mai, $juin, $juillet, $aout, $septembre, $octobre, $novembre, $decembre];
+        $labels = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+        $maxi = max($data)+10;
+
+
+        // Simulating your data
+    /*$time = [
+        ['RSSI' => 33, 'created_at' => '2022-02-20 19:25:43',],
+        ['RSSI' => 55, 'created_at' => '2022-02-20 20:25:43',],
+        ['RSSI' => 23, 'created_at' => '2022-02-20 21:25:43',],
+        ['RSSI' => -5, 'created_at' => '2022-02-20 22:25:43',],
+        ['RSSI' => 9, 'created_at' => '2022-02-20 23:25:43',],
+        ['RSSI' => 69, 'created_at' => '2022-02-21 00:25:43',],
+    ];
+
+    // Saparating informations for x-axis (labels) and y-axis (data)
+    $timestamps_x_axis = [];
+    $rssi_y_axis = [];
+    foreach ($time as  $row) {
+        $timestamps_x_axis[] = $row['created_at'];
+        $rssi_y_axis[] = $row['RSSI'];
+    }*/
 
         // ADMINISTRATEUR ET DRH
 
@@ -423,6 +516,9 @@ class DemandeController extends Controller
            'stagetermines' => $stagetermines,
            'demandes' => $demandes,
            'stageencours'=>$stageencours,
+           'labels' => $labels,
+           'data' => $data,
+           'maxi' => $maxi,
        ]);
     }
 
