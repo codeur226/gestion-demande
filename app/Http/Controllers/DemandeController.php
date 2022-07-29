@@ -8,6 +8,8 @@ use App\Models\Demande_user;
 use App\Models\Piece;
 use App\Models\User;
 use App\Models\Theme;
+use App\Models\Valeur;
+use App\Models\Direction;
 use App\Models\Renouvellement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -285,101 +287,123 @@ class DemandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
-    {
-        $janvier = $fevrier = $mars = $avril = $mai = $juin = $juillet = $aout = $septembre = $octobre = $novembre = $decembre = 0; 
+    public function dashboard(Request $request)
+    {   
+        $directions = Direction::get();
 
-        $mois=
-        [
-            'janvier' => date('Y').'-'.'01',
-            'fevrier' => date('Y').'-'.'02',
-            'mars' => date('Y').'-'.'03',
-            'avril' => date('Y').'-'.'04',
-            'mai' => date('Y').'-'.'05',
-            'juin' => date('Y').'-'.'06',
-            'juillet' => date('Y').'-'.'07',
-            'aout' => date('Y').'-'.'08',
-            'septembre' => date('Y').'-'.'09',
-            'octobre' => date('Y').'-'.'10',
-            'novembre' => date('Y').'-'.'11',
-            'decembre' => date('Y').'-'.'12',
-        ];
-
-        foreach (DB::table('demandes')->get() as $one) {
-            if(Str::contains($one->created_at, $mois['janvier']))
-            {
-                $janvier++;
-            }
-            elseif(Str::contains($one->created_at, $mois['fevrier']))
-            {
-                $fevrier++;
-            }
-            elseif(Str::contains($one->created_at, $mois['mars']))
-            {
-                $mars++;
-            }
-            elseif(Str::contains($one->created_at, $mois['avril']))
-            {
-                $avril++;
-            }
-            elseif(Str::contains($one->created_at, $mois['mai']))
-            {
-                $mai++;
-            }
-            elseif(Str::contains($one->created_at, $mois['juin']))
-            {
-                $juin++;
-            }
-            elseif(Str::contains($one->created_at, $mois['juillet']))
-            {
-                $juillet++;
-            }
-            elseif(Str::contains($one->created_at, $mois['aout']))
-            {
-                $aout++;
-            }
-            elseif(Str::contains($one->created_at, $mois['septembre']))
-            {
-                $septembre++;
-            }
-            elseif(Str::contains($one->created_at, $mois['octobre']))
-            {
-                $octobre++;
-            }
-            elseif(Str::contains($one->created_at, $mois['novembre']))
-            {
-                $novembre++;
-            }
-            elseif(Str::contains($one->created_at, $mois['decembre']))
-            {
-                $decembre++;
-            }
-
+        foreach($directions as $direction)
+        {
+            $directionLibelle[] = $direction->libelle_court;
+            $DemandeParDirection[] = Demande::where('direction_id', '=', $direction->id)
+            ->get()->count();
         }
 
-        $data = [$janvier, $fevrier, $mars, $avril, $mai, $juin, $juillet, $aout, $septembre, $octobre, $novembre, $decembre];
+        //dd([$directionLibelle, $DemandeParDirection]);
+
+        $anneeList = array();
+
+        for($annee=2021;$annee<=date('Y');$annee++){
+            $anneeList[] = $annee;
+        }
+
+        if ($request->annee!=NULL) {
+            Valeur::where('parametre_id', '=', 18)
+                ->update(
+                [
+                    'valeur' => $request->annee,
+                ]
+                );
+        }
+        
+        $val = Valeur::where('parametre_id', 18)->first();
+        $anneeSelect = $val->valeur;
+
+        foreach ($anneeList as $an) {
+            $mois=
+                [
+                    'janvier' => $an.'-'.'01',
+                    'fevrier' => $an.'-'.'02',
+                    'mars' => $an.'-'.'03',
+                    'avril' => $an.'-'.'04',
+                    'mai' => $an.'-'.'05',
+                    'juin' => $an.'-'.'06',
+                    'juillet' => $an.'-'.'07',
+                    'aout' => $an.'-'.'08',
+                    'septembre' => $an.'-'.'09',
+                    'octobre' => $an.'-'.'10',
+                    'novembre' => $an.'-'.'11',
+                    'decembre' => $an.'-'.'12',
+                ];
+
+            $moisList[] = $mois;
+        }
+
+        $annee = 2021;
+        foreach($moisList as $moisTab) {
+            $janvier = $fevrier = $mars = $avril = $mai = $juin = $juillet = $aout = $septembre = $octobre = $novembre = $decembre = 0; 
+            foreach (DB::table('demandes')->get() as $one) {
+                if(Str::contains($one->created_at, $moisTab['janvier']))
+                {
+                    $janvier++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['fevrier']))
+                {
+                    $fevrier++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['mars']))
+                {
+                    $mars++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['avril']))
+                {
+                    $avril++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['mai']))
+                {
+                    $mai++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['juin']))
+                {
+                    $juin++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['juillet']))
+                {
+                    $juillet++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['aout']))
+                {
+                    $aout++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['septembre']))
+                {
+                    $septembre++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['octobre']))
+                {
+                    $octobre++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['novembre']))
+                {
+                    $novembre++;
+                }
+                elseif(Str::contains($one->created_at, $moisTab['decembre']))
+                {
+                    $decembre++;
+                }
+            }
+
+            $list[$annee] = [$janvier, $fevrier, $mars, $avril, $mai, $juin, $juillet, $aout, $septembre, $octobre, $novembre, $decembre];
+            $dataParAn[] = $janvier+$fevrier+$mars+$avril+$mai+$juin+$juillet+$aout+$septembre+$octobre+$novembre+$decembre;
+            $annee++;
+        }
+
+
         $labels = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 
-        $maxi = max($data)+10;
+        $data = $list[$anneeSelect];
 
-
-        // Simulating your data
-    /*$time = [
-        ['RSSI' => 33, 'created_at' => '2022-02-20 19:25:43',],
-        ['RSSI' => 55, 'created_at' => '2022-02-20 20:25:43',],
-        ['RSSI' => 23, 'created_at' => '2022-02-20 21:25:43',],
-        ['RSSI' => -5, 'created_at' => '2022-02-20 22:25:43',],
-        ['RSSI' => 9, 'created_at' => '2022-02-20 23:25:43',],
-        ['RSSI' => 69, 'created_at' => '2022-02-21 00:25:43',],
-    ];
-
-    // Saparating informations for x-axis (labels) and y-axis (data)
-    $timestamps_x_axis = [];
-    $rssi_y_axis = [];
-    foreach ($time as  $row) {
-        $timestamps_x_axis[] = $row['created_at'];
-        $rssi_y_axis[] = $row['RSSI'];
-    }*/
+        $maxiMois = max($data)+10;
+        $maxiAn = max($dataParAn)+10;
 
         // ADMINISTRATEUR ET DRH
 
@@ -509,6 +533,13 @@ class DemandeController extends Controller
         $demandes = 0;
         }
 
+        $data1 = [$stageattente, $stagevalide, $stageencours, $stagetermines];
+        $labels1 = ['Demandes de stage', 'Stages validés', 'Stages en cours', 'Stages terminés'];
+
+
+        for ($i=2021; $i < 2025; $i++) { 
+            $labels2[] = $i;
+        }
 
         return view('welcomeback', [
            'stageattente' => $stageattente,
@@ -517,8 +548,18 @@ class DemandeController extends Controller
            'demandes' => $demandes,
            'stageencours'=>$stageencours,
            'labels' => $labels,
+           'list' => $list,
+           'anneeList' => $anneeList,
+           'anneeSelect' => $anneeSelect,
+           'labels1' => $labels1,
+           'labels2' => $labels2,
+           'data1' => $data1,
            'data' => $data,
-           'maxi' => $maxi,
+           'dataParAn' => $dataParAn,
+           'maxiMois' => $maxiMois,
+           'maxiAn' => $maxiAn,
+           'directionLibelle' => $directionLibelle,
+           'DemandeParDirection' => $DemandeParDirection,
        ]);
     }
 

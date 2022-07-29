@@ -262,12 +262,55 @@
             // DATA FROM PHP TO JAVASCRIPT
             const labels = {!! json_encode($labels) !!};
             const data = {!! json_encode($data) !!};
+
+            const labels1 = {!! json_encode($directionLibelle) !!};
+            const data1 = {!! json_encode($DemandeParDirection) !!};
+
+            const labels2 = {!! json_encode($labels2) !!};
+            const data2 = {!! json_encode($dataParAn) !!};
         </script>
         
         <table>
             <tr>
-                <td><canvas id="myChart1" width="500" height="350"></canvas></td>
-                <td><canvas id="myChart2" width="500" height="350"></canvas></td>
+                <td><h2 class="animation-pullDown"> <strong>Représentation du nombre de demandes par direction</strong> </h2></td>
+                <td colspan= "2">
+                    <div>
+                        <canvas id="myChart3" style="max-width: 100%; max-height:100%;"></canvas>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="block full">
+                        <div class="block-title">
+                            <table>
+                                <tr>
+                                    <td><h2>Représentation du nombre de demandes par mois</h2></td>
+                                    <td>
+                                        <form>
+                                            <select class="form-control" name="annee" id="annee" onchange="MAJStat(this)" style="margin-left: 50%;">
+                                                @foreach($anneeList as $annee)
+                                                    <option value="{{$annee}}">{{$annee}}</option>
+                                                @endforeach 
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <canvas id="myChart1" width="500" height="350"></canvas>
+                    </div>
+                </td>
+                <td>
+                    <div class="block full">
+
+                        <div class="block-title">
+                            <h2>Représentation du nombre de demandes par an</h2>
+                        </div>
+
+                        <canvas id="myChart2" width="500" height="350"></canvas>
+                    </div>
+                </td>
             </tr>
         </table>
 
@@ -275,8 +318,47 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
         
         <script>
+            //Fonction permettant d'afficher Chart en fonction de l'année
+            function MAJStat (annee){
+            var anneeVar= annee.value;
+            url= "{{ route('admin') }}";         
+            $.ajax({
+                url: url,
+                type:'GET',
+                data: {annee : anneeVar},
+                error:function(){alert('error');},
+                success:function(){
+                    location.reload();
+                }
+
+           });
+        }
+
+        //Fonction permettant d'afficher la dernière instance de statistiques consultée pour Chart des demandes par mois
+        function anneeFunc(annee) {
+            document.getElementById("annee").value = annee;
+        }
+        anneeFunc({{ $anneeSelect }});
+
+        // Tableau de couleur dynamique pour Chart des demandes par direction
+        var coloR = [];
+
+         var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+         };
+
+         for (var i in data1) {
+            coloR.push(dynamicColors());
+         }
+
             const ctx1 = document.getElementById('myChart1').getContext('2d');
             const ctx2 = document.getElementById('myChart2').getContext('2d');
+            const ctx3 = document.getElementById('myChart3').getContext('2d');
+
+            let delayed;
             const myChart1 = new Chart(ctx1, {
                 type: 'bar',
                 data: {
@@ -285,31 +367,56 @@
                         label: 'Demandes de stage',
                         barThickness: 15,
                         data: data, // <======= axe vertical y
-                        backgroundColor: [
-                            'rgba(255, 99, 132)',
-                            'rgba(54, 162, 235)',
-                            'rgba(255, 206, 86)',
-                            'rgba(75, 192, 192)',
-                            'rgba(153, 102, 255)',
-                            'rgba(255, 159, 64)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        backgroundColor: 'rgb( 93, 109, 126 )',
+                        borderColor: 'rgb( 93, 109, 126 )',
+                        borderWidth: 4
                     }]
                 },
                 options: {
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
+                        },
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            }
+                            return delay;
+                        },
+                        },
                     scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Mois',
+                                color: 'rgb(52, 73, 94)',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 1, left: 0, right: 0, bottom: 0}
+                            }
+                        },
                         y: {
-                            type: 'linear',
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Demande de stages',
+                                color: 'rgb(52, 73, 94)',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 0, left: 0, right: 0, bottom: 0}
+                            },
                             min: 0,
-                            max: {{ $maxi }},
+                            max: {{ $maxiMois }},
                             beginAtZero: true
                         }
                     }
@@ -317,40 +424,92 @@
             });
 
             const myChart2 = new Chart(ctx2, {
-                type: 'line',
+                type: 'bar',
                 data: {
-                    labels: labels, // <======= axe horizontal x
+                    labels: labels2, // <======= axe horizontal x
                     datasets: [{
                         label: 'Demandes de stage',
-                        data: data, // <======= axe vertical y
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        data: data2, // <======= axe vertical y
+                        backgroundColor: 'rgb( 93, 109, 126 )',
+                        borderColor: 'rgb( 93, 109, 126 )',
                     }]
                 },
                 options: {
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
+                        },
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            }
+                            return delay;
+                        },
+                        },
                     scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'An',
+                                color: 'rgb(52, 73, 94)',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 1, left: 0, right: 0, bottom: 0}
+                            }
+                        },
                         y: {
-                            type: 'linear',
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Demande de stages',
+                                color: 'rgb(52, 73, 94)',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 20, left: 0, right: 0, bottom: 0}
+                            },
                             min: 0,
-                            max: {{ $maxi }},
+                            max: {{ $maxiAn }},
                             beginAtZero: true,
                         }
                     }
+                }
+            });
+
+            const myChart3 = new Chart(ctx3, {
+                type: 'doughnut',
+                data: {
+                    labels: labels1, // <======= axe horizontal x
+                    datasets: [{
+                        label: 'Demandes de stage',
+                        barThickness: 15,
+                        data: data1, // <======= axe vertical y
+                        backgroundColor: coloR,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
+                        },
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 600 + context.datasetIndex * 400;
+                            }
+                            return delay;
+                        },
+                        },
                 }
             });
         </script>

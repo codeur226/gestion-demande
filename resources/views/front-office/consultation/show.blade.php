@@ -52,6 +52,8 @@
                          <br>
                          <span style="font-weight: bold "> Domaine : </span>{{getDomaine($demande->direction_id)}}
                          <br>
+                         <span style="font-weight: bold "> Spécialité : </span>{{$demande->specialite}}
+                         <br>
                          <span style="font-weight: bold "> Date de début : </span>{{$demande->date_debut}}
                          <br>
                          <span style="font-weight: bold ">Date de fin : </span>{{$demande->date_fin}}
