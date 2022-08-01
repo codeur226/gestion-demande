@@ -536,11 +536,6 @@ class DemandeController extends Controller
         $data1 = [$stageattente, $stagevalide, $stageencours, $stagetermines];
         $labels1 = ['Demandes de stage', 'Stages validés', 'Stages en cours', 'Stages terminés'];
 
-
-        for ($i=2021; $i < 2025; $i++) { 
-            $labels2[] = $i;
-        }
-
         return view('welcomeback', [
            'stageattente' => $stageattente,
            'stagevalide' => $stagevalide,
@@ -552,7 +547,6 @@ class DemandeController extends Controller
            'anneeList' => $anneeList,
            'anneeSelect' => $anneeSelect,
            'labels1' => $labels1,
-           'labels2' => $labels2,
            'data1' => $data1,
            'data' => $data,
            'dataParAn' => $dataParAn,

@@ -39,6 +39,7 @@ Route::post('consulter', [DemandefrontController::class, 'consulter'])->name('co
 Route::get('enregistrerPiece/{id}', [PieceController::class, 'enregistrerPiece']);
 
 //ROUTES ACCES ADMIN
+
 Route::middleware(['auth'])->group(function () {
     // Seul les utilisateurs connectés peuvent avoir accès a ces routes
     Route::get('/admin', [DemandeController::class, 'dashboard'])->name('admin');

@@ -258,15 +258,21 @@
 
         </div>
 
+        <!-- Statistiques avec Chart.js -->
+
         <script>
             // DATA FROM PHP TO JAVASCRIPT
+
+            //Nombre de demandes par mois par an
             const labels = {!! json_encode($labels) !!};
             const data = {!! json_encode($data) !!};
 
+            //Nombre de demandes par direction
             const labels1 = {!! json_encode($directionLibelle) !!};
             const data1 = {!! json_encode($DemandeParDirection) !!};
 
-            const labels2 = {!! json_encode($labels2) !!};
+            //Nombre de demandes par an
+            const labels2 = {!! json_encode($anneeList) !!};
             const data2 = {!! json_encode($dataParAn) !!};
         </script>
         
@@ -318,7 +324,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
         
         <script>
-            //Fonction permettant d'afficher Chart en fonction de l'année
+            //Fonction permettant d'afficher le nombre de demandes en fonction de l'année sélectionnée
             function MAJStat (annee){
             var anneeVar= annee.value;
             url= "{{ route('admin') }}";         
@@ -334,13 +340,13 @@
            });
         }
 
-        //Fonction permettant d'afficher la dernière instance de statistiques consultée pour Chart des demandes par mois
+        //Fonction permettant d'afficher la dernière instance de statistiques consultées
         function anneeFunc(annee) {
             document.getElementById("annee").value = annee;
         }
         anneeFunc({{ $anneeSelect }});
 
-        // Tableau de couleur dynamique pour Chart des demandes par direction
+        // Tableau de couleur dynamique pour les statistiques du nombre de demandes par direction
         var coloR = [];
 
          var dynamicColors = function() {
@@ -357,8 +363,10 @@
             const ctx1 = document.getElementById('myChart1').getContext('2d');
             const ctx2 = document.getElementById('myChart2').getContext('2d');
             const ctx3 = document.getElementById('myChart3').getContext('2d');
-
             let delayed;
+
+            // Nombre de demandes par mois par an
+
             const myChart1 = new Chart(ctx1, {
                 type: 'bar',
                 data: {
@@ -423,6 +431,8 @@
                 }
             });
 
+            //Nombre de demandes par an
+
             const myChart2 = new Chart(ctx2, {
                 type: 'bar',
                 data: {
@@ -485,6 +495,8 @@
                 }
             });
 
+            //Nombre de demandes par direction
+
             const myChart3 = new Chart(ctx3, {
                 type: 'doughnut',
                 data: {
@@ -513,6 +525,8 @@
                 }
             });
         </script>
+
+        <!-- Liste des demandes de stage en attente -->
 
         @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 || Auth::user()->role_id == 7)
         <div class="table-responsive">
